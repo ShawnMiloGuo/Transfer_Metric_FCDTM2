@@ -1,0 +1,3 @@
+*.pyc
+feature/result/*
+result/*

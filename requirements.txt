@@ -5,6 +5,8 @@ scipy>=1.10
 matplotlib>=3.7
 pandas>=2.0
 tqdm>=4.66
+tensorflow==2.16.2
+gdal>=3.12
 
 # Metrics & OT
 torchmetrics>=1.3

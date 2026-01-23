@@ -1,7 +1,10 @@
-#/bin/bash
-sh_logname="20250527_1543_transfer_metric_FD_DS.log"
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+sh_logname="20260123_transfer_metric_FD_DS.log"
 # result_path_pre="E:\Yiling\at_SIAT_research\z_result\20250312_transfer_metric_GBC_batch14\20250527_1543"
-result_path_pre="E:\Yiling\at_SIAT_research\z_result\20250527_transfer_metric\1_FD\20250527_1543"
+result_path_pre="/Volumes/Untitled/results/20260123/1_FD"
 
 transfer_metric_name="FD" # GBC FD DS
 # dwq_s2_xj_s2, dwq_s2_dwq_l8, dwq_l8_xj_l8, xj_s2_xj_l8
@@ -26,9 +29,9 @@ for transfer_metric_name in "DS" "GBC"
 do
     if [ $transfer_metric_name == "DS" ]
     then
-        result_path_pre="E:\Yiling\at_SIAT_research\z_result\20250527_transfer_metric\2_DS\20250518_1810"
+        result_path_pre="/Volumes/Untitled/results/20260123/2_DS"
     else
-        result_path_pre="E:\Yiling\at_SIAT_research\z_result\20250527_transfer_metric\3_GBC\20250518_1810"
+        result_path_pre="/Volumes/Untitled/results/20260123/3_GBC"
     fi
 
     for by_pred in 0 1

@@ -876,7 +876,7 @@ def main(model_path_prefix,
          dataset_is_train = 1,
          ):
     
-    model_chdir = r'C:\Users\ZT\OneDrive\Studying\Yiling\00Research\202401_experiment\code'
+    model_chdir = r'/Users/shawnguo/Library/CloudStorage/SynologyDrive-E/10_Students/0_已毕业/00_张拓/SCI论文/IEEE Review/code/Transfer_Metric_FCDTM'
     test_path_exist(result_path)
 
     print(f"label_1_percent: {label_1_percent}")
@@ -1028,12 +1028,12 @@ def get_args():
     parser.add_argument('--model_path_prefix', type=str, default=r"E:\Yiling\at_SIAT_research\2_model_pth", help='prefix of model_path')
     # data_path_source, data_path_target
     parser.add_argument('--data_path_source', type=str, help='Path to source datasets, including images/train & val, annotations/train & val', 
-                        default=r'E:\Yiling\at_SIAT_research\1_dataset\dataset\dwq_sentinel2\train_val')
+                        default=r'/Volumes/Untitled/ZhangTuo_Bakcups/1_SCI/1_dataset/dataset/dwq_sentinel2/train_val')
     parser.add_argument('--data_path_target', type=str, help='Path to target datasets, including images/train & val, annotations/train & val',
-                        default=r'E:\Yiling\at_SIAT_research\1_dataset\dataset\xj_sentinel2\train_val')
+                        default=r'/Volumes/Untitled/ZhangTuo_Bakcups/1_SCI/1_dataset/dataset/xj_sentinel2/train_val')
     # result_path, log_name
     parser.add_argument('--result_path', type=str, help='Path to RESULT',
-                        default=r'E:\Yiling\at_SIAT_research\z_result\20240627_transfer_metric_FID-mask0\20240627_transfer_metric_FID_decoder_1_all-all_dwqs2-xjs2_100img')
+                        default=r'/Volumes/Untitled/results1')
     parser.add_argument('--log_name', type=str, default="transfer_metric_FID_dwqs2-xjs2.log", help='log_name')
     # batch_size, label_1_percent
     parser.add_argument('--batch_size', type=int, default=4, help='Batch Size')
