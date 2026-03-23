@@ -26,9 +26,51 @@ from typing import Dict, List, Tuple, Optional, Any, Union
 from dataclasses import dataclass
 from enum import Enum
 
-# 添加父目录到系统路径，以便导入自定义模块
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(parent_dir)
+def find_project_root() -> str:
+    """
+    智能定位项目根目录
+    
+    按优先级尝试以下方式:
+    1. 环境变量 PROJECT_ROOT (可自定义)
+    2. VSCode 工作区环境变量 VSCODE_WORKSPACE_PATH
+    3. 从当前文件向上查找项目标志文件 (.git, pyproject.toml, setup.py 等)
+    4. 当前工作目录
+    
+    返回:
+        str: 项目根目录的绝对路径
+    """
+    # 方式1: 检查自定义环境变量
+    if 'PROJECT_ROOT' in os.environ:
+        project_root = os.environ['PROJECT_ROOT']
+        if os.path.isdir(project_root):
+            return project_root
+    
+    # 方式2: VSCode 工作区路径
+    if 'VSCODE_WORKSPACE_PATH' in os.environ:
+        workspace = os.environ['VSCODE_WORKSPACE_PATH']
+        if os.path.isdir(workspace):
+            return workspace
+    
+    # 方式3: 向上查找项目标志文件
+    project_markers = ['.git', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt']
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    while current_dir != os.path.dirname(current_dir):  # 到达文件系统根目录时停止
+        for marker in project_markers:
+            marker_path = os.path.join(current_dir, marker)
+            if os.path.exists(marker_path):
+                return current_dir
+        current_dir = os.path.dirname(current_dir)
+    
+    # 方式4: 回退到当前工作目录
+    return os.getcwd()
+
+
+# 将项目根目录添加到系统路径
+PROJECT_ROOT = find_project_root()
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from component.utils import test_path_exist
 from torchmetrics.functional.classification import (
@@ -1313,7 +1355,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         '--result_path',
         type=str,
-        default='/home/Shanxin.Guo/ZhangtuosCode/code/Transfer_Metric_FCDTM/result',
+        default='/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/result',
         help='结果输出路径'
     )
     parser.add_argument(
@@ -1425,7 +1467,17 @@ def get_task_configuration(
 
 
 def main():
-    """主函数"""
+    """
+    主函数
+    
+    执行流程:
+    1. 解析命令行参数
+    2. 加载预训练模型
+    3. 准备数据加载器
+    4. 根据度量类型计算迁移度量
+    5. 保存结果到CSV和JSON
+    6. 绘制可视化图表
+    """
     args = parse_arguments()
     
     # 获取任务配置
@@ -1453,17 +1505,287 @@ def main():
     print(f"度量类型: {args.transfer_metric_name}")
     print(f"源域: {dataset_names[0]}, 目标域: {dataset_names[1]}")
     print(f"类别索引: {class_indices}")
+    print(f"前景像素比例阈值: {args.label_1_percent}")
     
-    # 加载模型
+    # 设置计算设备
     model_device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f"计算设备: {model_device}")
+    
+    # 切换到模型目录
     model_chdir = os.path.dirname(args.model_path_prefix)
     os.chdir(model_chdir)
     
-    # 准备数据加载器
+    # 准备数据集读取器
     dataset_reader = get_dataset_reader('rgbn')
     
-    # ... 后续处理逻辑 ...
+    # 数据集索引列表（双向迁移: 0=源域->目标域, 1=目标域->源域）
+    dataset_indices = [0, 1]
+    reversed_dataset_names = dataset_names[::-1]
+    
+    # 存储所有结果的字典
+    result_dict: Dict[str, List[List]] = {}
+    
+    # 用于可视化绘图的索引
+    metric_plot_indices: List[int] = []
+    accuracy_plot_indices: List[int] = []
+    
+    # ========================================================================
+    # 遍历数据集组合（双向迁移）
+    # ========================================================================
+    for dataset_idx in dataset_indices:
+        # 确定当前源域和目标域
+        if dataset_idx == 0:
+            source_domain = dataset_names[0]
+            target_domain = dataset_names[1]
+            current_source_path = data_path_source
+            current_target_path = data_path_target
+        else:
+            source_domain = dataset_names[1]
+            target_domain = dataset_names[0]
+            current_source_path = data_path_target
+            current_target_path = data_path_source
+        
+        # ====================================================================
+        # 遍历各个类别
+        # ====================================================================
+        for class_idx in class_indices:
+            class_name = CLASS_NAMES[class_idx] if class_idx < len(CLASS_NAMES) else f"class_{class_idx}"
+            
+            print(f"\n{'='*60}")
+            print(f"处理: {source_domain} -> {target_domain}, 类别: {class_idx} ({class_name})")
+            print(f"{'='*60}")
+            
+            # 结果字典的键
+            result_key = f"{source_domain}-{target_domain}_cls_{class_idx}"
+            result_dict[result_key] = []
+            
+            # ----------------------------------------------------------------
+            # 查找并加载模型
+            # ----------------------------------------------------------------
+            model_pattern = os.path.join(
+                args.model_path_prefix,
+                f"train_{source_domain}_cls_{class_idx}",
+                "unet_*_best_val.pth"
+            )
+            model_files = glob.glob(model_pattern)
+            
+            if len(model_files) == 0:
+                print(f"警告: 未找到匹配的模型文件: {model_pattern}")
+                continue
+            
+            model_path = model_files[0]
+            print(f"加载模型: {model_path}")
+            
+            # 加载模型
+            model = torch.load(model_path, map_location=model_device)
+            model.eval()
+            
+            # 注册特征提取钩子
+            hook_handle = register_feature_hook(model, args.feature_layer_name)
+            
+            # ----------------------------------------------------------------
+            # 创建数据加载器
+            # ----------------------------------------------------------------
+            # 源域数据集
+            source_dataset = dataset_reader(
+                root_dir=current_source_path,
+                is_train=args.dataset_is_train,
+                transform=None,
+                binary_class_index=class_idx,
+                label_1_percent=args.label_1_percent
+            )
+            source_loader = data.DataLoader(
+                source_dataset,
+                batch_size=args.batch_size,
+                shuffle=False,
+                num_workers=DEFAULT_NUM_WORKERS
+            )
+            
+            # 目标域数据集
+            target_dataset = dataset_reader(
+                root_dir=current_target_path,
+                is_train=args.dataset_is_train,
+                transform=None,
+                binary_class_index=class_idx,
+                label_1_percent=args.label_1_percent
+            )
+            target_loader = data.DataLoader(
+                target_dataset,
+                batch_size=args.batch_size,
+                shuffle=False,
+                num_workers=DEFAULT_NUM_WORKERS
+            )
+            
+            # ----------------------------------------------------------------
+            # 计算迁移度量
+            # ----------------------------------------------------------------
+            target_label_index = 1 if args.only_label_1 else None
+            use_pred_labels = bool(args.by_pred)
+            process_all = bool(args.target_domain_all)
+            exclude_zeros = bool(args.no_feature0)
+            
+            if args.transfer_metric_name == "FD":
+                column_names, results = compute_fd_transfer_metric(
+                    model=model,
+                    model_device=model_device,
+                    source_loader=source_loader,
+                    target_loader=target_loader,
+                    target_label_index=target_label_index,
+                    use_prediction_labels=use_pred_labels,
+                    exclude_zero_features=exclude_zeros,
+                    process_all_target=process_all,
+                    max_images=DEFAULT_MAX_IMAGES
+                )
+                # 设置可视化绘图索引
+                metric_plot_indices = [16, 17, 20, 22]  # FD相关指标
+                accuracy_plot_indices = [4, 5]  # OA_delta, F1_delta
+                
+            elif args.transfer_metric_name == "DS":
+                column_names, results = compute_ds_transfer_metric(
+                    model=model,
+                    model_device=model_device,
+                    source_loader=source_loader,
+                    target_loader=target_loader,
+                    use_prediction_labels=use_pred_labels,
+                    process_all_target=process_all,
+                    max_images=DEFAULT_MAX_IMAGES
+                )
+                # 设置可视化绘图索引
+                metric_plot_indices = [18, 19]  # dispersion_score
+                accuracy_plot_indices = [14, 15]  # OA_delta, F1_delta
+                
+            elif args.transfer_metric_name == "GBC":
+                column_names, results = compute_gbc_transfer_metric(
+                    model=model,
+                    model_device=model_device,
+                    source_loader=source_loader,
+                    target_loader=target_loader,
+                    use_prediction_labels=use_pred_labels,
+                    process_all_target=process_all,
+                    max_images=DEFAULT_MAX_IMAGES
+                )
+                # 设置可视化绘图索引
+                metric_plot_indices = [18]  # spherical_GBC
+                accuracy_plot_indices = [14, 15]  # OA_delta, F1_delta
+            
+            else:
+                print(f"错误: 未知的度量类型: {args.transfer_metric_name}")
+                hook_handle.remove()
+                continue
+            
+            # 为每行结果添加前缀信息
+            for row in results:
+                prefixed_row = [
+                    source_domain,
+                    target_domain,
+                    class_idx,
+                    class_name
+                ] + row
+                result_dict[result_key].append(prefixed_row)
+            
+            # 移除钩子
+            hook_handle.remove()
+            
+            print(f"完成: 获得 {len(results)} 条结果记录")
+    
+    # ========================================================================
+    # 保存结果到文件
+    # ========================================================================
+    print(f"\n{'='*60}")
+    print("保存结果...")
+    print(f"{'='*60}")
+    
+    # 完整的列名（包含前缀）
+    full_column_names = [
+        "source", "target", "class_index", "class_name"
+    ] + column_names
+    
+    # 保存列名到JSON
+    column_names_path = os.path.join(args.result_path, "result_list_name.json")
+    with open(column_names_path, "w", encoding="utf-8") as f:
+        json.dump(full_column_names, f, ensure_ascii=False, indent=2)
+    print(f"列名已保存: {column_names_path}")
+    
+    # 保存结果到CSV
+    csv_filename = f"result_{dataset_names[0]}-{dataset_names[1]}_batch{args.batch_size}.csv"
+    csv_path = os.path.join(args.result_path, csv_filename)
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(full_column_names)
+        for key in result_dict.keys():
+            writer.writerows(result_dict[key])
+    print(f"结果已保存: {csv_path}")
+    
+    # 保存结果字典到JSON
+    dict_filename = f"result_dict_{dataset_names[0]}-{dataset_names[1]}_batch{args.batch_size}.json"
+    dict_path = os.path.join(args.result_path, dict_filename)
+    with open(dict_path, "w", encoding="utf-8") as f:
+        json.dump(result_dict, f, ensure_ascii=False, indent=2)
+    print(f"结果字典已保存: {dict_path}")
+    
+    # ========================================================================
+    # 绘制可视化图表
+    # ========================================================================
+    print(f"\n{'='*60}")
+    print("绘制可视化图表...")
+    print(f"{'='*60}")
+    
+    fig_output_dir = os.path.join(args.result_path, "fig")
+    test_path_exist(fig_output_dir)
+    
+    for metric_idx in tqdm(metric_plot_indices, desc="绘制散点图"):
+        for accuracy_idx in accuracy_plot_indices:
+            plt.figure(figsize=(12, 8))
+            
+            for dataset_idx in dataset_indices:
+                source_name = dataset_names[dataset_idx]
+                target_name = reversed_dataset_names[dataset_idx]
+                
+                for class_idx in class_indices:
+                    result_key = f"{source_name}-{target_name}_cls_{class_idx}"
+                    
+                    if result_key not in result_dict or len(result_dict[result_key]) == 0:
+                        continue
+                    
+                    result_list = result_dict[result_key]
+                    class_name = CLASS_NAMES[class_idx] if class_idx < len(CLASS_NAMES) else f"class_{class_idx}"
+                    
+                    # 判断是否是最后一个类别（用于保存图表）
+                    is_last_class = (dataset_idx == dataset_indices[-1] and 
+                                     class_idx == class_indices[-1])
+                    
+                    # 提取x和y数据
+                    x_values = [row[metric_idx] for row in result_list]
+                    y_values = [row[accuracy_idx] for row in result_list]
+                    
+                    # 计算点大小
+                    point_size = max(2, min(1000.0 / len(x_values), 20))
+                    
+                    label_text = f"{source_name}-{target_name}_cls-{class_idx}-{class_name}"
+                    plt.scatter(x_values, y_values, label=label_text, s=point_size, alpha=0.7)
+            
+            # 设置图表标签
+            metric_name = full_column_names[metric_idx] if metric_idx < len(full_column_names) else f"col_{metric_idx}"
+            accuracy_name = full_column_names[accuracy_idx] if accuracy_idx < len(full_column_names) else f"col_{accuracy_idx}"
+            
+            plt.xlabel(metric_name)
+            plt.ylabel(accuracy_name)
+            plt.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=8)
+            plt.tight_layout()
+            
+            # 保存图表
+            fig_filename = f"scatter_{metric_name}_{accuracy_name}_batch{args.batch_size}.png"
+            fig_path = os.path.join(fig_output_dir, fig_filename)
+            plt.savefig(fig_path, bbox_inches='tight', dpi=150)
+            plt.close()
+            
+            print(f"图表已保存: {fig_path}")
+    
+    print(f"\n{'='*60}")
+    print("所有任务执行完成!")
+    print(f"{'='*60}")
 
 
 if __name__ == "__main__":
     main()
+

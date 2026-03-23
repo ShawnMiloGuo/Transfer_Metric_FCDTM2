@@ -36,6 +36,8 @@ cd "$SCRIPT_DIR"
 # 日志文件名
 LOG_FILE="20260323_transfer_metric_FD_DS.log"
 
+# 创建日志目录
+mkdir -p ./result
 # ============================================================================
 # 可配置参数
 # ============================================================================
@@ -198,6 +200,9 @@ for metric_name in "FD" "DS" "GBC"; do
                         
                         # ----------------------------------------------------------------
                         # 执行 Python 计算脚本
+                        # 说明: 
+                        #   - stdout (print输出) 重定向到日志文件
+                        #   - stderr (tqdm进度条) 输出到终端显示
                         # ----------------------------------------------------------------
                         python -u -W ignore transfer_metric_FD_DS.py \
                             --batch_size $batch_size \
@@ -211,7 +216,7 @@ for metric_name in "FD" "DS" "GBC"; do
                             --transfer_metric_name "$metric_name" \
                             --by_pred $use_prediction \
                             --dataset_is_train $DATASET_TYPE \
-                            >> ./result/$LOG_FILE 2>&1
+                            >> ./result/$LOG_FILE
                         
                         # 检查执行状态
                         if [ $? -eq 0 ]; then

@@ -101,7 +101,7 @@ do
                         --transfer_metric_name $transfer_metric_name \
                         --by_pred $by_pred \
 
-                        >> ./result/$sh_logname
+                        >> ./log/$sh_logname
                     done
                 done
             done
