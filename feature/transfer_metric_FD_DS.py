@@ -876,7 +876,7 @@ def main(model_path_prefix,
          dataset_is_train = 1,
          ):
     
-    model_chdir = r'/Users/shawnguo/Library/CloudStorage/SynologyDrive-E/10_Students/0_已毕业/00_张拓/SCI论文/IEEE Review/code/Transfer_Metric_FCDTM'
+    model_chdir = r'/home/Shanxin.Guo/ZhangtuosCode/code/Transfer_Metric_FCDTM'
     test_path_exist(result_path)
 
     print(f"label_1_percent: {label_1_percent}")
@@ -901,7 +901,7 @@ def main(model_path_prefix,
             result_list_dict[dict_key] = []
 
             # find the model file
-            model_path = model_path_prefix + rf"\train_{dataset_name_source}_cls_{binary_class_index}\unet_*_best_val.pth"
+            model_path = model_path_prefix + rf"/train_{dataset_name_source}_cls_{binary_class_index}/unet_*_best_val.pth"
             model_files = glob.glob(model_path)
             if len(model_files) == 0:
                 print(f"model_files: {model_files} is empty!")
@@ -1024,16 +1024,17 @@ def main(model_path_prefix,
             plt.close()
     
 def get_args():
+    #python -u -W ignore transfer_metric_FD_DS.py --batch_size 1 --target_domain_all 0 --no_feature0 0 --feature_layer_name up4 --only_label_1 0 --result_path /home/Shanxin.Guo/ZhangtuosCode/code/Transfer_Metric_FCDTM/result/1_FD_1_dwq_s2_xj_s2/1-FD_-all-batch1_100img_by_pred0 --log_name transfer_metric_FD_dwq_s2_xj_s2.log --task_transfer dwq_s2_xj_s2 --transfer_metric_name FD --by_pred 0
     parser = argparse.ArgumentParser(description='Hyperparams for transfer_metric.')
-    parser.add_argument('--model_path_prefix', type=str, default=r"E:\Yiling\at_SIAT_research\2_model_pth", help='prefix of model_path')
+    parser.add_argument('--model_path_prefix', type=str, default=r"/home/Shanxin.Guo/ZhangtuosCode/2_model_pth", help='prefix of model_path')
     # data_path_source, data_path_target
     parser.add_argument('--data_path_source', type=str, help='Path to source datasets, including images/train & val, annotations/train & val', 
-                        default=r'/Volumes/Untitled/ZhangTuo_Bakcups/1_SCI/1_dataset/dataset/dwq_sentinel2/train_val')
+                        default=r'/home/Shanxin.Guo/ZhangtuosCode/1_dataset/dataset/dwq_sentinel2/train_val')
     parser.add_argument('--data_path_target', type=str, help='Path to target datasets, including images/train & val, annotations/train & val',
-                        default=r'/Volumes/Untitled/ZhangTuo_Bakcups/1_SCI/1_dataset/dataset/xj_sentinel2/train_val')
+                        default=r'/home/Shanxin.Guo/ZhangtuosCode/1_dataset/dataset/xj_sentinel2/train_val')
     # result_path, log_name
     parser.add_argument('--result_path', type=str, help='Path to RESULT',
-                        default=r'/Volumes/Untitled/results1')
+                        default=r'/home/Shanxin.Guo/ZhangtuosCode/code/Transfer_Metric_FCDTM/result')
     parser.add_argument('--log_name', type=str, default="transfer_metric_FID_dwqs2-xjs2.log", help='log_name')
     # batch_size, label_1_percent
     parser.add_argument('--batch_size', type=int, default=4, help='Batch Size')
