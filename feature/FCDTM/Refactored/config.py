@@ -82,9 +82,11 @@ if PROJECT_ROOT not in sys.path:
 
 class MetricType(Enum):
     """度量类型枚举"""
-    FD = "FD"    # Fréchet Distance
-    DS = "DS"    # Dispersion Score
-    GBC = "GBC"  # Geometric Bayesian Classifier
+    FD = "FD"       # Fréchet Distance
+    DS = "DS"       # Dispersion Score
+    GBC = "GBC"     # Geometric Bayesian Classifier
+    OTCE = "OTCE"   # Optimal Transport for Conditional Estimation
+    LogME = "LogME" # Log Maximum Evidence
 
 
 class FeatureLayer(Enum):

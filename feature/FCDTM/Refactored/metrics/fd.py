@@ -26,6 +26,7 @@ class FDMetric(BaseMetric):
     
     METRIC_NAME = "FD"
     
+    # 结果列名定义（与原始代码顺序一致）
     COLUMN_NAMES = [
         # 增量指标
         "OA_delta", "F1_delta", "precision_delta",
@@ -40,11 +41,12 @@ class FDMetric(BaseMetric):
         # FD分数
         "FD_score",
         # 加权FD分数
-        "FD_raw", "FD_absolute", "FD_normalized", "FD_normalized_absolute",
+        "FD_raw_difference", "FD_absolute_difference", 
+        "FD_normalized_difference", "FD_normalized_absolute",
     ]
     
     METRIC_PLOT_INDICES = [16, 17, 20, 22]  # FD相关列
-    ACCURACY_PLOT_INDICES = [4, 5]  # OA_delta, F1_delta
+    ACCURACY_PLOT_INDICES = [0, 1]  # OA_delta, F1_delta
     
     def compute(
         self,
@@ -148,22 +150,25 @@ class FDMetric(BaseMetric):
             oa_rel = (source_metrics.overall_accuracy - target_metrics.overall_accuracy) / (source_metrics.overall_accuracy + 1e-8)
             f1_rel = (source_metrics.f1_score - target_metrics.f1_score) / (source_metrics.f1_score + 1e-8)
             
-            # 创建结果
+            # 创建结果（与原始代码结构一致）
             result = MetricResult(
                 source_domain=self.config.source_dataset,
                 target_domain=self.config.target_dataset,
                 class_index=0,  # 由外部填充
                 class_name="",  # 由外部填充
-                batch_index=batch_idx,
-                source_accuracy=source_metrics.overall_accuracy,
-                source_f1=source_metrics.f1_score,
-                source_precision=source_metrics.precision,
-                target_accuracy=target_metrics.overall_accuracy,
-                target_f1=target_metrics.f1_score,
-                target_precision=target_metrics.precision,
-                accuracy_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                f1_delta=source_metrics.f1_score - target_metrics.f1_score,
+                # 源域指标
+                OA_source=source_metrics.overall_accuracy,
+                F1_source=source_metrics.f1_score,
+                precision_source=source_metrics.precision,
+                # 目标域指标
+                OA_target=target_metrics.overall_accuracy,
+                F1_target=target_metrics.f1_score,
+                precision_target=target_metrics.precision,
+                # 增量指标
+                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
                 precision_delta=source_metrics.precision - target_metrics.precision,
+                # 其他度量分数
                 metric_scores={
                     "OA_delta_relative": oa_rel,
                     "F1_delta_relative": f1_rel,

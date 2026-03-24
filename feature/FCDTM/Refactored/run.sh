@@ -4,7 +4,7 @@
 # ============================================================================
 #
 # 功能说明:
-#   该脚本用于运行迁移度量计算，支持单独运行FD、DS、GBC三种度量方法。
+#   该脚本用于运行迁移度量计算，支持单独运行FD、DS、GBC、OTCE、LogME五种度量方法。
 #
 # 使用方法:
 #   # 运行所有度量
@@ -19,11 +19,17 @@
 #   # 单独运行GBC度量
 #   bash run.sh --metric GBC
 #
+#   # 单独运行OTCE度量
+#   bash run.sh --metric OTCE
+#
+#   # 单独运行LogME度量
+#   bash run.sh --metric LogME
+#
 #   # 指定任务
 #   bash run.sh --metric FD --task dwq_s2_xj_s2
 #
 # 参数说明:
-#   --metric   : 度量类型 (FD/DS/GBC)
+#   --metric   : 度量类型 (FD/DS/GBC/OTCE/LogME)
 #   --task     : 迁移任务名称
 #   --batch    : 批次大小
 #   --all      : 运行所有度量
@@ -85,7 +91,7 @@ show_help() {
     echo "用法: bash run.sh [选项]"
     echo ""
     echo "选项:"
-    echo "  --metric TYPE    运行指定类型的度量 (FD/DS/GBC)"
+    echo "  --metric TYPE    运行指定类型的度量 (FD/DS/GBC/OTCE/LogME)"
     echo "  --task NAME      指定迁移任务名称"
     echo "  --batch SIZE     批次大小 (默认: $BATCH_SIZE)"
     echo "  --all            运行所有度量类型"
@@ -93,6 +99,7 @@ show_help() {
     echo ""
     echo "示例:"
     echo "  bash run.sh --metric FD --task dwq_s2_xj_s2"
+    echo "  bash run.sh --metric OTCE --task dwq_s2_xj_s2"
     echo "  bash run.sh --all"
 }
 
@@ -204,7 +211,7 @@ log_info "结果目录: $RESULT_ROOT"
 
 if [ "$RUN_ALL" = true ]; then
     # 运行所有度量
-    for metric in "FD" "DS" "GBC"; do
+    for metric in "FD" "DS" "GBC" "OTCE" "LogME"; do
         run_metric "$metric" "$TASK_NAME"
     done
 elif [ -n "$METRIC_TYPE" ]; then

@@ -249,7 +249,7 @@ class OTCEMetric(BaseMetric):
     ]
     
     METRIC_PLOT_INDICES = [18]  # OTCE_score
-    ACCURACY_PLOT_INDICES = [12, 13]  # OA_delta, F1_delta
+    ACCURACY_PLOT_INDICES = [10, 11]  # OA_delta, F1_delta
     
     def __init__(self, config):
         super().__init__(config)
@@ -358,24 +358,26 @@ class OTCEMetric(BaseMetric):
                 target_domain=self.config.target_dataset,
                 class_index=0,
                 class_name="",
-                batch_index=batch_idx,
-                source_accuracy=source_metrics.overall_accuracy,
-                source_f1=source_metrics.f1_score,
-                source_precision=source_metrics.precision,
-                target_accuracy=target_metrics.overall_accuracy,
-                target_f1=target_metrics.f1_score,
-                target_precision=target_metrics.precision,
-                accuracy_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                f1_delta=source_metrics.f1_score - target_metrics.f1_score,
+                # 源域指标
+                OA_source=source_metrics.overall_accuracy,
+                F1_source=source_metrics.f1_score,
+                mIoU_source=source_metrics.mean_iou,
+                precision_source=source_metrics.precision,
+                recall_source=source_metrics.recall,
+                # 目标域指标
+                OA_target=target_metrics.overall_accuracy,
+                F1_target=target_metrics.f1_score,
+                mIoU_target=target_metrics.mean_iou,
+                precision_target=target_metrics.precision,
+                recall_target=target_metrics.recall,
+                # 增量指标
+                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
+                mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
                 precision_delta=source_metrics.precision - target_metrics.precision,
+                recall_delta=source_metrics.recall - target_metrics.recall,
+                # 度量分数
                 metric_scores={
-                    "mIoU_source": source_metrics.mean_iou,
-                    "recall_source": source_metrics.recall,
-                    "mIoU_target": target_metrics.mean_iou,
-                    "precision_target": target_metrics.precision,
-                    "recall_target": target_metrics.recall,
-                    "mIoU_delta": source_metrics.mean_iou - target_metrics.mean_iou,
-                    "recall_delta": source_metrics.recall - target_metrics.recall,
                     **ot_results,
                     **domain_results,
                 }

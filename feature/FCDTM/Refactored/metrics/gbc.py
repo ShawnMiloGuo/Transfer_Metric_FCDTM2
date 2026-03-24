@@ -33,6 +33,7 @@ class GBCMetric(BaseMetric):
     
     METRIC_NAME = "GBC"
     
+    # 结果列名定义（与原始代码顺序一致）
     COLUMN_NAMES = [
         # 源域指标
         "OA_source", "F1_source", "mIoU_source", "precision_source", "recall_source",
@@ -44,8 +45,8 @@ class GBCMetric(BaseMetric):
         "diagonal_GBC", "spherical_GBC",
     ]
     
-    METRIC_PLOT_INDICES = [18]  # spherical_GBC
-    ACCURACY_PLOT_INDICES = [14, 15]  # OA_delta, F1_delta
+    METRIC_PLOT_INDICES = [16]  # spherical_GBC
+    ACCURACY_PLOT_INDICES = [10, 11]  # OA_delta, F1_delta
     
     def compute(
         self,
@@ -106,30 +107,32 @@ class GBCMetric(BaseMetric):
                 diagonal_gbc = 0.0
                 spherical_gbc = 0.0
             
-            # 创建结果
+            # 创建结果（与原始代码结构一致）
             result = MetricResult(
                 source_domain=self.config.source_dataset,
                 target_domain=self.config.target_dataset,
                 class_index=0,
                 class_name="",
-                batch_index=batch_idx,
-                source_accuracy=source_metrics.overall_accuracy,
-                source_f1=source_metrics.f1_score,
-                source_precision=source_metrics.precision,
-                target_accuracy=target_metrics.overall_accuracy,
-                target_f1=target_metrics.f1_score,
-                target_precision=target_metrics.precision,
-                accuracy_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                f1_delta=source_metrics.f1_score - target_metrics.f1_score,
+                # 源域指标
+                OA_source=source_metrics.overall_accuracy,
+                F1_source=source_metrics.f1_score,
+                mIoU_source=source_metrics.mean_iou,
+                precision_source=source_metrics.precision,
+                recall_source=source_metrics.recall,
+                # 目标域指标
+                OA_target=target_metrics.overall_accuracy,
+                F1_target=target_metrics.f1_score,
+                mIoU_target=target_metrics.mean_iou,
+                precision_target=target_metrics.precision,
+                recall_target=target_metrics.recall,
+                # 增量指标
+                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
+                mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
                 precision_delta=source_metrics.precision - target_metrics.precision,
+                recall_delta=source_metrics.recall - target_metrics.recall,
+                # 度量分数
                 metric_scores={
-                    "mIoU_source": source_metrics.mean_iou,
-                    "recall_source": source_metrics.recall,
-                    "mIoU_target": target_metrics.mean_iou,
-                    "precision_target": target_metrics.precision,
-                    "recall_target": target_metrics.recall,
-                    "mIoU_delta": source_metrics.mean_iou - target_metrics.mean_iou,
-                    "recall_delta": source_metrics.recall - target_metrics.recall,
                     "diagonal_GBC": diagonal_gbc,
                     "spherical_GBC": spherical_gbc,
                 }

@@ -25,22 +25,27 @@ class MetricResult:
     target_domain: str
     class_index: int
     class_name: str
-    batch_index: int = 0
     
     # 源域指标
-    source_accuracy: float = 0.0
-    source_f1: float = 0.0
-    source_precision: float = 0.0
+    OA_source: float = 0.0
+    F1_source: float = 0.0
+    mIoU_source: float = 0.0
+    precision_source: float = 0.0
+    recall_source: float = 0.0
     
     # 目标域指标
-    target_accuracy: float = 0.0
-    target_f1: float = 0.0
-    target_precision: float = 0.0
+    OA_target: float = 0.0
+    F1_target: float = 0.0
+    mIoU_target: float = 0.0
+    precision_target: float = 0.0
+    recall_target: float = 0.0
     
     # 增量指标
-    accuracy_delta: float = 0.0
-    f1_delta: float = 0.0
+    OA_delta: float = 0.0
+    F1_delta: float = 0.0
+    mIoU_delta: float = 0.0
     precision_delta: float = 0.0
+    recall_delta: float = 0.0
     
     # 度量分数（由子类填充）
     metric_scores: Dict[str, float] = field(default_factory=dict)
@@ -119,11 +124,22 @@ class BaseMetric(ABC):
     
     def get_column_names(self) -> List[str]:
         """获取结果列名"""
-        return ["source", "target", "class_index", "class_name", "batch_index"] + self.COLUMN_NAMES
+        return ["source", "target", "class_index", "class_name"] + self.COLUMN_NAMES
     
     def get_plot_indices(self) -> tuple:
-        """获取绘图索引"""
-        return self.METRIC_PLOT_INDICES, self.ACCURACY_PLOT_INDICES
+        """
+        获取绘图索引
+        
+        注意：返回的索引已经考虑了基础信息列的偏移量（4列）
+        """
+        # 基础信息列数量（source, target, class_index, class_name）
+        BASE_COLUMN_OFFSET = 4
+        
+        # 将相对索引转换为绝对索引
+        metric_indices = [idx + BASE_COLUMN_OFFSET for idx in self.METRIC_PLOT_INDICES]
+        accuracy_indices = [idx + BASE_COLUMN_OFFSET for idx in self.ACCURACY_PLOT_INDICES]
+        
+        return metric_indices, accuracy_indices
     
     def clear_results(self):
         """清除结果"""
