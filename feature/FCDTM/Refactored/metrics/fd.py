@@ -89,7 +89,7 @@ class FDMetric(BaseMetric):
         # 获取权重差异用于加权计算
         weight_diff = model_manager.get_last_layer_weight_diff(model)
         
-        # ========== 提取源域特征 ==========
+        # ========== 提取源域特征（一次性提取所有源域特征） ==========
         print("提取源域特征...")
         source_metrics, source_stats, _ = extractor.extract(
             source_loader,
@@ -101,96 +101,138 @@ class FDMetric(BaseMetric):
         )
         
         # ========== 处理目标域 ==========
-        target_iter = iter(target_loader)
-        
-        # 如果处理全部目标域
         if process_all:
+            # 模式1：处理所有目标域数据，计算单个FD值
             print("提取目标域特征（全部）...")
             target_metrics, target_stats, _ = extractor.extract(
-                target_iter,
+                target_loader,
                 target_label_index=target_label,
                 use_prediction_labels=use_pred,
                 max_images=max_images,
                 exclude_zero_features=exclude_zeros,
                 single_batch=False
             )
-        
-        # 按批次计算
-        n_batches = len(target_loader)
-        for batch_idx in tqdm(range(n_batches), desc="计算FD度量"):
-            
-            if not process_all:
-                target_metrics, target_stats, _ = extractor.extract(
-                    iter(target_loader),
-                    target_label_index=target_label,
-                    use_prediction_labels=use_pred,
-                    max_images=max_images,
-                    exclude_zero_features=exclude_zeros,
-                    single_batch=True
-                )
-            
-            # 计算均值差异
-            mean_diff = target_stats.mean - source_stats.mean
-            mean_diff_abs = np.abs(mean_diff)
-            mean_diff_rel = mean_diff / (source_stats.mean + 1e-8)
-            mean_diff_rel_abs = np.abs(mean_diff_rel)
             
             # 计算FD
-            fd_score = calculate_frechet_distance(
-                source_stats.mean, target_stats.mean,
-                source_stats.covariance, target_stats.covariance
+            result = self._compute_single_fd(
+                source_stats, target_stats,
+                source_metrics, target_metrics,
+                weight_diff
             )
-            
-            # 计算加权FD
-            fd_weighted = {}
-            for key, weight in weight_diff.items():
-                w = weight.numpy()
-                fd_w = calculate_frechet_distance(
-                    source_stats.mean * w,
-                    target_stats.mean * w,
-                    source_stats.covariance,
-                    target_stats.covariance
-                )
-                fd_weighted[f"FD_{key}"] = fd_w
-            
-            # 计算相对变化
-            oa_rel = (source_metrics.overall_accuracy - target_metrics.overall_accuracy) / (source_metrics.overall_accuracy + 1e-8)
-            f1_rel = (source_metrics.f1_score - target_metrics.f1_score) / (source_metrics.f1_score + 1e-8)
-            
-            # 创建结果（与原始代码结构一致）
-            result = MetricResult(
-                source_domain=self.config.source_dataset,
-                target_domain=self.config.target_dataset,
-                class_index=0,  # 由外部填充
-                class_name="",  # 由外部填充
-                # 源域指标
-                OA_source=source_metrics.overall_accuracy,
-                F1_source=source_metrics.f1_score,
-                precision_source=source_metrics.precision,
-                # 目标域指标
-                OA_target=target_metrics.overall_accuracy,
-                F1_target=target_metrics.f1_score,
-                precision_target=target_metrics.precision,
-                # 增量指标
-                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
-                precision_delta=source_metrics.precision - target_metrics.precision,
-                # 其他度量分数 - 键名必须与 COLUMN_NAMES 完全一致
-                metric_scores={
-                    "OA_delta_relative": oa_rel,
-                    "F1_delta_relative": f1_rel,
-                    "mean_diff_sum": float(np.sum(mean_diff)),
-                    "mean_diff_abs_sum": float(np.sum(mean_diff_abs)),
-                    "mean_diff_relative_sum": float(np.sum(mean_diff_rel)),
-                    "mean_diff_relative_abs_sum": float(np.sum(mean_diff_rel_abs)),
-                    "FD_score": fd_score,
-                    **fd_weighted
-                }
-            )
-            
             self.add_result(result)
             
-            if process_all:
-                break
+        else:
+            # 模式2：按批次处理目标域，每批次计算一个FD值
+            print(f"按批次处理目标域 (batch_size={self.config.batch_size})...")
+            
+            # 创建目标域迭代器
+            target_iter = iter(target_loader)
+            n_batches = len(target_loader)
+            
+            for batch_idx in tqdm(range(n_batches), desc="计算FD度量"):
+                try:
+                    # 提取当前批次的特征
+                    target_metrics, target_stats, _ = extractor.extract(
+                        target_iter,
+                        target_label_index=target_label,
+                        use_prediction_labels=use_pred,
+                        max_images=self.config.batch_size,  # 使用batch_size控制
+                        exclude_zero_features=exclude_zeros,
+                        single_batch=True
+                    )
+                    
+                    # 计算FD
+                    result = self._compute_single_fd(
+                        source_stats, target_stats,
+                        source_metrics, target_metrics,
+                        weight_diff
+                    )
+                    self.add_result(result)
+                    
+                except StopIteration:
+                    print(f"目标域数据已处理完毕，共 {batch_idx} 个批次")
+                    break
         
         return self.results
+    
+    def _compute_single_fd(
+        self,
+        source_stats,
+        target_stats,
+        source_metrics,
+        target_metrics,
+        weight_diff: dict
+    ) -> MetricResult:
+        """
+        计算单个FD结果
+        
+        参数:
+            source_stats: 源域特征统计
+            target_stats: 目标域特征统计
+            source_metrics: 源域评估指标
+            target_metrics: 目标域评估指标
+            weight_diff: 权重差异字典
+        
+        返回:
+            MetricResult对象
+        """
+        # 计算均值差异
+        mean_diff = target_stats.mean - source_stats.mean
+        mean_diff_abs = np.abs(mean_diff)
+        mean_diff_rel = mean_diff / (source_stats.mean + 1e-8)
+        mean_diff_rel_abs = np.abs(mean_diff_rel)
+        
+        # 计算FD
+        fd_score = calculate_frechet_distance(
+            source_stats.mean, target_stats.mean,
+            source_stats.covariance, target_stats.covariance
+        )
+        
+        # 计算加权FD
+        fd_weighted = {}
+        for key, weight in weight_diff.items():
+            w = weight.numpy()
+            fd_w = calculate_frechet_distance(
+                source_stats.mean * w,
+                target_stats.mean * w,
+                source_stats.covariance,
+                target_stats.covariance
+            )
+            fd_weighted[f"FD_{key}"] = fd_w
+        
+        # 计算相对变化
+        oa_rel = (source_metrics.overall_accuracy - target_metrics.overall_accuracy) / (source_metrics.overall_accuracy + 1e-8)
+        f1_rel = (source_metrics.f1_score - target_metrics.f1_score) / (source_metrics.f1_score + 1e-8)
+        
+        # 创建结果
+        result = MetricResult(
+            source_domain=self.config.source_dataset,
+            target_domain=self.config.target_dataset,
+            class_index=0,  # 由外部填充
+            class_name="",  # 由外部填充
+            # 源域指标
+            OA_source=source_metrics.overall_accuracy,
+            F1_source=source_metrics.f1_score,
+            precision_source=source_metrics.precision,
+            # 目标域指标
+            OA_target=target_metrics.overall_accuracy,
+            F1_target=target_metrics.f1_score,
+            precision_target=target_metrics.precision,
+            # 增量指标
+            OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+            F1_delta=source_metrics.f1_score - target_metrics.f1_score,
+            precision_delta=source_metrics.precision - target_metrics.precision,
+            # 其他度量分数
+            metric_scores={
+                "OA_delta_relative": oa_rel,
+                "F1_delta_relative": f1_rel,
+                "mean_diff_sum": float(np.sum(mean_diff)),
+                "mean_diff_abs_sum": float(np.sum(mean_diff_abs)),
+                "mean_diff_relative_sum": float(np.sum(mean_diff_rel)),
+                "mean_diff_relative_abs_sum": float(np.sum(mean_diff_rel_abs)),
+                "FD_score": fd_score,
+                **fd_weighted
+            }
+        )
+        
+        return result

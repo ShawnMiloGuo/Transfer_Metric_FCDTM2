@@ -379,10 +379,10 @@ class Config:
                           help="使用预测标签而非真实标签")
         
         # 目标域处理
-        parser.add_argument("--process_all_target", action="store_true",
-                          default=True, help="处理所有目标域数据")
+        # 默认 process_all_target=True（处理所有目标域，计算单个度量值）
+        # 使用 --batch_target 可切换为按批次处理（每批次计算一个度量值）
         parser.add_argument("--batch_target", action="store_true",
-                          help="按批次处理目标域")
+                          help="按批次处理目标域（每批次计算一个度量值，而非汇总计算单个值）")
         
         # 数据集参数
         parser.add_argument("--use_val_set", action="store_true",

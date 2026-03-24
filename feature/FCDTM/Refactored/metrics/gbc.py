@@ -87,60 +87,96 @@ class GBCMetric(BaseMetric):
         )
         
         # ========== 处理目标域 ==========
-        n_batches = len(target_loader)
-        
-        for batch_idx in tqdm(range(n_batches), desc="计算GBC度量"):
-            
+        if process_all:
+            # 模式1：处理所有目标域数据
+            print("提取目标域特征（全部）...")
             target_metrics, target_features, target_labels = extractor.extract_with_labels(
-                iter(target_loader),
+                target_loader,
                 use_prediction_labels=use_pred,
                 max_images=max_images,
-                single_batch=not process_all
+                single_batch=False
             )
             
-            # 计算GBC分数
-            try:
-                diagonal_gbc = get_gbc_score(target_features, target_labels, 'diagonal')
-                spherical_gbc = get_gbc_score(target_features, target_labels, 'spherical')
-            except Exception as e:
-                print(f"GBC计算错误: {e}")
-                diagonal_gbc = 0.0
-                spherical_gbc = 0.0
-            
-            # 创建结果（与原始代码结构一致）
-            result = MetricResult(
-                source_domain=self.config.source_dataset,
-                target_domain=self.config.target_dataset,
-                class_index=0,
-                class_name="",
-                # 源域指标
-                OA_source=source_metrics.overall_accuracy,
-                F1_source=source_metrics.f1_score,
-                mIoU_source=source_metrics.mean_iou,
-                precision_source=source_metrics.precision,
-                recall_source=source_metrics.recall,
-                # 目标域指标
-                OA_target=target_metrics.overall_accuracy,
-                F1_target=target_metrics.f1_score,
-                mIoU_target=target_metrics.mean_iou,
-                precision_target=target_metrics.precision,
-                recall_target=target_metrics.recall,
-                # 增量指标
-                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
-                mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
-                precision_delta=source_metrics.precision - target_metrics.precision,
-                recall_delta=source_metrics.recall - target_metrics.recall,
-                # 度量分数
-                metric_scores={
-                    "diagonal_GBC": diagonal_gbc,
-                    "spherical_GBC": spherical_gbc,
-                }
+            result = self._compute_single_gbc(
+                source_metrics, target_metrics,
+                target_features, target_labels
             )
-            
             self.add_result(result)
             
-            if process_all:
-                break
+        else:
+            # 模式2：按批次处理目标域
+            print(f"按批次处理目标域 (batch_size={self.config.batch_size})...")
+            
+            target_iter = iter(target_loader)
+            n_batches = len(target_loader)
+            
+            for batch_idx in tqdm(range(n_batches), desc="计算GBC度量"):
+                try:
+                    target_metrics, target_features, target_labels = extractor.extract_with_labels(
+                        target_iter,
+                        use_prediction_labels=use_pred,
+                        max_images=self.config.batch_size,
+                        single_batch=True
+                    )
+                    
+                    result = self._compute_single_gbc(
+                        source_metrics, target_metrics,
+                        target_features, target_labels
+                    )
+                    self.add_result(result)
+                    
+                except StopIteration:
+                    print(f"目标域数据已处理完毕，共 {batch_idx} 个批次")
+                    break
         
         return self.results
+    
+    def _compute_single_gbc(
+        self,
+        source_metrics,
+        target_metrics,
+        target_features,
+        target_labels
+    ) -> MetricResult:
+        """计算单个GBC结果"""
+        # 计算GBC分数
+        try:
+            diagonal_gbc = get_gbc_score(target_features, target_labels, 'diagonal')
+            spherical_gbc = get_gbc_score(target_features, target_labels, 'spherical')
+        except Exception as e:
+            print(f"GBC计算错误: {e}")
+            diagonal_gbc = 0.0
+            spherical_gbc = 0.0
+        
+        # 创建结果
+        result = MetricResult(
+            source_domain=self.config.source_dataset,
+            target_domain=self.config.target_dataset,
+            class_index=0,
+            class_name="",
+            # 源域指标
+            OA_source=source_metrics.overall_accuracy,
+            F1_source=source_metrics.f1_score,
+            mIoU_source=source_metrics.mean_iou,
+            precision_source=source_metrics.precision,
+            recall_source=source_metrics.recall,
+            # 目标域指标
+            OA_target=target_metrics.overall_accuracy,
+            F1_target=target_metrics.f1_score,
+            mIoU_target=target_metrics.mean_iou,
+            precision_target=target_metrics.precision,
+            recall_target=target_metrics.recall,
+            # 增量指标
+            OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+            F1_delta=source_metrics.f1_score - target_metrics.f1_score,
+            mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
+            precision_delta=source_metrics.precision - target_metrics.precision,
+            recall_delta=source_metrics.recall - target_metrics.recall,
+            # 度量分数
+            metric_scores={
+                "diagonal_GBC": diagonal_gbc,
+                "spherical_GBC": spherical_gbc,
+            }
+        )
+        
+        return result

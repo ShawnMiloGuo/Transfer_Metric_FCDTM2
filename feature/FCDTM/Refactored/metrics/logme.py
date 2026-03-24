@@ -368,94 +368,133 @@ class LogMEMetric(BaseMetric):
             source_label_arr = source_label_arr[idx]
         
         # ========== 处理目标域 ==========
-        n_batches = len(target_loader)
-        
-        for batch_idx in tqdm(range(n_batches), desc="计算LogME度量"):
-            
+        if process_all:
+            # 模式1：处理所有目标域数据
+            print("提取目标域特征（全部）...")
             target_metrics, target_features, target_labels = extractor.extract_with_labels(
-                iter(target_loader),
+                target_loader,
                 use_prediction_labels=use_pred,
                 max_images=max_images,
-                single_batch=not process_all
+                single_batch=False
             )
             
-            # 转换为数组
-            target_feat_arr = np.array(target_features, dtype=np.float32)
-            target_label_arr = np.array(target_labels, dtype=np.int64)
-            
-            # 下采样
-            if len(target_feat_arr) > self.sample_size:
-                idx = np.random.choice(len(target_feat_arr), self.sample_size, replace=False)
-                target_feat_arr = target_feat_arr[idx]
-                target_label_arr = target_label_arr[idx]
-            
-            # 计算 LogME 分数
-            try:
-                logme_results = compute_logme(
-                    target_feat_arr, target_label_arr,
-                    num_classes=2,
-                    max_iter=self.max_iter
-                )
-            except Exception as e:
-                print(f"LogME计算错误: {e}")
-                logme_results = {'LogME_score': 0.0}
-            
-            # 计算快速 LogME
-            try:
-                logme_fast_results = compute_logme_fast(
-                    target_feat_arr, target_label_arr,
-                    num_classes=2
-                )
-            except Exception as e:
-                print(f"LogME快速计算错误: {e}")
-                logme_fast_results = {'LogME_fast': 0.0}
-            
-            # 计算特征统计量
-            try:
-                feature_stats = compute_feature_statistics(
-                    source_feat_arr, target_feat_arr,
-                    source_label_arr, target_label_arr,
-                    num_classes=2
-                )
-            except Exception as e:
-                print(f"特征统计计算错误: {e}")
-                feature_stats = {}
-            
-            # 创建结果
-            result = MetricResult(
-                source_domain=self.config.source_dataset,
-                target_domain=self.config.target_dataset,
-                class_index=0,
-                class_name="",
-                # 源域指标
-                OA_source=source_metrics.overall_accuracy,
-                F1_source=source_metrics.f1_score,
-                mIoU_source=source_metrics.mean_iou,
-                precision_source=source_metrics.precision,
-                recall_source=source_metrics.recall,
-                # 目标域指标
-                OA_target=target_metrics.overall_accuracy,
-                F1_target=target_metrics.f1_score,
-                mIoU_target=target_metrics.mean_iou,
-                precision_target=target_metrics.precision,
-                recall_target=target_metrics.recall,
-                # 增量指标
-                OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
-                F1_delta=source_metrics.f1_score - target_metrics.f1_score,
-                mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
-                precision_delta=source_metrics.precision - target_metrics.precision,
-                recall_delta=source_metrics.recall - target_metrics.recall,
-                # 度量分数
-                metric_scores={
-                    **logme_results,
-                    **logme_fast_results,
-                    **feature_stats,
-                }
+            result = self._compute_single_logme(
+                source_metrics, target_metrics,
+                source_feat_arr, source_label_arr,
+                target_features, target_labels
             )
-            
             self.add_result(result)
             
-            if process_all:
-                break
+        else:
+            # 模式2：按批次处理目标域
+            print(f"按批次处理目标域 (batch_size={self.config.batch_size})...")
+            
+            target_iter = iter(target_loader)
+            n_batches = len(target_loader)
+            
+            for batch_idx in tqdm(range(n_batches), desc="计算LogME度量"):
+                try:
+                    target_metrics, target_features, target_labels = extractor.extract_with_labels(
+                        target_iter,
+                        use_prediction_labels=use_pred,
+                        max_images=self.config.batch_size,
+                        single_batch=True
+                    )
+                    
+                    result = self._compute_single_logme(
+                        source_metrics, target_metrics,
+                        source_feat_arr, source_label_arr,
+                        target_features, target_labels
+                    )
+                    self.add_result(result)
+                    
+                except StopIteration:
+                    print(f"目标域数据已处理完毕，共 {batch_idx} 个批次")
+                    break
         
         return self.results
+    
+    def _compute_single_logme(
+        self,
+        source_metrics,
+        target_metrics,
+        source_features,
+        source_labels,
+        target_features,
+        target_labels
+    ) -> MetricResult:
+        """计算单个LogME结果"""
+        # 下采样
+        target_feat_arr = np.array(target_features, dtype=np.float32)
+        target_label_arr = np.array(target_labels, dtype=np.int64)
+        
+        if len(target_feat_arr) > self.sample_size:
+            idx = np.random.choice(len(target_feat_arr), self.sample_size, replace=False)
+            target_feat_arr = target_feat_arr[idx]
+            target_label_arr = target_label_arr[idx]
+        
+        # 计算 LogME 分数
+        try:
+            logme_results = compute_logme(
+                target_feat_arr, target_label_arr,
+                num_classes=2,
+                max_iter=self.max_iter
+            )
+        except Exception as e:
+            print(f"LogME计算错误: {e}")
+            logme_results = {'LogME_score': 0.0}
+        
+        # 计算快速 LogME
+        try:
+            logme_fast_results = compute_logme_fast(
+                target_feat_arr, target_label_arr,
+                num_classes=2
+            )
+        except Exception as e:
+            print(f"LogME快速计算错误: {e}")
+            logme_fast_results = {'LogME_fast': 0.0}
+        
+        # 计算特征统计量
+        try:
+            feature_stats = compute_feature_statistics(
+                source_features, target_feat_arr,
+                source_labels, target_label_arr,
+                num_classes=2
+            )
+        except Exception as e:
+            print(f"特征统计计算错误: {e}")
+            feature_stats = {}
+        
+        # 创建结果
+        result = MetricResult(
+            source_domain=self.config.source_dataset,
+            target_domain=self.config.target_dataset,
+            class_index=0,
+            class_name="",
+            # 源域指标
+            OA_source=source_metrics.overall_accuracy,
+            F1_source=source_metrics.f1_score,
+            mIoU_source=source_metrics.mean_iou,
+            precision_source=source_metrics.precision,
+            recall_source=source_metrics.recall,
+            # 目标域指标
+            OA_target=target_metrics.overall_accuracy,
+            F1_target=target_metrics.f1_score,
+            mIoU_target=target_metrics.mean_iou,
+            precision_target=target_metrics.precision,
+            recall_target=target_metrics.recall,
+            # 增量指标
+            OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
+            F1_delta=source_metrics.f1_score - target_metrics.f1_score,
+            mIoU_delta=source_metrics.mean_iou - target_metrics.mean_iou,
+            precision_delta=source_metrics.precision - target_metrics.precision,
+            recall_delta=source_metrics.recall - target_metrics.recall,
+            # 度量分数
+            metric_scores={
+                **logme_results,
+                **logme_fast_results,
+                **feature_stats,
+            }
+        )
+        
+        return result

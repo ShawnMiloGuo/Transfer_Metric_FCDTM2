@@ -29,11 +29,12 @@
 #   bash run.sh --metric FD --task dwq_s2_xj_s2
 #
 # 参数说明:
-#   --metric   : 度量类型 (FD/DS/GBC/OTCE/LogME)
-#   --task     : 迁移任务名称
-#   --batch    : 批次大小
-#   --all      : 运行所有度量
-#   --help     : 显示帮助信息
+#   --metric       : 度量类型 (FD/DS/GBC/OTCE/LogME)
+#   --task         : 迁移任务名称
+#   --batch SIZE   : 批次大小（用于控制每多少张图片计算一个度量值）
+#   --batch_target : 按批次处理目标域（每 batch_size 张图片计算一个度量值）
+#   --all          : 运行所有度量
+#   --help         : 显示帮助信息
 #
 # 作者: ShanxinGuo
 # 创建日期: 2026-03-23
@@ -91,15 +92,21 @@ show_help() {
     echo "用法: bash run.sh [选项]"
     echo ""
     echo "选项:"
-    echo "  --metric TYPE    运行指定类型的度量 (FD/DS/GBC/OTCE/LogME)"
-    echo "  --task NAME      指定迁移任务名称"
-    echo "  --batch SIZE     批次大小 (默认: $BATCH_SIZE)"
-    echo "  --all            运行所有度量类型"
-    echo "  --help           显示此帮助信息"
+    echo "  --metric TYPE     运行指定类型的度量 (FD/DS/GBC/OTCE/LogME)"
+    echo "  --task NAME       指定迁移任务名称"
+    echo "  --batch SIZE      批次大小 (默认: $BATCH_SIZE)"
+    echo "  --batch_target    按批次处理目标域（每 batch_size 张图片计算一个度量值）"
+    echo "  --all             运行所有度量类型"
+    echo "  --help            显示此帮助信息"
     echo ""
     echo "示例:"
+    echo "  # 计算单个FD值（汇总所有目标域数据）"
     echo "  bash run.sh --metric FD --task dwq_s2_xj_s2"
-    echo "  bash run.sh --metric OTCE --task dwq_s2_xj_s2"
+    echo ""
+    echo "  # 每4张图片计算一个FD值"
+    echo "  bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target"
+    echo ""
+    echo "  # 运行所有度量"
     echo "  bash run.sh --all"
 }
 
@@ -182,6 +189,10 @@ while [[ $# -gt 0 ]]; do
         --batch)
             BATCH_SIZE="$2"
             shift 2
+            ;;
+        --batch_target)
+            PROCESS_ALL_TARGET=false
+            shift
             ;;
         --all)
             RUN_ALL=true
