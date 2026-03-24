@@ -45,7 +45,14 @@ class FDMetric(BaseMetric):
         "FD_normalized_difference", "FD_normalized_absolute",
     ]
     
-    METRIC_PLOT_INDICES = [16, 17, 20, 22]  # FD相关列
+    # 索引说明（相对于COLUMN_NAMES，共20列，索引0-19）:
+    # 0-4: 增量指标
+    # 5-7: 源域指标
+    # 8-10: 目标域指标
+    # 11-14: 均值差异
+    # 15: FD_score
+    # 16-19: 加权FD分数
+    METRIC_PLOT_INDICES = [15, 16, 17, 19]  # FD_score, FD_raw, FD_absolute, FD_normalized_absolute
     ACCURACY_PLOT_INDICES = [0, 1]  # OA_delta, F1_delta
     
     def compute(
@@ -168,7 +175,7 @@ class FDMetric(BaseMetric):
                 OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
                 F1_delta=source_metrics.f1_score - target_metrics.f1_score,
                 precision_delta=source_metrics.precision - target_metrics.precision,
-                # 其他度量分数
+                # 其他度量分数 - 键名必须与 COLUMN_NAMES 完全一致
                 metric_scores={
                     "OA_delta_relative": oa_rel,
                     "F1_delta_relative": f1_rel,

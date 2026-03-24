@@ -248,7 +248,7 @@ class OTCEMetric(BaseMetric):
         "OT_class_0", "OT_class_1",
     ]
     
-    METRIC_PLOT_INDICES = [18]  # OTCE_score
+    METRIC_PLOT_INDICES = [17]  # OTCE_score (索引17，从0开始)
     ACCURACY_PLOT_INDICES = [10, 11]  # OA_delta, F1_delta
     
     def __init__(self, config):
