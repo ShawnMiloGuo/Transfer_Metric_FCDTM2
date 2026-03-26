@@ -35,10 +35,10 @@ class GBCMetric(BaseMetric):
     
     # 结果列名定义（与原始代码顺序一致）
     COLUMN_NAMES = [
-        # 源域指标
-        "OA_source", "F1_source", "mIoU_source", "precision_source", "recall_source",
-        # 目标域指标
-        "OA_target", "F1_target", "mIoU_target", "precision_target", "recall_target",
+        # 源域指标 (使用 _s 后缀)
+        "OA_s", "F1_s", "mIoU_s", "precision_s", "recall_s",
+        # 目标域指标 (使用 _t 后缀)
+        "OA_t", "F1_t", "mIoU_t", "precision_t", "recall_t",
         # 增量指标
         "OA_delta", "F1_delta", "mIoU_delta", "precision_delta", "recall_delta",
         # GBC分数
@@ -154,18 +154,18 @@ class GBCMetric(BaseMetric):
             target_domain=self.config.target_dataset,
             class_index=0,
             class_name="",
-            # 源域指标
-            OA_source=source_metrics.overall_accuracy,
-            F1_source=source_metrics.f1_score,
-            mIoU_source=source_metrics.mean_iou,
-            precision_source=source_metrics.precision,
-            recall_source=source_metrics.recall,
-            # 目标域指标
-            OA_target=target_metrics.overall_accuracy,
-            F1_target=target_metrics.f1_score,
-            mIoU_target=target_metrics.mean_iou,
-            precision_target=target_metrics.precision,
-            recall_target=target_metrics.recall,
+            # 源域指标 (使用 _s 后缀)
+            OA_s=source_metrics.overall_accuracy,
+            F1_s=source_metrics.f1_score,
+            mIoU_s=source_metrics.mean_iou,
+            precision_s=source_metrics.precision,
+            recall_s=source_metrics.recall,
+            # 目标域指标 (使用 _t 后缀)
+            OA_t=target_metrics.overall_accuracy,
+            F1_t=target_metrics.f1_score,
+            mIoU_t=target_metrics.mean_iou,
+            precision_t=target_metrics.precision,
+            recall_t=target_metrics.recall,
             # 增量指标
             OA_delta=source_metrics.overall_accuracy - target_metrics.overall_accuracy,
             F1_delta=source_metrics.f1_score - target_metrics.f1_score,

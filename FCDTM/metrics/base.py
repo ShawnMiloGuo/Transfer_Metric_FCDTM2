@@ -19,6 +19,7 @@ class MetricResult:
     度量计算结果
     
     存储单次度量计算的所有结果数据。
+    字段命名与原始代码保持一致（使用 _s 和 _t 后缀）。
     """
     # 基本信息
     source_domain: str
@@ -26,19 +27,19 @@ class MetricResult:
     class_index: int
     class_name: str
     
-    # 源域指标
-    OA_source: float = 0.0
-    F1_source: float = 0.0
-    mIoU_source: float = 0.0
-    precision_source: float = 0.0
-    recall_source: float = 0.0
+    # 源域指标 (使用 _s 后缀，与原始代码一致)
+    OA_s: float = 0.0
+    F1_s: float = 0.0
+    mIoU_s: float = 0.0
+    precision_s: float = 0.0
+    recall_s: float = 0.0
     
-    # 目标域指标
-    OA_target: float = 0.0
-    F1_target: float = 0.0
-    mIoU_target: float = 0.0
-    precision_target: float = 0.0
-    recall_target: float = 0.0
+    # 目标域指标 (使用 _t 后缀，与原始代码一致)
+    OA_t: float = 0.0
+    F1_t: float = 0.0
+    mIoU_t: float = 0.0
+    precision_t: float = 0.0
+    recall_t: float = 0.0
     
     # 增量指标
     OA_delta: float = 0.0

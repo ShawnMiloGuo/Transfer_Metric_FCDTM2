@@ -186,10 +186,10 @@ class ModelManager:
         
         返回:
             包含不同形式权重差异的字典:
-            - 'raw_difference': 原始差异 (w0 - w1)
-            - 'absolute_difference': 绝对差异 |w0 - w1|
-            - 'normalized_difference': 归一化差异
-            - 'normalized_absolute': 归一化绝对差异
+            - 'y0_y1_diff': 原始差异 (w0 - w1)
+            - 'y0_y1_diff_abs': 绝对差异 |w0 - w1|
+            - 'y0_y1_diff_normalized': 归一化差异
+            - 'y0_y1_diff_abs_normalized': 归一化绝对差异
         """
         # 获取最后一层权重和偏置
         last_layer_weight = model.outc.weight.detach().cpu()  # [num_classes, C, 1, 1]
@@ -205,18 +205,18 @@ class ModelManager:
         # y0 - y1 = (w0 - w1) * x + (b0 - b1)
         scale_factor = 10.0
         
-        raw_diff = (last_layer_weight[0] - last_layer_weight[1]) * scale_factor + \
-                   (last_layer_bias[0] - last_layer_bias[1])
+        y0_y1_diff = (last_layer_weight[0] - last_layer_weight[1]) * scale_factor + \
+                     (last_layer_bias[0] - last_layer_bias[1])
         
-        abs_diff = torch.abs(raw_diff)
-        normalized_diff = raw_diff / (torch.max(abs_diff) + 1e-8)
-        normalized_abs = abs_diff / (torch.max(abs_diff) + 1e-8)
+        y0_y1_diff_abs = torch.abs(y0_y1_diff)
+        y0_y1_diff_normalized = y0_y1_diff / (torch.max(y0_y1_diff_abs) + 1e-8)
+        y0_y1_diff_abs_normalized = y0_y1_diff_abs / (torch.max(y0_y1_diff_abs) + 1e-8)
         
         return {
-            'raw_difference': raw_diff,
-            'absolute_difference': abs_diff,
-            'normalized_difference': normalized_diff,
-            'normalized_absolute': normalized_abs
+            'y0_y1_diff': y0_y1_diff,
+            'y0_y1_diff_abs': y0_y1_diff_abs,
+            'y0_y1_diff_normalized': y0_y1_diff_normalized,
+            'y0_y1_diff_abs_normalized': y0_y1_diff_abs_normalized
         }
     
     def inference(self, model: nn.Module, images: torch.Tensor) -> torch.Tensor:
