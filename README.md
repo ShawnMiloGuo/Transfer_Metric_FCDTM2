@@ -14,6 +14,7 @@
 - [快速开始](#快速开始)
 - [配置说明](#配置说明)
 - [使用方法](#使用方法)
+- [运行模式详解](#运行模式详解)
 - [扩展新度量](#扩展新度量)
 - [输出文件说明](#输出文件说明)
 - [常见问题](#常见问题)
@@ -37,6 +38,7 @@
   - 支持单独运行任意度量方法
   - 支持批量运行所有度量
   - 支持命令行参数和配置文件
+  - **支持两种处理模式**：汇总模式 / 批次模式
 
 ---
 
@@ -84,6 +86,13 @@ FCDTM/
 │                          # - 简化的命令行接口
 │                          # - 集中配置管理
 │
+├── postprocess/          # 后处理分析模块
+│   ├── config.py        # 后处理配置
+│   ├── loader.py        # 结果数据加载器
+│   ├── visualization.py # 相关性可视化
+│   ├── analyze_correlation.py  # 相关性分析主程序
+│   └── run_analysis.sh  # 后处理运行脚本
+│
 └── README.md             # 本文档
 ```
 
@@ -129,23 +138,14 @@ RESULT_ROOT="/path/to/your/results"     # 结果输出目录
 ### 2. 运行度量计算
 
 ```bash
-# 单独运行 FD 度量
+# 计算单个度量值（汇总所有目标域数据）
 bash run.sh --metric FD --task dwq_s2_xj_s2
 
-# 单独运行 DS 度量
-bash run.sh --metric DS --task dwq_s2_xj_s2
-
-# 单独运行 GBC 度量
-bash run.sh --metric GBC --task dwq_s2_xj_s2
-
-# 单独运行 OTCE 度量
-bash run.sh --metric OTCE --task dwq_s2_xj_s2
-
-# 单独运行 LogME 度量
-bash run.sh --metric LogME --task dwq_s2_xj_s2
+# 每4张图片计算一个度量值（批次模式）
+bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target
 
 # 运行所有度量
-bash run.sh --all --task dwq_s2_xj_s2
+bash run.sh --all
 ```
 
 ### 3. 查看结果
@@ -183,7 +183,7 @@ DATA_ROOT="/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/data"
 RESULT_ROOT="/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/result"
 
 # 计算参数
-BATCH_SIZE=1              # 批次大小
+BATCH_SIZE=1              # 批次大小（用于批次模式）
 MAX_IMAGES=100            # 最大处理图像数量
 
 # 特征提取参数
@@ -193,7 +193,7 @@ EXCLUDE_ZERO=false        # 是否排除零值特征
 USE_PREDICTION=false      # 是否使用预测标签
 
 # 目标域处理
-PROCESS_ALL_TARGET=true   # 是否处理所有目标域数据
+PROCESS_ALL_TARGET=true   # true=汇总模式, false=批次模式
 
 # 数据集参数
 USE_TRAIN_SET=true        # 使用训练集还是验证集
@@ -211,7 +211,8 @@ python main.py \
     --result_root /path/to/results \
     --batch_size 4 \
     --max_images 200 \
-    --feature_layer up4
+    --feature_layer up4 \
+    --batch_target  # 启用批次模式
 ```
 
 ### 方式三：修改 `config.py` 默认值
@@ -242,11 +243,11 @@ class Config:
 # 显示帮助
 bash run.sh --help
 
-# 运行 FD 度量，指定任务
+# 汇总模式：计算单个度量值
 bash run.sh --metric FD --task dwq_s2_xj_s2
 
-# 运行 DS 度量，指定批次大小
-bash run.sh --metric DS --task dwq_l8_xj_l8 --batch 4
+# 批次模式：每 batch_size 张图片计算一个度量值
+bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target
 
 # 运行所有度量
 bash run.sh --all --task xj_s2_xj_l8
@@ -255,8 +256,11 @@ bash run.sh --all --task xj_s2_xj_l8
 ### Python 命令行方式
 
 ```bash
-# 基本用法
+# 汇总模式（默认）
 python main.py --metric_type FD --task_name dwq_s2_xj_s2
+
+# 批次模式
+python main.py --metric_type FD --task_name dwq_s2_xj_s2 --batch_size 4 --batch_target
 
 # 完整参数
 python main.py \
@@ -265,7 +269,8 @@ python main.py \
     --model_root /path/to/models \
     --data_root /path/to/data \
     --result_root /path/to/results \
-    --batch_size 1 \
+    --batch_size 4 \
+    --batch_target \
     --max_images 100 \
     --feature_layer up4 \
     --foreground_ratio 0.2
@@ -277,15 +282,22 @@ python main.py \
 from config import Config
 from main import TransferMetricRunner
 
-# 创建配置
+# 创建配置（汇总模式）
 config = Config(
     metric_type="FD",
     task_name="dwq_s2_xj_s2",
     model_root="/path/to/models",
     data_root="/path/to/data",
     result_root="/path/to/results",
-    batch_size=1,
-    max_images=100
+    process_all_target=True  # 汇总模式
+)
+
+# 创建配置（批次模式）
+config = Config(
+    metric_type="FD",
+    task_name="dwq_s2_xj_s2",
+    batch_size=4,
+    process_all_target=False  # 批次模式
 )
 
 # 运行度量计算
@@ -308,6 +320,64 @@ for key, rows in results.items():
 
 ---
 
+## 运行模式详解
+
+### 模式一：汇总模式（默认）
+
+**特点**：处理所有目标域数据，计算单个度量值
+
+**适用场景**：
+- 需要整体评估迁移性能
+- 对比不同迁移任务的整体效果
+- 快速获取迁移度量
+
+**使用方法**：
+```bash
+# 方式1：不指定 --batch_target
+bash run.sh --metric FD --task dwq_s2_xj_s2
+
+# 方式2：设置 PROCESS_ALL_TARGET=true
+```
+
+**输出结果**：
+- 每个迁移任务每个类别 **1 个度量值**
+- CSV 文件有 1 行数据（或双向迁移时 2 行）
+
+### 模式二：批次模式
+
+**特点**：每 `batch_size` 张图片计算一个度量值
+
+**适用场景**：
+- 分析迁移性能的变化趋势
+- 绘制散点图进行相关性分析
+- 需要更多数据点进行统计分析
+
+**使用方法**：
+```bash
+# 每4张图片计算一个FD值
+bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target
+
+# 每1张图片计算一个FD值（最多数据点）
+bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 1 --batch_target
+```
+
+**输出结果**：
+- 每个迁移任务每个类别 **N 个度量值**（N = 目标域图片数 / batch_size）
+- CSV 文件有 N 行数据
+- 可用于绘制散点图分析度量值与精度变化的相关性
+
+### 模式对比
+
+| 特性 | 汇总模式 | 批次模式 |
+|------|---------|---------|
+| 参数 | 默认 / 无需 `--batch_target` | 添加 `--batch_target` |
+| 输出数量 | 每任务每类别 1 个值 | 每任务每类别 N 个值 |
+| 计算速度 | 较快 | 较慢 |
+| 适用分析 | 整体评估 | 趋势分析、相关性分析 |
+| 散点图 | 不适用 | 适用 |
+
+---
+
 ## 扩展新度量
 
 ### 步骤 1：创建度量实现文件
@@ -323,6 +393,8 @@ from .base import BaseMetric, MetricResult
 from feature_extractor import BaseFeatureExtractor
 from model import ModelManager
 import torch
+from typing import List
+import numpy as np
 
 
 class NewMetric(BaseMetric):
@@ -337,17 +409,21 @@ class NewMetric(BaseMetric):
     
     # 结果列名（必须）
     COLUMN_NAMES = [
-        # 在此定义输出列名
-        "score_1",
-        "score_2",
-        "score_3",
+        # 源域指标
+        "OA_source", "F1_source", "mIoU_source", "precision_source", "recall_source",
+        # 目标域指标
+        "OA_target", "F1_target", "mIoU_target", "precision_target", "recall_target",
+        # 增量指标
+        "OA_delta", "F1_delta", "mIoU_delta", "precision_delta", "recall_delta",
+        # 度量分数
+        "score_1", "score_2", "score_3",
     ]
     
-    # 绘图时的度量指标列索引
-    METRIC_PLOT_INDICES = [0]
+    # 绘图时的度量指标列索引（相对于COLUMN_NAMES）
+    METRIC_PLOT_INDICES = [15]  # score_1
     
-    # 绘图时的精度指标列索引  
-    ACCURACY_PLOT_INDICES = [4, 5]
+    # 绘图时的精度指标列索引
+    ACCURACY_PLOT_INDICES = [10, 11]  # OA_delta, F1_delta
     
     def compute(
         self,
@@ -370,30 +446,52 @@ class NewMetric(BaseMetric):
         """
         self.clear_results()
         
-        # 1. 提取源域特征
+        device = model_manager.device
+        
+        # ========== 提取源域特征（一次性提取所有） ==========
         # ... 使用 feature_extractor 模块
         
-        # 2. 提取目标域特征
-        # ...
+        # ========== 处理目标域 ==========
+        if self.config.process_all_target:
+            # 汇总模式：处理所有目标域数据
+            # ... 提取所有目标域特征
+            # ... 计算度量
+            result = self._compute_single_result(...)
+            self.add_result(result)
+        else:
+            # 批次模式：按批次处理目标域
+            target_iter = iter(target_loader)
+            n_batches = len(target_loader)
+            
+            for batch_idx in range(n_batches):
+                try:
+                    # ... 提取当前批次特征
+                    # ... 计算度量
+                    result = self._compute_single_result(...)
+                    self.add_result(result)
+                except StopIteration:
+                    break
         
-        # 3. 计算度量分数
-        # ...
-        
-        # 4. 创建并返回结果
-        result = MetricResult(
+        return self.results
+    
+    def _compute_single_result(self, ...) -> MetricResult:
+        """计算单个结果"""
+        return MetricResult(
             source_domain=self.config.source_dataset,
             target_domain=self.config.target_dataset,
-            class_index=class_idx,
-            class_name=class_name,
+            class_index=0,
+            class_name="",
+            # 源域指标
+            OA_source=...,
+            F1_source=...,
+            # ... 其他指标
+            # 度量分数
             metric_scores={
                 "score_1": value1,
                 "score_2": value2,
                 "score_3": value3,
             }
         )
-        self.add_result(result)
-        
-        return self.results
 ```
 
 ### 步骤 2：注册度量方法
@@ -408,15 +506,35 @@ def get_metric(metric_type: str):
         "FD": FDMetric,
         "DS": DSMetric,
         "GBC": GBCMetric,
+        "OTCE": OTCEMetric,
+        "LogME": LogMEMetric,
         "NEW": NewMetric,  # 添加新度量
     }
     ...
 ```
 
-### 步骤 3：运行新度量
+### 步骤 3：更新配置
+
+在 `config.py` 的 `MetricType` 枚举中添加：
+
+```python
+class MetricType(Enum):
+    FD = "FD"
+    DS = "DS"
+    GBC = "GBC"
+    OTCE = "OTCE"
+    LogME = "LogME"
+    NEW = "NEW"  # 添加新度量
+```
+
+### 步骤 4：运行新度量
 
 ```bash
+# 汇总模式
 bash run.sh --metric NEW --task dwq_s2_xj_s2
+
+# 批次模式
+bash run.sh --metric NEW --task dwq_s2_xj_s2 --batch 4 --batch_target
 ```
 
 ---
@@ -427,7 +545,7 @@ bash run.sh --metric NEW --task dwq_s2_xj_s2
 
 ```
 result/
-└── {metric_type}/                    # FD, DS, 或 GBC
+└── {metric_type}/                    # FD, DS, GBC, OTCE, LogME
     └── {task_name}/                  # 如 dwq_s2_xj_s2
         ├── config.json              # 运行配置快照
         ├── column_names.json        # 结果列名定义
@@ -448,9 +566,12 @@ result/
 | `class_index`, `class_name` | 类别索引和名称 |
 | `OA_source`, `F1_source`, `precision_source` | 源域分类指标 |
 | `OA_target`, `F1_target`, `precision_target` | 目标域分类指标 |
-| `OA_delta`, `F1_delta` | 精度下降值 |
+| `OA_delta`, `F1_delta`, `precision_delta` | 精度下降值 |
+| `OA_delta_relative`, `F1_delta_relative` | 相对精度下降 |
+| `mean_diff_sum`, `mean_diff_abs_sum` | 均值差异统计 |
 | `FD_score` | Fréchet距离分数 |
-| `FD_raw`, `FD_absolute` | 加权FD分数 |
+| `FD_raw_difference`, `FD_absolute_difference` | 加权FD分数 |
+| `FD_normalized_difference`, `FD_normalized_absolute` | 归一化加权FD分数 |
 
 #### DS 度量结果
 
@@ -459,6 +580,7 @@ result/
 | `dispersion_score` | 分散度分数 |
 | `log_dispersion_score` | 对数分散度分数 |
 | `weighted_dispersion_score` | 加权分散度分数 |
+| `weighted_log_dispersion_score` | 加权对数分散度分数 |
 
 #### GBC 度量结果
 
@@ -492,9 +614,167 @@ result/
 
 ---
 
+## 后处理分析
+
+### 概述
+
+后处理分析模块 (`postprocess/`) 提供了迁移度量结果的相关性分析和可视化功能，用于分析度量指标与精度下降之间的相关性。
+
+### 目录结构
+
+```
+postprocess/
+├── __init__.py              # 模块入口
+├── config.py                # 后处理配置
+├── loader.py                # 数据加载器
+├── visualization.py         # 可视化模块
+├── analyze_correlation.py   # 主程序
+└── run_analysis.sh          # 运行脚本
+```
+
+### 功能特性
+
+- **相关性分析**：计算度量指标与精度下降的 Pearson/Spearman 相关系数
+- **可视化**：
+  - 散点图（带回归线和统计信息）
+  - 热力图（相关性矩阵）
+- **批量处理**：支持批量分析多个度量类型和任务
+- **跨域分析**：合并所有任务数据进行整体分析
+
+### 使用方法
+
+#### 方式一：Shell 脚本（推荐）
+
+```bash
+# 进入后处理目录
+cd postprocess
+
+# 默认配置运行
+./run_analysis.sh
+
+# 包含跨域分析
+./run_analysis.sh --cross-domain
+
+# 指定度量类型
+./run_analysis.sh --metric_types FD DS
+
+# 完整参数
+./run_analysis.sh \
+    --result_root ../results \
+    --output_dir ../analysis \
+    --metric_types FD DS GBC \
+    --batch_sizes 1 4 \
+    --cross-domain
+```
+
+#### 方式二：Python 命令行
+
+```bash
+python postprocess/analyze_correlation.py \
+    --result_root ./results \
+    --output_dir ./analysis \
+    --metric_types FD DS GBC \
+    --correlation_methods pearson spearman \
+    --accuracy_cols F1_delta OA_delta \
+    --cross_domain
+```
+
+#### 方式三：Python API
+
+```python
+from postprocess.config import PostprocessConfig
+from postprocess.loader import ResultLoader
+from postprocess.visualization import CorrelationVisualizer
+
+# 创建配置
+config = PostprocessConfig(
+    result_root="./results",
+    output_dir="./analysis",
+    metric_types=["FD", "DS", "GBC"]
+)
+
+# 加载数据
+loader = ResultLoader(config)
+loader.load_all()
+
+# 可视化
+visualizer = CorrelationVisualizer(config)
+
+# 计算相关性矩阵
+df = loader.get_dataframe("FD_dwq_s2_xj_s2_batch1")
+corr_df = visualizer.calculate_correlation_matrix(
+    df, 
+    x_cols=["FD_sum", "mean_dif_absolute_sum"],
+    y_cols=["F1_delta", "OA_delta"],
+    method="pearson"
+)
+
+# 绘制热力图
+visualizer.draw_heatmap(corr_df, title="FD相关性矩阵", save_path="./heatmap.png")
+
+# 绘制散点图
+visualizer.draw_scatter(df, "FD_sum", "F1_delta", title="FD vs F1_delta")
+```
+
+### 输出文件
+
+```
+analysis/
+├── analysis_summary.json              # 分析摘要
+├── FD/
+│   ├── dwq_s2_xj_s2/
+│   │   ├── csv/
+│   │   │   ├── correlation_pearson.csv
+│   │   │   └── correlation_spearman.csv
+│   │   └── fig/
+│   │       ├── heatmap_pearson.png
+│   │       ├── heatmap_spearman.png
+│   │       └── scatter_*.png
+│   └── cross_domain/                  # 跨域分析结果
+│       ├── csv/
+│       └── fig/
+├── DS/
+│   └── ...
+└── GBC/
+    └── ...
+```
+
+### 相关性矩阵示例
+
+```
+              F1_delta  OA_delta  precision_delta
+FD_sum           -0.72     -0.68            -0.65
+mean_dif_sum      0.45      0.42             0.40
+FD_weighted      -0.75     -0.71            -0.68
+```
+
+---
+
 ## 常见问题
 
-### Q1: 如何添加新的迁移任务？
+### Q1: 如何选择汇总模式还是批次模式？
+
+**汇总模式**：
+- 快速获取迁移性能评估
+- 对比不同迁移任务的整体效果
+- 只需要一个代表性数值
+
+**批次模式**：
+- 需要分析度量值的变化趋势
+- 需要绘制散点图分析相关性
+- 需要更多数据点进行统计分析
+
+### Q2: BATCH_SIZE 参数如何影响结果？
+
+| 参数设置 | 汇总模式 | 批次模式 |
+|---------|---------|---------|
+| `--batch 1` | 无影响 | 每张图片计算一个度量值（最多数据点） |
+| `--batch 4` | 无影响 | 每4张图片计算一个度量值 |
+| `--batch 10` | 无影响 | 每10张图片计算一个度量值 |
+
+**注意**：在批次模式下，`batch_size` 决定了每个度量值对应的图片数量。
+
+### Q3: 如何添加新的迁移任务？
 
 在 `config.py` 的 `TASK_CONFIGS` 字典中添加：
 
@@ -511,7 +791,7 @@ TASK_CONFIGS = {
 }
 ```
 
-### Q2: 如何使用不同的特征提取层？
+### Q4: 如何使用不同的特征提取层？
 
 ```bash
 # 使用解码器第4层（默认）
@@ -524,7 +804,19 @@ python main.py --metric_type FD --feature_layer down4
 python main.py --metric_type FD --feature_layer outc
 ```
 
-### Q3: 进度条不显示在终端？
+### Q5: 为什么批次模式下结果数量不对？
+
+检查以下几点：
+1. 确保添加了 `--batch_target` 参数
+2. 检查 `PROCESS_ALL_TARGET` 是否设置为 `false`
+3. 确认目标域数据加载器的长度
+
+```bash
+# 正确的批次模式命令
+bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target
+```
+
+### Q6: 进度条不显示在终端？
 
 确保使用 `run.sh` 脚本，或直接运行 Python：
 
@@ -534,7 +826,7 @@ python main.py --metric_type FD --task_name dwq_s2_xj_s2
 
 不要将 stderr 重定向到文件。
 
-### Q4: 如何查看详细日志？
+### Q7: 如何查看详细日志？
 
 日志保存在 `logs/` 目录：
 
@@ -543,7 +835,7 @@ python main.py --metric_type FD --task_name dwq_s2_xj_s2
 tail -f logs/FD_dwq_s2_xj_s2_*.log
 ```
 
-### Q5: 模型文件找不到？
+### Q8: 模型文件找不到？
 
 检查 `MODEL_ROOT` 路径是否正确，模型文件应按以下结构组织：
 
@@ -556,13 +848,24 @@ model/
 └── ...
 ```
 
-### Q6: 内存不足怎么办？
+### Q9: 内存不足怎么办？
 
 减小批次大小或最大图像数：
 
 ```bash
-bash run.sh --metric FD --batch 1
-# 或修改 run.sh 中的 MAX_IMAGES=50
+# 批次模式：减小 batch_size
+bash run.sh --metric FD --batch 1 --batch_target
+
+# 汇总模式：减小 max_images
+# 修改 run.sh 中的 MAX_IMAGES=50
+```
+
+### Q10: 如何验证度量索引是否正确？
+
+运行索引验证脚本：
+
+```bash
+python test_all_metrics_v2.py
 ```
 
 ---
@@ -575,6 +878,8 @@ bash run.sh --metric FD --batch 1
 
 ## 更新日志
 
+- **2026-03-25**: 重构后处理分析模块，适配新的CSV结果格式，新增 `postprocess/` 目录
+- **2026-03-24**: 修复 BATCH_SIZE 参数未生效问题，新增两种运行模式（汇总模式/批次模式）
 - **2026-03-23**: 新增 OTCE 和 LogME 度量方法，支持五种迁移度量对比
 - **2026-03-23**: 模块化重构，支持单独运行各度量方法
 - **2024-12-19**: 初始版本
