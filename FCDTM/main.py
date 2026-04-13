@@ -3,11 +3,17 @@
 """
 迁移度量计算主入口
 
-支持单独运行FD、DS、GBC度量计算。
+支持单独运行FD、FCDTM、FCDTM-Test、DS、GBC、OTCE、LogME度量计算。
 
 使用方法:
     # 运行FD度量
     python main.py --metric_type FD --task_name dwq_s2_xj_s2
+    
+    # 运行FCDTM度量
+    python main.py --metric_type FCDTM --task_name dwq_s2_xj_s2
+    
+    # 运行FCDTM-Test度量（研发测试模型）
+    python main.py --metric_type FCDTM-Test --task_name dwq_s2_xj_s2
     
     # 运行DS度量
     python main.py --metric_type DS --task_name dwq_s2_xj_s2

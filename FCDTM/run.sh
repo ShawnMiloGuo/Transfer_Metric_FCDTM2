@@ -4,7 +4,7 @@
 # ============================================================================
 #
 # 功能说明:
-#   该脚本用于运行迁移度量计算，支持单独运行FD、DS、GBC、OTCE、LogME五种度量方法。
+#   该脚本用于运行迁移度量计算，支持FD、FCDTM、FCDTM-Test、DS、GBC、OTCE、LogME七种度量方法。
 #
 # 使用方法:
 #   # 运行所有度量
@@ -12,6 +12,15 @@
 #
 #   # 单独运行FD度量
 #   bash run.sh --metric FD
+#
+#   # 单独运行FCDTM度量
+#   bash run.sh --metric FCDTM
+#
+#   # 单独运行FCDTM-Test度量（研发测试模型）
+#   bash run.sh --metric FCDTM-Test
+#
+#   # 同时运行多个度量（空格分隔）
+#   bash run.sh --metric "FCDTM FCDTM-Test"
 #
 #   # 单独运行DS度量
 #   bash run.sh --metric DS
@@ -26,10 +35,10 @@
 #   bash run.sh --metric LogME
 #
 #   # 指定任务
-#   bash run.sh --metric FD --task dwq_s2_xj_s2
+#   bash run.sh --metric FCDTM --task dwq_s2_xj_s2
 #
 # 参数说明:
-#   --metric       : 度量类型 (FD/DS/GBC/OTCE/LogME)
+#   --metric       : 度量类型 (FD/FCDTM/FCDTM-Test/DS/GBC/OTCE/LogME)
 #   --task         : 迁移任务名称
 #   --batch SIZE   : 批次大小（用于控制每多少张图片计算一个度量值）
 #   --batch_target : 按批次处理目标域（每 batch_size 张图片计算一个度量值）
@@ -57,7 +66,7 @@ MAX_IMAGES=100
 FEATURE_LAYER="up4"
 
 # 特征提取参数
-ONLY_FOREGROUND=false
+ONLY_FOREGROUND=true
 EXCLUDE_ZERO=false
 USE_PREDICTION=false
 
@@ -92,12 +101,22 @@ show_help() {
     echo "用法: bash run.sh [选项]"
     echo ""
     echo "选项:"
-    echo "  --metric TYPE     运行指定类型的度量 (FD/DS/GBC/OTCE/LogME)"
+    echo "  --metric TYPE     运行指定类型的度量 (FD/FCDTM/FCDTM-Test/DS/GBC/OTCE/LogME)"
+    echo "                    支持空格分隔的多个度量，如: --metric \"FD FCDTM DS\""
     echo "  --task NAME       指定迁移任务名称"
     echo "  --batch SIZE      批次大小 (默认: $BATCH_SIZE)"
     echo "  --batch_target    按批次处理目标域（每 batch_size 张图片计算一个度量值）"
     echo "  --all             运行所有度量类型"
     echo "  --help            显示此帮助信息"
+    echo ""
+    echo "支持的度量类型:"
+    echo "  FD         - Fréchet Distance (原始算法)"
+    echo "  FCDTM      - Fréchet Class Difference Transfer Metric (最优度量)"
+    echo "  FCDTM-Test - FCDTM研发测试模型（包含所有组合方式）"
+    echo "  DS         - Dispersion Score"
+    echo "  GBC        - Geometric Bayesian Classifier"
+    echo "  OTCE       - Optimal Transport for Conditional Estimation"
+    echo "  LogME      - Log Maximum Evidence"
     echo ""
     echo "示例:"
     echo "  # 计算单个FD值（汇总所有目标域数据）"
@@ -222,12 +241,14 @@ log_info "结果目录: $RESULT_ROOT"
 
 if [ "$RUN_ALL" = true ]; then
     # 运行所有度量
-    for metric in "FD" "DS" "GBC" "OTCE" "LogME"; do
+    for metric in "FD" "FCDTM" "FCDTM-Test" "DS" "GBC" "OTCE" "LogME"; do
         run_metric "$metric" "$TASK_NAME"
     done
 elif [ -n "$METRIC_TYPE" ]; then
-    # 运行指定度量
-    run_metric "$METRIC_TYPE" "$TASK_NAME"
+    # 运行指定度量（支持空格分隔的多个度量类型）
+    for metric in $METRIC_TYPE; do
+        run_metric "$metric" "$TASK_NAME"
+    done
 else
     log_error "请指定 --metric 或 --all 参数"
     show_help

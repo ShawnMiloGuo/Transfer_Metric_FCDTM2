@@ -83,6 +83,8 @@ if PROJECT_ROOT not in sys.path:
 class MetricType(Enum):
     """度量类型枚举"""
     FD = "FD"       # Fréchet Distance
+    FCDTM = "FCDTM"     # Fréchet Class Difference Transfer Metric
+    FCDTM_TEST = "FCDTM-Test"  # FCDTM Test (研发测试模型)
     DS = "DS"       # Dispersion Score
     GBC = "GBC"     # Geometric Bayesian Classifier
     OTCE = "OTCE"   # Optimal Transport for Conditional Estimation
@@ -354,9 +356,9 @@ class Config:
                           help="结果输出根目录")
         
         # 计算参数
+        # 所有支持的度量类型: FD, FCDTM, FCDTM-Test, DS, GBC, OTCE, LogME
         parser.add_argument("--metric_type", type=str, default=cls.metric_type,
-                          choices=[m.value for m in MetricType],
-                          help="度量类型")
+                          help="度量类型 (FD/FCDTM/FCDTM-Test/DS/GBC/OTCE/LogME)")
         parser.add_argument("--task_name", type=str, default=cls.task_name,
                           choices=list(TASK_CONFIGS.keys()),
                           help="迁移任务名称")
