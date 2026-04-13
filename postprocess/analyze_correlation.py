@@ -1,277 +1,358 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-迁移度量相关性分析主程序
+相关性分析主程序
 
-分析迁移度量指标与精度下降之间的相关性，生成:
-1. 相关性矩阵CSV文件
-2. 散点图（带回归线）
-3. 热力图
-
-使用方法:
-    python analyze_correlation.py --result_root ./results --output_dir ./analysis
-    python analyze_correlation.py --metric_types FD DS --task_names dwq_s2_xj_s2
+读取合并后的CSV文件，计算相关性并生成可视化图表。
+支持按类别分析：
+- 热力图：行=度量指标，列=类别+迁移方向，值=相关系数
+- 散点图：每指标一张图，不同类别用不同颜色
 """
 
 import os
 import sys
 import argparse
-import json
-from datetime import datetime
-from typing import Dict, List, Optional
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+from typing import List, Optional, Dict, Any
 
-# 添加父目录到路径
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# 添加项目根目录到路径
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from postprocess.config import PostprocessConfig, METRIC_SCORE_COLUMNS, print_config
-from postprocess.loader import ResultLoader, LoadedData
+from postprocess.config import (
+    PostprocessConfig, 
+    METRIC_COLUMNS, 
+    METRIC_SCORE_COLUMNS,
+    ACCURACY_COLUMNS, 
+    CLASS_NAMES,
+    TASK_CONFIGS
+)
+from postprocess.loader import load_all_csv_files, merge_all_data
 from postprocess.visualization import CorrelationVisualizer
 
 
-def analyze_single_dataset(
-    data: LoadedData,
+def analyze_by_class(
+    df: pd.DataFrame,
+    metric_cols: List[str],
+    accuracy_col: str,
     visualizer: CorrelationVisualizer,
-    config: PostprocessConfig,
-    accuracy_cols: List[str]
-) -> Dict[str, str]:
+    output_dir: str,
+    task_col: str = "_task_name",
+    method: str = "pearson"
+) -> pd.DataFrame:
     """
-    分析单个数据集
+    按类别分析相关性
+    
+    生成：
+    1. 热力图：行=度量指标，列=类别+迁移方向，值=相关系数
+    2. 散点图：每个度量指标一张图，不同类别用不同颜色
     
     参数:
-        data: 加载的数据
+        df: 数据框
+        metric_cols: 度量列名列表
+        accuracy_col: 精度指标列名（单个）
         visualizer: 可视化器
-        config: 配置
-        accuracy_cols: 精度列名列表
+        output_dir: 输出目录
+        task_col: 任务名称列名
+        method: 相关方法
     
     返回:
-        生成的文件路径字典
+        相关性矩阵DataFrame
     """
-    results = {}
-    df = data.df
-    
-    # 获取度量分数列
-    metric_cols = config.get_metric_score_columns(data.metric_type)
+    # 过滤存在的列
     metric_cols = [c for c in metric_cols if c in df.columns]
     
-    if not metric_cols:
-        print(f"警告: 未找到度量分数列 {data.metric_type}")
-        return results
+    if accuracy_col not in df.columns:
+        print(f"警告: 精度列 {accuracy_col} 不存在，跳过")
+        return pd.DataFrame()
     
-    # 过滤精度列
-    acc_cols = [c for c in accuracy_cols if c in df.columns]
+    # 1. 绘制热力图
+    print(f"\n生成 {accuracy_col} 的热力图...")
+    heatmap_path = os.path.join(output_dir, "fig", f"heatmap_{accuracy_col}_{method}.png")
+    fig, corr_df = visualizer.draw_heatmap_metrics_vs_class_task(
+        df, metric_cols, accuracy_col,
+        task_col=task_col,
+        method=method,
+        title=f"Metric vs {accuracy_col} Correlation (by Class and Task)",
+        save_path=heatmap_path
+    )
     
-    if not acc_cols:
-        print(f"警告: 未找到精度列")
-        return results
+    if fig:
+        plt.close(fig)
     
-    # 构建输出子目录
-    output_subdir = f"{data.metric_type}/{data.task_name}/batch{data.batch_size}"
-    
-    # 对每种相关性方法进行分析
-    for method in config.correlation_methods:
-        # 计算相关性矩阵
-        corr_df = visualizer.calculate_correlation_matrix(
-            df, metric_cols, acc_cols, method
-        )
-        
-        # 保存CSV
-        csv_dir = config.get_output_path(output_subdir, "csv")
-        csv_path = os.path.join(csv_dir, f"correlation_{method}.csv")
+    # 保存相关性矩阵到CSV
+    if not corr_df.empty:
+        csv_path = os.path.join(output_dir, "csv", f"correlation_{accuracy_col}_{method}.csv")
         visualizer.save_correlation_to_csv(corr_df, csv_path)
-        results[f"csv_{method}"] = csv_path
-        
-        # 绘制热力图
-        fig_dir = config.get_output_path(output_subdir, "fig")
-        heatmap_path = os.path.join(fig_dir, f"heatmap_{method}.{config.figure_format}")
-        visualizer.draw_heatmap(
-            corr_df,
-            title=f"{data.metric_type} - {data.task_name} ({method})",
-            save_path=heatmap_path
-        )
-        results[f"heatmap_{method}"] = heatmap_path
-        
-        # 绘制散点图（每个精度指标）
-        for acc_col in acc_cols:
-            scatter_path = os.path.join(
-                fig_dir, 
-                f"scatter_{acc_col}_{method}.{config.figure_format}"
-            )
-            visualizer.draw_scatter_all_metrics(
-                df, metric_cols, acc_col,
-                save_path=scatter_path
-            )
-            results[f"scatter_{acc_col}_{method}"] = scatter_path
     
-    return results
+    # 2. 绘制散点图
+    print(f"生成 {accuracy_col} 的散点图...")
+    scatter_dir = os.path.join(output_dir, "fig")
+    saved_paths = visualizer.draw_all_scatter_by_class(
+        df, metric_cols, accuracy_col,
+        class_col="class_index",
+        output_dir=scatter_dir,
+        prefix=f"{accuracy_col}_"
+    )
+    print(f"生成了 {len(saved_paths)} 张散点图")
+    
+    return corr_df
 
 
-def analyze_cross_domain(
-    loader: ResultLoader,
-    visualizer: CorrelationVisualizer,
-    config: PostprocessConfig,
-    accuracy_cols: List[str]
-):
+def run_analysis(
+    result_root: str,
+    output_dir: str,
+    metric_types: List[str],
+    batch_sizes: List[int],
+    correlation_methods: List[str] = None,
+    accuracy_cols: Optional[List[str]] = None,
+) -> Dict[str, pd.DataFrame]:
     """
-    跨域分析（原始代码的主要功能）
+    运行完整的分析流程
     
-    对每个度量类型，合并所有任务的数据进行分析。
+    支持两种目录结构:
+    1. 层级结构: result_root/metric_type/task_name/*.csv
+    2. 扁平结构: result_root/*.csv (从文件名推断metric_type和task_name)
+    
+    参数:
+        result_root: 结果文件根目录
+        output_dir: 输出目录
+        metric_types: 度量类型列表（如 ['FD', 'DS', 'GBC']）
+        batch_sizes: 批次大小列表
+        correlation_methods: 相关方法列表（如 ['pearson', 'spearman']）
+        accuracy_cols: 精度列名列表（None则使用默认）
+    
+    返回:
+        各精度指标的相关性矩阵字典
     """
-    for metric_type in config.metric_types:
-        print(f"\n{'='*60}")
-        print(f"分析度量类型: {metric_type}")
-        print('='*60)
+    # 默认值
+    if correlation_methods is None:
+        correlation_methods = ["pearson"]
+    if accuracy_cols is None:
+        accuracy_cols = ACCURACY_COLUMNS
+    
+    # 创建配置
+    config = PostprocessConfig(
+        result_root=result_root,
+        output_dir=output_dir,
+        metric_types=metric_types,
+        batch_sizes=batch_sizes,
+    )
+    
+    all_results = {}
+    
+    # 检查目录结构：扁平结构还是层级结构
+    csv_files_in_root = list(Path(result_root).glob("*.csv"))
+    
+    if csv_files_in_root:
+        # 扁平结构：直接在 result_root 下有 CSV 文件
+        print(f"\n检测到扁平目录结构: {result_root}")
+        print(f"找到 {len(csv_files_in_root)} 个 CSV 文件")
         
-        # 合并该度量类型的所有任务数据
-        df = loader.merge_by_metric(metric_type)
+        # 加载所有数据
+        dfs = load_all_csv_files(result_root)
+        if not dfs:
+            print("错误: 未找到任何CSV文件")
+            return {}
         
-        if df is None or df.empty:
-            print(f"警告: 无数据 {metric_type}")
-            continue
+        # 合并数据
+        df = merge_all_data(dfs)
+        print(f"合并后数据: {len(df)} 行, {len(df.columns)} 列")
         
-        # 获取度量分数列
-        metric_cols = config.get_metric_score_columns(metric_type)
-        metric_cols = [c for c in metric_cols if c in df.columns]
+        # 显示任务名称
+        print(f"任务名称: {df['_task_name'].unique()}")
         
-        acc_cols = [c for c in accuracy_cols if c in df.columns]
+        # 创建输出目录
+        os.makedirs(os.path.join(output_dir, "fig"), exist_ok=True)
+        os.makedirs(os.path.join(output_dir, "csv"), exist_ok=True)
         
-        if not metric_cols or not acc_cols:
-            print(f"警告: 缺少必要的列")
-            continue
+        # 获取所有可用的度量列（合并所有请求的度量类型）
+        all_metric_cols = []
+        for metric_type in metric_types:
+            metric_cols = METRIC_SCORE_COLUMNS.get(metric_type, [])
+            all_metric_cols.extend([c for c in metric_cols if c in df.columns])
         
-        # 构建输出子目录
-        output_subdir = f"{metric_type}/cross_domain"
+        # 显示可用列
+        available_acc = [c for c in accuracy_cols if c in df.columns]
+        print(f"可用度量列 ({len(all_metric_cols)}): {all_metric_cols[:5]}...")
+        print(f"可用精度列: {available_acc}")
         
-        for method in config.correlation_methods:
-            # 计算相关性矩阵
-            corr_df = visualizer.calculate_correlation_matrix(
-                df, metric_cols, acc_cols, method
-            )
+        # 创建可视化器
+        visualizer = CorrelationVisualizer(config)
+        
+        # 为每个相关方法执行分析
+        for method in correlation_methods:
+            print(f"\n使用相关方法: {method}")
             
-            # 保存CSV
-            csv_path = config.get_output_path(output_subdir, "csv", f"correlation_{method}.csv")
-            visualizer.save_correlation_to_csv(corr_df, csv_path)
-            
-            # 绘制热力图
-            heatmap_path = config.get_output_path(
-                output_subdir, "fig", f"heatmap_{method}.{config.figure_format}"
-            )
-            visualizer.draw_heatmap(
-                corr_df,
-                title=f"{metric_type} - Cross Domain ({method})",
-                save_path=heatmap_path
-            )
-            
-            # 绘制散点图
-            for acc_col in acc_cols:
-                scatter_path = config.get_output_path(
-                    output_subdir, "fig", 
-                    f"scatter_{acc_col}_{method}.{config.figure_format}"
+            # 为每个精度指标执行分析
+            for acc_col in available_acc:
+                print(f"\n{'-'*50}")
+                print(f"分析精度指标: {acc_col}")
+                print(f"{'-'*50}")
+                
+                corr_df = analyze_by_class(
+                    df, all_metric_cols, acc_col,
+                    visualizer, output_dir,
+                    task_col="_task_name",
+                    method=method
                 )
-                visualizer.draw_scatter_all_metrics(
-                    df, metric_cols, acc_col,
-                    save_path=scatter_path
-                )
+                
+                key = f"all_{acc_col}_{method}"
+                all_results[key] = corr_df
+    
+    else:
+        # 层级结构：result_root/metric_type/task_name/*.csv
+        print(f"\n检测到层级目录结构: {result_root}")
+        
+        # 按度量类型处理
+        for metric_type in metric_types:
+            print(f"\n{'='*60}")
+            print(f"处理度量类型: {metric_type}")
+            print(f"{'='*60}")
+            
+            # 获取该度量类型的列名
+            metric_cols = METRIC_SCORE_COLUMNS.get(metric_type, [])
+            if not metric_cols:
+                print(f"警告: 未知度量类型 {metric_type}，跳过")
+                continue
+            
+            # 按任务处理
+            for task_name in config.task_names:
+                print(f"\n处理任务: {task_name}")
+                
+                # 构建数据目录路径
+                data_dir = os.path.join(result_root, metric_type, task_name)
+                if not os.path.exists(data_dir):
+                    print(f"警告: 数据目录不存在: {data_dir}，跳过")
+                    continue
+                
+                # 创建输出目录
+                task_output_dir = os.path.join(output_dir, metric_type, task_name)
+                os.makedirs(os.path.join(task_output_dir, "fig"), exist_ok=True)
+                os.makedirs(os.path.join(task_output_dir, "csv"), exist_ok=True)
+                
+                # 加载数据
+                print(f"从 {data_dir} 加载数据...")
+                dfs = load_all_csv_files(data_dir)
+                if not dfs:
+                    print(f"警告: 未找到CSV文件: {data_dir}")
+                    continue
+                
+                # 合并数据
+                df = merge_all_data(dfs)
+                print(f"合并后数据: {len(df)} 行, {len(df.columns)} 列")
+                
+                # 显示任务名称
+                print(f"任务名称: {df['_task_name'].unique()}")
+                
+                # 显示可用列
+                available_metrics = [c for c in metric_cols if c in df.columns]
+                available_acc = [c for c in accuracy_cols if c in df.columns]
+                print(f"可用度量列 ({len(available_metrics)}): {available_metrics[:5]}...")
+                print(f"可用精度列: {available_acc}")
+                
+                # 创建可视化器
+                visualizer = CorrelationVisualizer(config)
+                
+                # 为每个相关方法执行分析
+                for method in correlation_methods:
+                    print(f"\n使用相关方法: {method}")
+                    
+                    # 为每个精度指标执行分析
+                    for acc_col in available_acc:
+                        print(f"\n{'-'*50}")
+                        print(f"分析精度指标: {acc_col}")
+                        print(f"{'-'*50}")
+                        
+                        corr_df = analyze_by_class(
+                            df, available_metrics, acc_col,
+                            visualizer, task_output_dir,
+                            task_col="_task_name",
+                            method=method
+                        )
+                        
+                        key = f"{metric_type}_{task_name}_{acc_col}_{method}"
+                        all_results[key] = corr_df
+    
+    # 打印摘要
+    print(f"\n{'='*60}")
+    print("分析完成！")
+    print(f"{'='*60}")
+    print(f"结果保存在: {output_dir}")
+    print(f"  - 热力图: {os.path.join(output_dir, '*/fig/heatmap_*.png')}")
+    print(f"  - 相关性矩阵: {os.path.join(output_dir, '*/csv/correlation_*.csv')}")
+    print(f"  - 散点图: {os.path.join(output_dir, '*/fig/*_scatter_*.png')}")
+    
+    return all_results
 
 
 def main():
     """主函数"""
-    # 解析命令行参数
     parser = argparse.ArgumentParser(
-        description="迁移度量相关性分析工具",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        description="迁移学习度量相关性分析",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  # 分析FD度量，批次大小为1
+  python analyze_correlation.py --result_root ./result --metric_types FD --batch_sizes 1
+  
+  # 分析多种度量类型
+  python analyze_correlation.py --result_root ./result --metric_types FD DS GBC --batch_sizes 1 4
+        """
     )
     
-    parser.add_argument("--result_root", type=str, default="./results",
-                       help="结果文件根目录")
-    parser.add_argument("--output_dir", type=str, default="./analysis",
-                       help="输出目录")
-    parser.add_argument("--metric_types", type=str, nargs="+",
-                       default=["FD", "DS", "GBC"],
-                       help="要分析的度量类型")
-    parser.add_argument("--task_names", type=str, nargs="+",
-                       default=None,
-                       help="要分析的任务名称（默认全部）")
-    parser.add_argument("--batch_sizes", type=int, nargs="+",
-                       default=[1, 4],
-                       help="要分析的批次大小")
-    parser.add_argument("--correlation_methods", type=str, nargs="+",
-                       default=["pearson", "spearman"],
-                       help="相关性计算方法")
-    parser.add_argument("--accuracy_cols", type=str, nargs="+",
-                       default=["F1_delta"],
-                       help="精度指标列名")
-    parser.add_argument("--cross_domain", action="store_true",
-                       help="执行跨域分析")
+    parser.add_argument(
+        "--result_root",
+        type=str,
+        default="./results",
+        help="结果文件根目录 (默认: ./results)"
+    )
+    
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        default="./analysis",
+        help="输出目录 (默认: ./analysis)"
+    )
+    
+    parser.add_argument(
+        "--metric_types",
+        type=str,
+        nargs="+",
+        default=["FD", "DS", "GBC"],
+        help="要分析的度量类型 (默认: FD DS GBC)"
+    )
+    
+    parser.add_argument(
+        "--batch_sizes",
+        type=int,
+        nargs="+",
+        default=[1, 4],
+        help="批次大小 (默认: 1 4)"
+    )
+    
+    parser.add_argument(
+        "--correlation_methods",
+        type=str,
+        nargs="+",
+        default=["pearson"],
+        choices=["pearson", "spearman"],
+        help="相关性计算方法 (默认: pearson)"
+    )
     
     args = parser.parse_args()
     
-    # 获取默认任务名称
-    if args.task_names is None:
-        from postprocess.config import TASK_CONFIGS
-        args.task_names = list(TASK_CONFIGS.keys())
-    
-    # 创建配置
-    config = PostprocessConfig(
+    # 运行分析
+    run_analysis(
         result_root=args.result_root,
         output_dir=args.output_dir,
         metric_types=args.metric_types,
-        task_names=args.task_names,
         batch_sizes=args.batch_sizes,
         correlation_methods=args.correlation_methods,
-        accuracy_columns=args.accuracy_cols,
     )
-    
-    print_config(config)
-    
-    # 创建加载器和可视化器
-    loader = ResultLoader(config)
-    visualizer = CorrelationVisualizer(config)
-    
-    # 加载数据
-    print("\n正在加载结果数据...")
-    loader.load_all()
-    
-    if not loader.loaded_data:
-        print("错误: 未找到任何结果数据")
-        return 1
-    
-    # 分析每个数据集
-    print("\n正在分析数据...")
-    for key, data in loader.loaded_data.items():
-        print(f"\n处理: {key}")
-        print(f"  数据形状: {data.df.shape}")
-        
-        analyze_single_dataset(
-            data, visualizer, config, args.accuracy_cols
-        )
-    
-    # 跨域分析
-    if args.cross_domain:
-        print("\n执行跨域分析...")
-        analyze_cross_domain(loader, visualizer, config, args.accuracy_cols)
-    
-    # 保存分析摘要
-    summary = {
-        "timestamp": datetime.now().isoformat(),
-        "config": {
-            "result_root": config.result_root,
-            "output_dir": config.output_dir,
-            "metric_types": config.metric_types,
-            "task_names": config.task_names,
-            "batch_sizes": config.batch_sizes,
-            "correlation_methods": config.correlation_methods,
-        },
-        "loaded_datasets": list(loader.loaded_data.keys()),
-    }
-    
-    summary_path = config.get_output_path("analysis_summary.json")
-    os.makedirs(os.path.dirname(summary_path), exist_ok=True)
-    with open(summary_path, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
-    
-    print(f"\n分析完成! 输出目录: {config.output_dir}")
-    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

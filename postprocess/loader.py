@@ -311,6 +311,120 @@ def load_results_from_directory(
     return loader.get_all_dataframes()
 
 
+def load_csv_with_task_name(
+    file_path: str,
+    task_name: Optional[str] = None
+) -> Tuple[pd.DataFrame, str]:
+    """
+    从单个CSV文件加载数据，并从文件名提取任务名称
+    
+    支持的文件名格式:
+    - result_FD_dwq_s2_xj_s2.csv
+    - result_dwq_sentinel2-xj_sentinel2_batch4.csv
+    
+    参数:
+        file_path: CSV文件路径
+        task_name: 可选的任务名称，如果不提供则从文件名提取
+    
+    返回:
+        (DataFrame, 任务名称)
+    """
+    df = pd.read_csv(file_path)
+    
+    # 从文件名提取任务名称
+    if task_name is None:
+        filename = os.path.basename(file_path)
+        # 尝试从文件名提取任务信息
+        # 格式: result_XXX_taskname.csv 或 result_taskname_batchX.csv
+        name_without_ext = os.path.splitext(filename)[0]
+        parts = name_without_ext.split("_")
+        
+        if len(parts) >= 3:
+            # 尝试识别任务名称
+            # 例如: result_FD_dwq_s2_xj_s2 -> 任务名: dwq_s2_xj_s2
+            # 例如: result_dwq_sentinel2-xj_sentinel2_batch4 -> 任务名: dwq_sentinel2-xj_sentinel2
+            
+            # 跳过 "result" 和度量类型前缀
+            start_idx = 1
+            if parts[1] in ["FD", "DS", "GBC", "OTCE", "LogME"]:
+                start_idx = 2
+            
+            # 提取任务名称部分（排除最后的 batchX）
+            task_parts = []
+            for i in range(start_idx, len(parts)):
+                if parts[i].startswith("batch"):
+                    break
+                task_parts.append(parts[i])
+            
+            task_name = "_".join(task_parts) if task_parts else "unknown"
+        else:
+            task_name = "unknown"
+    
+    # 添加任务名称列
+    df["_task_name"] = task_name
+    
+    return df, task_name
+
+
+def load_all_csv_files(
+    data_dir: str,
+    file_pattern: str = "*.csv"
+) -> Dict[str, pd.DataFrame]:
+    """
+    加载目录下所有CSV文件
+    
+    参数:
+        data_dir: 数据目录
+        file_pattern: 文件匹配模式
+    
+    返回:
+        字典，键为任务名称，值为DataFrame
+    """
+    csv_files = glob.glob(os.path.join(data_dir, file_pattern))
+    
+    if not csv_files:
+        print(f"警告: 未找到CSV文件: {data_dir}/{file_pattern}")
+        return {}
+    
+    results = {}
+    for csv_file in csv_files:
+        try:
+            df, task_name = load_csv_with_task_name(csv_file)
+            results[task_name] = df
+            print(f"加载: {csv_file} -> 任务: {task_name}, 行数: {len(df)}")
+        except Exception as e:
+            print(f"警告: 读取文件失败 {csv_file}: {e}")
+    
+    return results
+
+
+def merge_all_data(
+    dfs: Dict[str, pd.DataFrame],
+    task_col: str = "_task_name"
+) -> pd.DataFrame:
+    """
+    合并多个DataFrame
+    
+    参数:
+        dfs: DataFrame字典
+        task_col: 任务列名
+    
+    返回:
+        合并后的DataFrame
+    """
+    if not dfs:
+        return pd.DataFrame()
+    
+    all_dfs = []
+    for task_name, df in dfs.items():
+        df = df.copy()
+        if task_col not in df.columns:
+            df[task_col] = task_name
+        all_dfs.append(df)
+    
+    return pd.concat(all_dfs, ignore_index=True)
+
+
 if __name__ == "__main__":
     # 测试加载
     config = PostprocessConfig(result_root="./results")

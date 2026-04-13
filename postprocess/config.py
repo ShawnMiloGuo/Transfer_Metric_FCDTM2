@@ -55,13 +55,43 @@ DEFAULT_ACCURACY_COLUMNS = [
     "OA_delta_relative", "F1_delta_relative", "precision_delta_relative"
 ]
 
-# 默认的度量分数列（按度量类型）
+# 精度指标列（用于分析）
+ACCURACY_COLUMNS = DEFAULT_ACCURACY_COLUMNS
+
+# 默认的度量分数列（按度量类型）- 完整列表
 METRIC_SCORE_COLUMNS = {
     "FD": [
-        "mean_dif_absolute_sum", "mean_dif_absolute_abs_sum",
-        "mean_dif_relative_sum", "mean_dif_relative_abs_sum",
-        "FD_sum", "FD_y0_y1_diff", "FD_y0_y1_diff_abs",
-        "FD_y0_y1_diff_normalized", "FD_y0_y1_diff_abs_normalized",
+        # 均值差异基础统计
+        "mean_dif_absolute_sum",
+        "mean_dif_absolute_abs_sum",
+        "mean_dif_relative_sum",
+        "mean_dif_relative_abs_sum",
+        # 均值差异 × 权重差异 (y0_y1_diff)
+        "mean_dif_absolute_y0_y1_diff",
+        "mean_dif_absolute_abs_y0_y1_diff",
+        "mean_dif_relative_y0_y1_diff",
+        "mean_dif_relative_abs_y0_y1_diff",
+        # 均值差异 × 权重差异绝对值 (y0_y1_diff_abs)
+        "mean_dif_absolute_y0_y1_diff_abs",
+        "mean_dif_absolute_abs_y0_y1_diff_abs",
+        "mean_dif_relative_y0_y1_diff_abs",
+        "mean_dif_relative_abs_y0_y1_diff_abs",
+        # 均值差异 × 归一化权重差异 (y0_y1_diff_normalized)
+        "mean_dif_absolute_y0_y1_diff_normalized",
+        "mean_dif_absolute_abs_y0_y1_diff_normalized",
+        "mean_dif_relative_y0_y1_diff_normalized",
+        "mean_dif_relative_abs_y0_y1_diff_normalized",
+        # 均值差异 × 归一化权重差异绝对值 (y0_y1_diff_abs_normalized)
+        "mean_dif_absolute_y0_y1_diff_abs_normalized",
+        "mean_dif_absolute_abs_y0_y1_diff_abs_normalized",
+        "mean_dif_relative_y0_y1_diff_abs_normalized",
+        "mean_dif_relative_abs_y0_y1_diff_abs_normalized",
+        # FD 分数
+        "FD_sum",
+        "FD_y0_y1_diff",
+        "FD_y0_y1_diff_abs",
+        "FD_y0_y1_diff_normalized",
+        "FD_y0_y1_diff_abs_normalized",
     ],
     "DS": [
         "dispersion_score", "log_dispersion_score",
@@ -79,6 +109,24 @@ METRIC_SCORE_COLUMNS = {
         "target_within_class_dist", "target_between_class_dist",
         "target_fisher_ratio", "center_shift",
     ],
+}
+
+# 所有度量分数列（合并所有度量类型）
+METRIC_COLUMNS = []
+for cols in METRIC_SCORE_COLUMNS.values():
+    METRIC_COLUMNS.extend(cols)
+
+# 类别名称映射
+CLASS_NAMES = {
+    0: "background",
+    1: "Cropland",
+    2: "Forest",
+    3: "Grassland",
+    4: "Shrubland",
+    5: "Wetland",
+    6: "Water",
+    7: "Built-up",
+    8: "Bareland"
 }
 
 

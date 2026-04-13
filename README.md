@@ -635,9 +635,10 @@ postprocess/
 ### 功能特性
 
 - **相关性分析**：计算度量指标与精度下降的 Pearson/Spearman 相关系数
+- **按类别分析**：支持按不同类别（Cropland, Forest, Water等）分别分析
 - **可视化**：
-  - 散点图（带回归线和统计信息）
-  - 热力图（相关性矩阵）
+  - **热力图**（一张）：行=类别×度量指标，列=精度指标
+  - **散点图**（每指标一张）：不同类别用不同颜色区分
 - **批量处理**：支持批量分析多个度量类型和任务
 - **跨域分析**：合并所有任务数据进行整体分析
 
@@ -699,21 +700,31 @@ loader.load_all()
 
 # 可视化
 visualizer = CorrelationVisualizer(config)
-
-# 计算相关性矩阵
 df = loader.get_dataframe("FD_dwq_s2_xj_s2_batch1")
-corr_df = visualizer.calculate_correlation_matrix(
-    df, 
-    x_cols=["FD_sum", "mean_dif_absolute_sum"],
-    y_cols=["F1_delta", "OA_delta"],
-    method="pearson"
+
+# 获取度量指标列表
+metric_cols = config.get_metric_score_columns("FD")
+
+# 绘制按类别的热力图（一张图）
+# 行：类别×度量指标，列：精度指标
+fig, corr_df = visualizer.draw_heatmap_by_class(
+    df, metric_cols, ["F1_delta", "OA_delta"],
+    method="pearson",
+    save_path="./heatmap_by_class.png"
 )
 
-# 绘制热力图
-visualizer.draw_heatmap(corr_df, title="FD相关性矩阵", save_path="./heatmap.png")
+# 绘制单个度量指标的散点图（不同类别用不同颜色）
+visualizer.draw_scatter_one_metric_by_class(
+    df, "FD_sum", "F1_delta",
+    class_col="class_index",
+    save_path="./scatter_FD_sum.png"
+)
 
-# 绘制散点图
-visualizer.draw_scatter(df, "FD_sum", "F1_delta", title="FD vs F1_delta")
+# 为所有度量指标绘制散点图
+visualizer.draw_all_scatter_by_class(
+    df, metric_cols, "F1_delta",
+    output_dir="./fig"
+)
 ```
 
 ### 输出文件
@@ -724,20 +735,52 @@ analysis/
 ├── FD/
 │   ├── dwq_s2_xj_s2/
 │   │   ├── csv/
-│   │   │   ├── correlation_pearson.csv
-│   │   │   └── correlation_spearman.csv
+│   │   │   └── correlation_by_class_pearson.csv   # 相关性矩阵
 │   │   └── fig/
-│   │       ├── heatmap_pearson.png
-│   │       ├── heatmap_spearman.png
-│   │       └── scatter_*.png
+│   │       ├── heatmap_by_class_pearson.png       # 一张热力图
+│   │       │                                       # 行：类别×度量指标
+│   │       │                                       # 列：精度指标
+│   │       ├── F1_delta_scatter_FD_sum.png        # 散点图（每指标一张）
+│   │       ├── F1_delta_scatter_mean_dif_*.png    # 不同类别用不同颜色
+│   │       └── ...
 │   └── cross_domain/                  # 跨域分析结果
-│       ├── csv/
-│       └── fig/
+│       └── ...
 ├── DS/
 │   └── ...
 └── GBC/
     └── ...
 ```
+
+### 热力图结构示例
+
+```
+                          F1_delta  OA_delta  precision_delta
+cls1_Cropland_FD_sum         -0.72     -0.68            -0.65
+cls1_Cropland_mean_dif_sum    0.45      0.42             0.40
+cls2_Forest_FD_sum           -0.68     -0.65            -0.62
+cls2_Forest_mean_dif_sum      0.42      0.38             0.35
+cls6_Water_FD_sum            -0.75     -0.72            -0.70
+...
+```
+
+### FD 度量完整指标列表
+
+FD 度量的相关性分析包含以下 27 个指标：
+
+| 类别 | 指标名 | 说明 |
+|------|--------|------|
+| 均值差异基础 | `mean_dif_absolute_sum` | 均值绝对差异之和 |
+| | `mean_dif_absolute_abs_sum` | 均值绝对差异绝对值之和 |
+| | `mean_dif_relative_sum` | 均值相对差异之和 |
+| | `mean_dif_relative_abs_sum` | 均值相对差异绝对值之和 |
+| 加权差异 | `mean_dif_absolute_y0_y1_diff` | 均值差异 × 权重差异 |
+| | `mean_dif_absolute_y0_y1_diff_abs` | 均值差异 × 权重差异绝对值 |
+| | ... | （共16个加权差异指标） |
+| FD分数 | `FD_sum` | Fréchet距离 |
+| | `FD_y0_y1_diff` | 加权FD |
+| | `FD_y0_y1_diff_abs` | 绝对加权FD |
+| | `FD_y0_y1_diff_normalized` | 归一化加权FD |
+| | `FD_y0_y1_diff_abs_normalized` | 归一化绝对加权FD |
 
 ### 相关性矩阵示例
 

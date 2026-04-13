@@ -4,8 +4,8 @@
 可视化模块
 
 提供相关性分析和可视化功能，包括:
-- 散点图绘制（带回归线）
-- 热力图绘制
+- 散点图绘制（带回归线，按类别着色）
+- 热力图绘制（度量指标 vs 类别+迁移方向）
 - 相关性矩阵计算
 """
 
@@ -18,7 +18,7 @@ from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass
 from scipy.stats import pearsonr, spearmanr, linregress
 
-from .config import PostprocessConfig
+from .config import PostprocessConfig, CLASS_NAMES
 
 
 @dataclass
@@ -52,14 +52,9 @@ class CorrelationVisualizer:
     
     def _setup_style(self):
         """设置绘图样式"""
-        # 设置字体
         plt.rcParams["font.family"] = self.config.font_family
         plt.rcParams["font.size"] = self.config.font_size
-        
-        # 设置样式
         sns.set_style("whitegrid")
-        
-        # 解决中文显示问题
         plt.rcParams["axes.unicode_minus"] = False
     
     def calculate_correlation(
@@ -68,18 +63,7 @@ class CorrelationVisualizer:
         y: np.ndarray,
         method: str = "pearson"
     ) -> Tuple[float, float]:
-        """
-        计算相关系数
-        
-        参数:
-            x: x数据
-            y: y数据
-            method: 计算方法 ('pearson' 或 'spearman')
-        
-        返回:
-            (相关系数, p值)
-        """
-        # 移除NaN值
+        """计算相关系数"""
         mask = ~(np.isnan(x) | np.isnan(y))
         x_clean = x[mask]
         y_clean = y[mask]
@@ -103,18 +87,7 @@ class CorrelationVisualizer:
         y_cols: List[str],
         method: str = "pearson"
     ) -> pd.DataFrame:
-        """
-        计算相关性矩阵
-        
-        参数:
-            df: 数据框
-            x_cols: x列名列表
-            y_cols: y列名列表
-            method: 计算方法
-        
-        返回:
-            相关性矩阵DataFrame
-        """
+        """计算相关性矩阵"""
         results = []
         
         for x_col in x_cols:
@@ -132,119 +105,159 @@ class CorrelationVisualizer:
         corr_df = pd.DataFrame(results, index=x_cols)
         return corr_df
     
-    def calculate_full_correlation(
+    def calculate_correlation_for_heatmap(
         self,
         df: pd.DataFrame,
-        x_col: str,
-        y_col: str
-    ) -> CorrelationResult:
+        metric_cols: List[str],
+        accuracy_col: str,
+        class_col: str = "class_index",
+        task_col: str = "_task_name",
+        method: str = "pearson"
+    ) -> pd.DataFrame:
         """
-        计算完整的相关性统计
+        计算用于热力图的相关性矩阵
+        
+        热力图结构：
+        - 行（index）：度量指标（如 FD_sum, mean_dif_absolute_sum 等）
+        - 列（columns）：类别+迁移方向（如 "Cropland_dwq_s2_xj_s2"）
+        - 值：该度量指标在该类别+迁移方向下，与精度指标的相关系数
         
         参数:
-            df: 数据框
-            x_col: x列名
-            y_col: y列名
+            df: 数据框（可能包含多个任务的数据）
+            metric_cols: 度量列名列表
+            accuracy_col: 精度指标列名（单个，如 "F1_delta"）
+            class_col: 类别列名
+            task_col: 任务名称列名（需要提前添加到数据中）
+            method: 相关方法
         
         返回:
-            CorrelationResult对象
+            相关性矩阵DataFrame
         """
-        x = df[x_col].values
-        y = df[y_col].values
+        # 过滤存在的列
+        metric_cols = [c for c in metric_cols if c in df.columns]
         
-        # 移除NaN
-        mask = ~(np.isnan(x) | np.isnan(y))
-        x_clean = x[mask]
-        y_clean = y[mask]
+        if accuracy_col not in df.columns:
+            print(f"警告: 精度列 {accuracy_col} 不存在")
+            return pd.DataFrame()
         
-        pearson_r, pearson_p = self.calculate_correlation(x, y, "pearson")
-        spearman_r, spearman_p = self.calculate_correlation(x, y, "spearman")
+        # 获取所有唯一的（任务，类别）组合
+        if task_col in df.columns:
+            tasks = df[task_col].unique()
+        else:
+            tasks = ["unknown"]
         
-        return CorrelationResult(
-            x_col=x_col,
-            y_col=y_col,
-            pearson_r=pearson_r,
-            pearson_p=pearson_p,
-            spearman_r=spearman_r,
-            spearman_p=spearman_p,
-            n_samples=len(x_clean)
-        )
+        classes = df[class_col].unique()
+        classes = sorted([c for c in classes if pd.notna(c)])
+        
+        # 构建列标签列表：类别_任务名
+        col_labels = []
+        for cls in classes:
+            cls_name = CLASS_NAMES.get(int(cls), f"class_{int(cls)}")
+            # 从数据中获取该类别的 class_name
+            cls_df_sample = df[df[class_col] == cls]
+            if "class_name" in cls_df_sample.columns:
+                cls_name = cls_df_sample["class_name"].iloc[0]
+            
+            for task in tasks:
+                if pd.isna(task):
+                    continue
+                col_label = f"{cls_name}_{task}"
+                col_labels.append((cls, task, col_label))
+        
+        # 计算每个（度量指标，类别_任务）的相关系数
+        results = {}
+        
+        for metric_col in metric_cols:
+            row = {}
+            for cls, task, col_label in col_labels:
+                # 筛选数据
+                mask = (df[class_col] == cls)
+                if task_col in df.columns:
+                    mask = mask & (df[task_col] == task)
+                
+                subset = df[mask]
+                
+                if len(subset) < 3:
+                    row[col_label] = np.nan
+                    continue
+                
+                # 计算相关系数
+                x = subset[metric_col].values
+                y = subset[accuracy_col].values
+                
+                r, _ = self.calculate_correlation(x, y, method)
+                row[col_label] = r
+            
+            results[metric_col] = row
+        
+        corr_df = pd.DataFrame(results).T
+        return corr_df
     
-    def draw_scatter(
+    def draw_scatter_one_metric_by_class(
         self,
         df: pd.DataFrame,
-        x_col: str,
-        y_col: str,
+        metric_col: str,
+        accuracy_col: str,
+        class_col: str = "class_index",
         title: str = "",
         xlabel: str = "",
         ylabel: str = "",
         figsize: Tuple[int, int] = (8, 6),
         show_regression: bool = True,
-        show_stats: bool = True,
-        color: str = "#1f77b4",
-        alpha: float = 0.6,
+        legend: bool = True,
         save_path: Optional[str] = None
     ) -> plt.Figure:
         """
-        绘制散点图（带回归线）
+        绘制单个度量指标的散点图（不同类别用不同颜色）
         
-        参数:
-            df: 数据框
-            x_col: x列名
-            y_col: y列名
-            title: 图表标题
-            xlabel: x轴标签
-            ylabel: y轴标签
-            figsize: 图表大小
-            show_regression: 是否显示回归线
-            show_stats: 是否显示统计信息
-            color: 点颜色
-            alpha: 透明度
-            save_path: 保存路径
-        
-        返回:
-            matplotlib Figure对象
+        这是一个指标一张散点图，不同类别用不同颜色区分。
         """
         fig, ax = plt.subplots(figsize=figsize)
         
-        # 提取数据
-        x = df[x_col].values
-        y = df[y_col].values
+        # 获取类别列表
+        classes = df[class_col].unique()
+        classes = sorted([c for c in classes if pd.notna(c)])
         
-        # 移除NaN
-        mask = ~(np.isnan(x) | np.isnan(y))
-        x_clean = x[mask]
-        y_clean = y[mask]
+        # 颜色映射
+        colors = plt.cm.tab10(np.linspace(0, 1, len(classes)))
         
-        # 绘制散点
-        ax.scatter(x_clean, y_clean, color=color, alpha=alpha, s=30, edgecolors='white', linewidth=0.5)
-        
-        # 绘制回归线
-        if show_regression and len(x_clean) > 2:
-            slope, intercept, r_value, p_value, std_err = linregress(x_clean, y_clean)
-            line_x = np.array([x_clean.min(), x_clean.max()])
-            line_y = slope * line_x + intercept
-            ax.plot(line_x, line_y, color='red', linewidth=2, linestyle='--', label='回归线')
-        
-        # 显示统计信息
-        if show_stats:
-            corr_result = self.calculate_full_correlation(df, x_col, y_col)
-            stats_text = (
-                f"Pearson r = {corr_result.pearson_r:.3f} (p = {corr_result.pearson_p:.3e})\n"
-                f"Spearman ρ = {corr_result.spearman_r:.3f} (p = {corr_result.spearman_p:.3e})\n"
-                f"n = {corr_result.n_samples}"
-            )
-            ax.text(0.05, 0.95, stats_text, transform=ax.transAxes,
-                   fontsize=10, verticalalignment='top',
-                   bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        for idx, cls in enumerate(classes):
+            cls_df = df[df[class_col] == cls]
+            x = cls_df[metric_col].values
+            y = cls_df[accuracy_col].values
+            
+            # 移除NaN
+            mask = ~(np.isnan(x) | np.isnan(y))
+            x_clean = x[mask]
+            y_clean = y[mask]
+            
+            if len(x_clean) == 0:
+                continue
+            
+            # 获取类别名称
+            cls_name = CLASS_NAMES.get(int(cls), f"class_{int(cls)}")
+            if "class_name" in cls_df.columns:
+                cls_name = cls_df["class_name"].iloc[0]
+            
+            # 绘制散点
+            ax.scatter(x_clean, y_clean, color=colors[idx], alpha=0.6, 
+                      s=30, label=f"{cls_name}")
+            
+            # 绘制回归线
+            if show_regression and len(x_clean) > 2:
+                slope, intercept, r_value, p_value, std_err = linregress(x_clean, y_clean)
+                line_x = np.array([x_clean.min(), x_clean.max()])
+                line_y = slope * line_x + intercept
+                ax.plot(line_x, line_y, color=colors[idx], linewidth=1.5, 
+                       linestyle='--', alpha=0.7)
         
         # 设置标签
-        ax.set_xlabel(xlabel or x_col, fontsize=12)
-        ax.set_ylabel(ylabel or y_col, fontsize=12)
-        ax.set_title(title, fontsize=14)
+        ax.set_xlabel(xlabel or metric_col, fontsize=12)
+        ax.set_ylabel(ylabel or accuracy_col, fontsize=12)
+        ax.set_title(title or f"{metric_col} vs {accuracy_col}", fontsize=14)
         
-        if show_regression:
-            ax.legend(loc='lower right')
+        if legend:
+            ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=9)
         
         plt.tight_layout()
         
@@ -255,6 +268,131 @@ class CorrelationVisualizer:
             print(f"保存图片: {save_path}")
         
         return fig
+    
+    def draw_all_scatter_by_class(
+        self,
+        df: pd.DataFrame,
+        metric_cols: List[str],
+        accuracy_col: str,
+        class_col: str = "class_index",
+        output_dir: str = "./fig",
+        prefix: str = ""
+    ) -> List[str]:
+        """
+        为每个度量指标绘制一张散点图（不同类别用不同颜色）
+        """
+        saved_paths = []
+        
+        for metric_col in metric_cols:
+            if metric_col not in df.columns:
+                continue
+            
+            save_path = os.path.join(
+                output_dir, 
+                f"{prefix}scatter_{metric_col}_vs_{accuracy_col}.{self.config.figure_format}"
+            )
+            
+            self.draw_scatter_one_metric_by_class(
+                df, metric_col, accuracy_col,
+                class_col=class_col,
+                title=f"{metric_col} vs {accuracy_col}",
+                save_path=save_path
+            )
+            plt.close()
+            saved_paths.append(save_path)
+        
+        return saved_paths
+    
+    def draw_heatmap_metrics_vs_class_task(
+        self,
+        df: pd.DataFrame,
+        metric_cols: List[str],
+        accuracy_col: str,
+        class_col: str = "class_index",
+        task_col: str = "_task_name",
+        method: str = "pearson",
+        title: str = "",
+        figsize: Optional[Tuple[int, int]] = None,
+        save_path: Optional[str] = None
+    ) -> Tuple[plt.Figure, pd.DataFrame]:
+        """
+        绘制热力图
+        
+        热力图结构：
+        - 行（纵坐标）：度量指标（如 FD_sum, mean_dif_absolute_sum 等）
+        - 列（横坐标）：类别+迁移方向（如 "Cropland_dwq_s2_xj_s2"）
+        - 值：该度量指标在该类别+迁移方向下，与精度指标的相关系数
+        
+        参数:
+            df: 数据框（可能包含多个任务的数据）
+            metric_cols: 度量列名列表
+            accuracy_col: 精度指标列名（单个）
+            class_col: 类别列名
+            task_col: 任务名称列名
+            method: 相关方法
+            title: 图表标题
+            figsize: 图表大小
+            save_path: 保存路径
+        
+        返回:
+            (Figure, 相关性矩阵DataFrame)
+        """
+        # 计算相关性矩阵
+        corr_df = self.calculate_correlation_for_heatmap(
+            df, metric_cols, accuracy_col,
+            class_col=class_col,
+            task_col=task_col,
+            method=method
+        )
+        
+        if corr_df.empty:
+            print("警告: 相关性矩阵为空")
+            return None, corr_df
+        
+        # 自动调整图表大小
+        if figsize is None:
+            n_rows = len(corr_df)
+            n_cols = len(corr_df.columns)
+            figsize = (max(12, n_cols * 1.5), max(10, n_rows * 0.5))
+        
+        fig, ax = plt.subplots(figsize=figsize)
+        
+        # 绘制热力图
+        sns.heatmap(
+            corr_df,
+            annot=True,
+            fmt=".2f",
+            cmap=self.config.colormap,
+            vmin=-1,
+            vmax=1,
+            center=0,
+            linewidths=0.5,
+            ax=ax,
+            annot_kws={"size": 8}
+        )
+        
+        # 设置标题和标签
+        if title:
+            ax.set_title(title, fontsize=14)
+        else:
+            ax.set_title(f"Correlation Heatmap ({accuracy_col}, {method})", fontsize=14)
+        
+        ax.set_xlabel("Class_Task", fontsize=12)
+        ax.set_ylabel("Metric", fontsize=12)
+        
+        # 调整标签
+        ax.set_yticklabels(ax.get_yticklabels(), fontsize=8, rotation=0)
+        ax.set_xticklabels(ax.get_xticklabels(), fontsize=8, rotation=45, ha='right')
+        
+        plt.tight_layout()
+        
+        # 保存图片
+        if save_path:
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            fig.savefig(save_path, dpi=self.config.figure_dpi, bbox_inches='tight')
+            print(f"保存图片: {save_path}")
+        
+        return fig, corr_df
     
     def draw_heatmap(
         self,
@@ -267,25 +405,9 @@ class CorrelationVisualizer:
         vmax: float = 1,
         save_path: Optional[str] = None
     ) -> plt.Figure:
-        """
-        绘制相关性热力图
-        
-        参数:
-            corr_df: 相关性矩阵DataFrame
-            title: 图表标题
-            figsize: 图表大小
-            annot: 是否显示数值
-            fmt: 数值格式
-            vmin: 最小值
-            vmax: 最大值
-            save_path: 保存路径
-        
-        返回:
-            matplotlib Figure对象
-        """
+        """绘制热力图（通用方法）"""
         fig, ax = plt.subplots(figsize=figsize)
         
-        # 绘制热力图
         sns.heatmap(
             corr_df,
             annot=annot,
@@ -302,97 +424,6 @@ class CorrelationVisualizer:
         ax.set_title(title, fontsize=14)
         plt.tight_layout()
         
-        # 保存图片
-        if save_path:
-            os.makedirs(os.path.dirname(save_path), exist_ok=True)
-            fig.savefig(save_path, dpi=self.config.figure_dpi, bbox_inches='tight')
-            print(f"保存图片: {save_path}")
-        
-        return fig
-    
-    def draw_scatter_all_metrics(
-        self,
-        df: pd.DataFrame,
-        metric_cols: List[str],
-        accuracy_col: str = "F1_delta",
-        ncols: int = 3,
-        figsize_per_plot: Tuple[float, float] = (5, 4),
-        save_path: Optional[str] = None
-    ) -> plt.Figure:
-        """
-        绘制所有度量指标与精度指标的散点图
-        
-        参数:
-            df: 数据框
-            metric_cols: 度量列名列表
-            accuracy_col: 精度列名
-            ncols: 每行子图数量
-            figsize_per_plot: 每个子图的大小
-            save_path: 保存路径
-        
-        返回:
-            matplotlib Figure对象
-        """
-        n_metrics = len(metric_cols)
-        nrows = (n_metrics + ncols - 1) // ncols
-        
-        fig, axes = plt.subplots(
-            nrows, ncols,
-            figsize=(figsize_per_plot[0] * ncols, figsize_per_plot[1] * nrows)
-        )
-        
-        if nrows == 1 and ncols == 1:
-            axes = np.array([[axes]])
-        elif nrows == 1:
-            axes = axes.reshape(1, -1)
-        elif ncols == 1:
-            axes = axes.reshape(-1, 1)
-        
-        for idx, metric_col in enumerate(metric_cols):
-            row = idx // ncols
-            col = idx % ncols
-            ax = axes[row, col]
-            
-            if metric_col not in df.columns:
-                ax.text(0.5, 0.5, f"列不存在:\n{metric_col}", ha='center', va='center')
-                ax.set_xticks([])
-                ax.set_yticks([])
-                continue
-            
-            x = df[metric_col].values
-            y = df[accuracy_col].values
-            
-            mask = ~(np.isnan(x) | np.isnan(y))
-            x_clean = x[mask]
-            y_clean = y[mask]
-            
-            # 绘制散点
-            ax.scatter(x_clean, y_clean, alpha=0.6, s=20)
-            
-            # 绘制回归线
-            if len(x_clean) > 2:
-                slope, intercept, r_value, p_value, std_err = linregress(x_clean, y_clean)
-                line_x = np.array([x_clean.min(), x_clean.max()])
-                line_y = slope * line_x + intercept
-                ax.plot(line_x, line_y, color='red', linewidth=1.5, linestyle='--')
-                
-                # 显示相关系数
-                ax.text(0.05, 0.95, f"r = {r_value:.3f}", transform=ax.transAxes,
-                       fontsize=9, verticalalignment='top')
-            
-            ax.set_xlabel(metric_col, fontsize=9)
-            ax.set_ylabel(accuracy_col, fontsize=9)
-            ax.tick_params(labelsize=8)
-        
-        # 隐藏空白子图
-        for idx in range(n_metrics, nrows * ncols):
-            row = idx // ncols
-            col = idx % ncols
-            axes[row, col].set_visible(False)
-        
-        plt.tight_layout()
-        
-        # 保存图片
         if save_path:
             os.makedirs(os.path.dirname(save_path), exist_ok=True)
             fig.savefig(save_path, dpi=self.config.figure_dpi, bbox_inches='tight')
@@ -405,13 +436,7 @@ class CorrelationVisualizer:
         corr_df: pd.DataFrame,
         save_path: str
     ):
-        """
-        保存相关性矩阵到CSV
-        
-        参数:
-            corr_df: 相关性矩阵DataFrame
-            save_path: 保存路径
-        """
+        """保存相关性矩阵到CSV"""
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         corr_df.to_csv(save_path)
         print(f"保存相关性矩阵: {save_path}")
@@ -427,17 +452,6 @@ def analyze_and_visualize(
 ) -> pd.DataFrame:
     """
     便捷函数：执行完整的相关性分析
-    
-    参数:
-        df: 数据框
-        metric_cols: 度量列名列表
-        accuracy_cols: 精度列名列表
-        output_dir: 输出目录
-        method: 相关方法
-        prefix: 文件名前缀
-    
-    返回:
-        相关性矩阵DataFrame
     """
     config = PostprocessConfig(output_dir=output_dir)
     visualizer = CorrelationVisualizer(config)
@@ -446,39 +460,54 @@ def analyze_and_visualize(
     metric_cols = [c for c in metric_cols if c in df.columns]
     accuracy_cols = [c for c in accuracy_cols if c in df.columns]
     
-    # 计算相关性矩阵
-    corr_df = visualizer.calculate_correlation_matrix(df, metric_cols, accuracy_cols, method)
+    results = {}
     
-    # 保存CSV
-    csv_path = os.path.join(output_dir, "csv", f"{prefix}correlation_{method}.csv")
-    visualizer.save_correlation_to_csv(corr_df, csv_path)
-    
-    # 绘制热力图
-    fig_path = os.path.join(output_dir, "fig", f"{prefix}heatmap_{method}.{config.figure_format}")
-    visualizer.draw_heatmap(corr_df, title=f"相关性矩阵 ({method})", save_path=fig_path)
-    
-    # 绘制散点图
+    # 为每个精度指标绘制热力图
     for acc_col in accuracy_cols:
-        scatter_path = os.path.join(output_dir, "fig", f"{prefix}scatter_{acc_col}_{method}.{config.figure_format}")
-        visualizer.draw_scatter_all_metrics(df, metric_cols, acc_col, save_path=scatter_path)
+        # 绘制热力图
+        heatmap_path = os.path.join(output_dir, "fig", f"{prefix}heatmap_{acc_col}_{method}.{config.figure_format}")
+        fig, corr_df = visualizer.draw_heatmap_metrics_vs_class_task(
+            df, metric_cols, acc_col,
+            method=method,
+            save_path=heatmap_path
+        )
+        if fig:
+            plt.close(fig)
+        
+        # 保存CSV
+        csv_path = os.path.join(output_dir, "csv", f"{prefix}correlation_{acc_col}_{method}.csv")
+        visualizer.save_correlation_to_csv(corr_df, csv_path)
+        
+        # 绘制散点图
+        visualizer.draw_all_scatter_by_class(
+            df, metric_cols, acc_col,
+            output_dir=os.path.join(output_dir, "fig"),
+            prefix=f"{prefix}{acc_col}_"
+        )
+        
+        results[acc_col] = corr_df
     
-    plt.close('all')
-    
-    return corr_df
+    return results
 
 
 if __name__ == "__main__":
     # 测试可视化
     np.random.seed(42)
+    
+    # 创建测试数据
     test_df = pd.DataFrame({
-        "metric1": np.random.randn(100),
-        "metric2": np.random.randn(100),
-        "F1_delta": np.random.randn(100) * 0.1 + 0.5,
+        "metric1": np.random.randn(200),
+        "metric2": np.random.randn(200),
+        "F1_delta": np.random.randn(200) * 0.1 + 0.5,
+        "class_index": np.tile([1, 2, 3, 6], 50),
+        "_task_name": np.tile(["task1", "task2"], 100),
     })
     
     config = PostprocessConfig(output_dir="./test_output")
     visualizer = CorrelationVisualizer(config)
     
-    # 绘制散点图
-    fig = visualizer.draw_scatter(test_df, "metric1", "F1_delta", title="测试散点图")
+    # 测试热力图
+    fig, corr_df = visualizer.draw_heatmap_metrics_vs_class_task(
+        test_df, ["metric1", "metric2"], "F1_delta"
+    )
     plt.show()
