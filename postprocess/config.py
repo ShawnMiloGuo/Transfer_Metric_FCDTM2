@@ -47,7 +47,7 @@ TASK_CONFIGS: Dict[str, Dict[str, Any]] = {
 }
 
 # 支持的度量类型
-METRIC_TYPES = ["FD", "DS", "GBC", "OTCE", "LogME"]
+METRIC_TYPES = ["FD", "FCDTM", "FCDTM-Test", "DS", "GBC", "OTCE", "LogME"]
 
 # 默认的精度指标列
 DEFAULT_ACCURACY_COLUMNS = [
@@ -60,7 +60,19 @@ ACCURACY_COLUMNS = DEFAULT_ACCURACY_COLUMNS
 
 # 默认的度量分数列（按度量类型）- 完整列表
 METRIC_SCORE_COLUMNS = {
+    # FD: 原始Fréchet Distance算法，仅输出FD_sum
     "FD": [
+        "FD_sum",  # 原始FD分数
+    ],
+    # FCDTM: FCDTM最优度量，专注mean_dif_absolute_y0_y1_diff组合方式
+    "FCDTM": [
+        # FCDTM 核心度量
+        "mean_dif_absolute_y0_y1_diff",  # 核心度量：均值差异绝对值 × 权重差异
+        # FCDTM 综合分数
+        "FCDTM_score",  # 综合分数 (等价于 FD_y0_y1_diff)
+    ],
+    # FCDTM-Test: FCDTM研发过程中的测试模型，包含所有组合方式
+    "FCDTM-Test": [
         # 均值差异基础统计
         "mean_dif_absolute_sum",
         "mean_dif_absolute_abs_sum",

@@ -1,10 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-FD (Fréchet Distance) 度量实现 - 原始版本
+FCDTM-Test (Fréchet Class Difference Transfer Metric - Test) 度量实现
 
-基于特征分布的Fréchet距离，用于衡量源域和目标域特征分布的差异。
-这是最原始的FD算法实现，仅输出FD_sum分数。
+这是研发FCDTM算法过程中的终极测试模型。
+包含了所有可能的组合方式，用于测试和对比不同配置的效果。
+
+FCDTM是FD度量的改进版本，专注于mean_dif_absolute_y0_y1_diff组合方式。
+该方式在实验中表现最佳，能更准确地预测迁移学习效果。
+
+核心思想：
+- 使用均值差异的绝对值 (|mean_t - mean_s|)
+- 乘以类别权重差异 (y0_y1_diff)，衡量不同类别间的特征分布变化
 """
 
 import torch
@@ -17,17 +24,25 @@ from feature_extractor import FDFeatureExtractor
 from model import ModelManager
 
 
-class FDMetric(BaseMetric):
+class FCDTMTestMetric(BaseMetric):
     """
-    原始 Fréchet Distance 度量计算器
+    FCDTM-Test 度量计算器
     
-    仅计算源域和目标域特征分布之间的Fréchet距离。
-    这是最初的算法实现，仅输出 FD_sum 分数。
+    FCDTM-Test 是研发 FCDTM 算法过程中的终极测试模型。
+    包含了所有可能的组合方式，用于测试和对比。
+    
+    最终确定的最优组合方式：
+    - 均值差异绝对值 × 权重差异 (y0_y1_diff)
+    
+    详细的组合方式包括：
+    1. 均值差异基础统计（4种）
+    2. 均值差异 × 权重差异（16种）
+    3. FD分数（5种）
     """
     
-    METRIC_NAME = "FD"
+    METRIC_NAME = "FCDTM-Test"
     
-    # 结果列名定义（原始版本，仅包含基本指标）
+    # 结果列名定义
     COLUMN_NAMES = [
         # 增量指标
         "OA_delta", "F1_delta", "precision_delta",
@@ -37,12 +52,35 @@ class FDMetric(BaseMetric):
         "OA_s", "F1_s", "precision_s",
         # 目标域指标 (使用 _t 后缀)
         "OA_t", "F1_t", "precision_t",
-        # FD 分数（仅此一项）
-        "FD_sum",
+        # 均值差异 - 基础统计
+        "mean_dif_absolute_sum", "mean_dif_absolute_abs_sum",
+        "mean_dif_relative_sum", "mean_dif_relative_abs_sum",
+        # 均值差异 × 权重差异 (y0_y1_diff)
+        "mean_dif_absolute_y0_y1_diff", "mean_dif_absolute_abs_y0_y1_diff",
+        "mean_dif_relative_y0_y1_diff", "mean_dif_relative_abs_y0_y1_diff",
+        # 均值差异 × 权重差异绝对值 (y0_y1_diff_abs)
+        "mean_dif_absolute_y0_y1_diff_abs", "mean_dif_absolute_abs_y0_y1_diff_abs",
+        "mean_dif_relative_y0_y1_diff_abs", "mean_dif_relative_abs_y0_y1_diff_abs",
+        # 均值差异 × 归一化权重差异
+        "mean_dif_absolute_y0_y1_diff_normalized", "mean_dif_absolute_abs_y0_y1_diff_normalized",
+        "mean_dif_relative_y0_y1_diff_normalized", "mean_dif_relative_abs_y0_y1_diff_normalized",
+        # 均值差异 × 归一化权重差异绝对值
+        "mean_dif_absolute_y0_y1_diff_abs_normalized", "mean_dif_absolute_abs_y0_y1_diff_abs_normalized",
+        "mean_dif_relative_y0_y1_diff_abs_normalized", "mean_dif_relative_abs_y0_y1_diff_abs_normalized",
+        # FD 分数
+        "FD_sum", "FD_y0_y1_diff", "FD_y0_y1_diff_abs",
+        "FD_y0_y1_diff_normalized", "FD_y0_y1_diff_abs_normalized",
     ]
     
-    # 绘图时的度量指标列索引
-    METRIC_PLOT_INDICES = [12]  # FD_sum
+    # 索引说明（相对于COLUMN_NAMES）:
+    # 0-2: 增量指标
+    # 3-5: 相对增量指标
+    # 6-8: 源域指标
+    # 9-11: 目标域指标
+    # 12-15: 均值差异基础统计
+    # 16-31: 均值差异×权重差异
+    # 32-36: FD分数
+    METRIC_PLOT_INDICES = [32, 33, 34, 36]  # FD_sum, FD_y0_y1_diff, FD_y0_y1_diff_abs, FD_y0_y1_diff_abs_normalized
     ACCURACY_PLOT_INDICES = [0, 1]  # OA_delta, F1_delta
     
     def compute(
@@ -53,7 +91,7 @@ class FDMetric(BaseMetric):
         target_loader
     ) -> List[MetricResult]:
         """
-        计算FD度量
+        计算FCDTM-Test度量
         
         参数:
             model: 预训练模型
@@ -76,6 +114,9 @@ class FDMetric(BaseMetric):
         max_images = self.config.max_images
         process_all = self.config.process_all_target
         
+        # 获取权重差异用于加权计算
+        weight_diff = model_manager.get_last_layer_weight_diff(model)
+        
         # ========== 提取源域特征（一次性提取所有源域特征） ==========
         print("提取源域特征...")
         source_metrics, source_stats, _ = extractor.extract(
@@ -89,7 +130,7 @@ class FDMetric(BaseMetric):
         
         # ========== 处理目标域 ==========
         if process_all:
-            # 模式1：处理所有目标域数据，计算单个FD值
+            # 模式1：处理所有目标域数据，计算单个FCDTM值
             print("提取目标域特征（全部）...")
             target_metrics, target_stats, _ = extractor.extract(
                 target_loader,
@@ -100,22 +141,23 @@ class FDMetric(BaseMetric):
                 single_batch=False
             )
             
-            # 计算FD
-            result = self._compute_single_fd(
+            # 计算FCDTM
+            result = self._compute_single_fcdtm(
                 source_stats, target_stats,
-                source_metrics, target_metrics
+                source_metrics, target_metrics,
+                weight_diff
             )
             self.add_result(result)
             
         else:
-            # 模式2：按批次处理目标域，每批次计算一个FD值
+            # 模式2：按批次处理目标域，每批次计算一个FCDTM值
             print(f"按批次处理目标域 (batch_size={self.config.batch_size})...")
             
             # 创建目标域迭代器
             target_iter = iter(target_loader)
             n_batches = len(target_loader)
             
-            for batch_idx in tqdm(range(n_batches), desc="计算FD度量"):
+            for batch_idx in tqdm(range(n_batches), desc="计算FCDTM-Test度量"):
                 try:
                     # 提取当前批次的特征
                     target_metrics, target_stats, _ = extractor.extract(
@@ -127,10 +169,11 @@ class FDMetric(BaseMetric):
                         single_batch=True
                     )
                     
-                    # 计算FD
-                    result = self._compute_single_fd(
+                    # 计算FCDTM
+                    result = self._compute_single_fcdtm(
                         source_stats, target_stats,
-                        source_metrics, target_metrics
+                        source_metrics, target_metrics,
+                        weight_diff
                     )
                     self.add_result(result)
                     
@@ -140,30 +183,71 @@ class FDMetric(BaseMetric):
         
         return self.results
     
-    def _compute_single_fd(
+    def _compute_single_fcdtm(
         self,
         source_stats,
         target_stats,
         source_metrics,
-        target_metrics
+        target_metrics,
+        weight_diff: dict
     ) -> MetricResult:
         """
-        计算单个FD结果（原始版本）
+        计算单个FCDTM-Test结果
         
         参数:
             source_stats: 源域特征统计
             target_stats: 目标域特征统计
             source_metrics: 源域评估指标
             target_metrics: 目标域评估指标
+            weight_diff: 权重差异字典
         
         返回:
             MetricResult对象
         """
-        # 计算原始FD分数（Fréchet Distance）
+        # 计算均值差异（与原始代码一致）
+        # mean_dif_absolute = mean_t - mean_s (注意顺序)
+        mean_dif_absolute = target_stats.mean - source_stats.mean
+        mean_dif_absolute_abs = np.abs(mean_dif_absolute)
+        mean_dif_relative = (target_stats.mean - source_stats.mean) / (source_stats.mean + 1e-8)
+        mean_dif_relative_abs = np.abs(mean_dif_relative)
+        
+        # 均值差异字典
+        mean_dif_dict = {
+            'mean_dif_absolute': mean_dif_absolute,
+            'mean_dif_absolute_abs': mean_dif_absolute_abs,
+            'mean_dif_relative': mean_dif_relative,
+            'mean_dif_relative_abs': mean_dif_relative_abs,
+        }
+        
+        # 权重差异键名列表（与原始代码一致）
+        weight_diff_keys = ['y0_y1_diff', 'y0_y1_diff_abs', 
+                           'y0_y1_diff_normalized', 'y0_y1_diff_abs_normalized']
+        
+        # 计算均值差异 × 权重差异的组合
+        mean_dif_weighted = {}
+        for mean_key, mean_val in mean_dif_dict.items():
+            for weight_key in weight_diff_keys:
+                weight = weight_diff[weight_key].numpy()
+                combined_key = f"{mean_key}_{weight_key}"
+                mean_dif_weighted[combined_key] = float(np.sum(mean_val * weight))
+        
+        # 计算 FD 分数
         fd_sum = calculate_frechet_distance(
             source_stats.mean, target_stats.mean,
             source_stats.covariance, target_stats.covariance
         )
+        
+        # 计算加权 FD
+        fd_weighted = {}
+        for weight_key in weight_diff_keys:
+            weight = weight_diff[weight_key].numpy()
+            fd_w = calculate_frechet_distance(
+                source_stats.mean * weight,
+                target_stats.mean * weight,
+                source_stats.covariance,
+                target_stats.covariance
+            )
+            fd_weighted[f"FD_{weight_key}"] = fd_w
         
         # 计算相对变化
         oa_rel = (source_metrics.overall_accuracy - target_metrics.overall_accuracy) / (source_metrics.overall_accuracy + 1e-8)
@@ -194,8 +278,16 @@ class FDMetric(BaseMetric):
                 "OA_delta_relative": oa_rel,
                 "F1_delta_relative": f1_rel,
                 "precision_delta_relative": precision_rel,
-                # FD 分数（仅此一项）
+                # 均值差异基础统计
+                "mean_dif_absolute_sum": float(np.sum(mean_dif_absolute)),
+                "mean_dif_absolute_abs_sum": float(np.sum(mean_dif_absolute_abs)),
+                "mean_dif_relative_sum": float(np.sum(mean_dif_relative)),
+                "mean_dif_relative_abs_sum": float(np.sum(mean_dif_relative_abs)),
+                # 均值差异 × 权重差异
+                **mean_dif_weighted,
+                # FD 分数
                 "FD_sum": fd_sum,
+                **fd_weighted
             }
         )
         
