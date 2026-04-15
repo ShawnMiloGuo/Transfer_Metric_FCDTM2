@@ -23,8 +23,10 @@
 
 ## 功能特性
 
-- **五种度量方法**：
-  - **FD (Fréchet Distance)**：基于特征分布的Fréchet距离
+- **七种度量方法**：
+  - **FD (Fréchet Distance)**：原始Fréchet Distance算法，仅输出FD_sum
+  - **FCDTM (Fréchet Class Difference Transfer Metric)**：FCDTM最优度量，专注mean_dif_absolute_y0_y1_diff组合方式
+  - **FCDTM-Test (FCDTM Test)**：FCDTM研发过程中的测试模型，包含所有组合方式
   - **DS (Dispersion Score)**：基于类别间特征分散度
   - **GBC (Geometric Bayesian Classifier)**：基于几何贝叶斯分类器
   - **OTCE (Optimal Transport for Conditional Estimation)**：基于最优传输理论的迁移度量
@@ -67,7 +69,9 @@ FCDTM/
 ├── metrics/               # 度量计算模块
 │   ├── __init__.py       # 模块入口，注册所有度量
 │   ├── base.py           # 度量基类和通用工具
-│   ├── fd.py             # FD度量实现
+│   ├── fd.py             # FD度量实现（原始算法，仅FD_sum）
+│   ├── fcdtm.py          # FCDTM实现（最优度量）
+│   ├── fcdtm_test.py     # FCDTM-Test实现（研发测试模型）
 │   ├── ds.py             # DS度量实现
 │   ├── gbc.py            # GBC度量实现
 │   ├── otce.py           # OTCE度量实现
@@ -188,7 +192,7 @@ MAX_IMAGES=100            # 最大处理图像数量
 
 # 特征提取参数
 FEATURE_LAYER="up4"       # 特征提取层 (up4/outc/down4)
-ONLY_FOREGROUND=false     # 是否只提取前景特征
+ONLY_FOREGROUND=true      # 是否只提取前景特征（默认true，需与训练时保持一致）
 EXCLUDE_ZERO=false        # 是否排除零值特征
 USE_PREDICTION=false      # 是否使用预测标签
 
@@ -233,6 +237,28 @@ class Config:
     ...
 ```
 
+### 重要参数说明
+
+#### ONLY_FOREGROUND（前景特征提取）
+
+**默认值为 `true`**，表示只提取前景类别的特征。
+
+**重要**：此参数应与模型训练时的设置保持一致：
+- 如果训练时使用 `--only_foreground` 参数，则推理时也应设置 `ONLY_FOREGROUND=true`
+- 如果训练时未使用 `--only_foreground` 参数，则应设置 `ONLY_FOREGROUND=false`
+
+| 训练配置 | ONLY_FOREGROUND | 说明 |
+|---------|----------------|------|
+| 使用 `--only_foreground` | `true` | 只提取前景类别特征 |
+| 未使用 `--only_foreground` | `false` | 提取所有类别特征（包括背景） |
+
+**注意**：错误设置此参数会导致特征维度不匹配，计算结果不正确。
+
+#### 批次模式与汇总模式
+
+- **汇总模式**（`PROCESS_ALL_TARGET=true`，默认）：处理完所有目标域数据后，计算单个度量值
+- **批次模式**（`PROCESS_ALL_TARGET=false`）：每 `batch_size` 张图片计算一个度量值
+
 ---
 
 ## 使用方法
@@ -249,7 +275,7 @@ bash run.sh --metric FD --task dwq_s2_xj_s2
 # 批次模式：每 batch_size 张图片计算一个度量值
 bash run.sh --metric FD --task dwq_s2_xj_s2 --batch 4 --batch_target
 
-# 运行所有度量
+# 运行所有度量（包括FD、FCDTM、FCDTM-Test、DS、GBC、OTCE、LogME）
 bash run.sh --all --task xj_s2_xj_l8
 ```
 
@@ -275,6 +301,64 @@ python main.py \
     --feature_layer up4 \
     --foreground_ratio 0.2
 ```
+
+### FCDTM-Test 专用命令
+
+FCDTM-Test 是研发 FCDTM 算法过程中的终极测试模型，包含了所有可能的组合方式。
+
+```bash
+# 汇总模式
+bash run.sh --metric FCDTM-Test --task dwq_s2_xj_s2
+
+# 批次模式
+bash run.sh --metric FCDTM-Test --task dwq_s2_xj_s2 --batch 4 --batch_target
+
+# 或使用 Python
+python main.py --metric_type FCDTM-Test --task_name dwq_s2_xj_s2 --batch_size 4 --batch_target
+```
+
+### FCDTM 专用命令（推荐）
+
+**FCDTM** 是从 FCDTM-Test 中提取的最优度量方法，只输出 `mean_dif_absolute_y0_y1_diff` 这一列。
+
+**核心公式**：
+```
+FCDTM = Σ ((mean_target - mean_source) × y0_y1_diff)
+```
+
+其中：
+- `mean_target`：目标域特征的均值
+- `mean_source`：源域特征的均值
+- `y0_y1_diff`：模型最后一层权重在类别间的差异
+
+**使用示例**：
+
+```bash
+# 汇总模式：计算单个 FCDTM 值
+bash run.sh --metric FCDTM --task dwq_s2_xj_s2
+
+# 批次模式：每 batch_size 张图片计算一个 FCDTM 值
+bash run.sh --metric FCDTM --task dwq_s2_xj_s2 --batch 4 --batch_target
+
+# 同时运行 FCDTM 和 FCDTM-Test
+bash run.sh --metric "FCDTM FCDTM-Test" --task dwq_s2_xj_s2 --batch 4 --batch_target
+
+# 或使用 Python
+python main.py --metric_type FCDTM --task_name dwq_s2_xj_s2 --batch_size 4 --batch_target
+```
+
+**输出说明**：
+
+FCDTM 的输出 CSV 文件包含以下列：
+
+| 列名 | 说明 |
+|------|------|
+| `source`, `target` | 源域和目标域名称 |
+| `class_index`, `class_name` | 类别索引和名称 |
+| `OA_s`, `F1_s`, `precision_s` | 源域精度指标 |
+| `OA_t`, `F1_t`, `precision_t` | 目标域精度指标 |
+| `OA_delta`, `F1_delta`, `precision_delta` | 精度增量（源-目） |
+| `mean_dif_absolute_y0_y1_diff` | **FCDTM 核心度量值** |
 
 ### Python API 方式
 
@@ -504,6 +588,7 @@ from .new_metric import NewMetric
 def get_metric(metric_type: str):
     metrics = {
         "FD": FDMetric,
+        "FCDTM-Test": FCDTMTestMetric,
         "DS": DSMetric,
         "GBC": GBCMetric,
         "OTCE": OTCEMetric,
@@ -545,33 +630,70 @@ bash run.sh --metric NEW --task dwq_s2_xj_s2 --batch 4 --batch_target
 
 ```
 result/
-└── {metric_type}/                    # FD, DS, GBC, OTCE, LogME
-    └── {task_name}/                  # 如 dwq_s2_xj_s2
-        ├── config.json              # 运行配置快照
-        ├── column_names.json        # 结果列名定义
-        ├── result_{metric}_{task}.csv    # CSV格式结果
-        ├── result_{metric}_{task}.json   # JSON格式结果
-        └── fig/                     # 可视化图表目录
-            ├── scatter_FD_score_OA_delta.png
-            └── ...
+├── FD/                           # 原始FD算法结果
+│   └── {task_name}/
+│       └── result_FD_{task}.csv
+├── FCDTM-Test/                   # FCDTM研发测试结果
+│   └── {task_name}/
+│       └── result_FCDTM-Test_{task}.csv
+├── DS/
+│   └── {task_name}/
+│       └── result_DS_{task}.csv
+├── GBC/
+│   └── {task_name}/
+│       └── result_GBC_{task}.csv
+├── OTCE/
+│   └── {task_name}/
+│       └── result_OTCE_{task}.csv
+└── LogME/
+    └── {task_name}/
+        └── result_LogME_{task}.csv
 ```
+
+**支持两种目录结构**：
+1. **层级结构**：`result/{metric_type}/{task_name}/*.csv`
+2. **扁平结构**：`result/*.csv`（自动从文件名推断任务信息）
 
 ### 结果字段说明
 
 #### FD 度量结果
 
+原始 Fréchet Distance 算法，仅输出 FD_sum。
+
 | 字段名 | 说明 |
 |--------|------|
 | `source`, `target` | 源域/目标域名称 |
 | `class_index`, `class_name` | 类别索引和名称 |
-| `OA_source`, `F1_source`, `precision_source` | 源域分类指标 |
-| `OA_target`, `F1_target`, `precision_target` | 目标域分类指标 |
+| `OA_s`, `F1_s`, `precision_s` | 源域分类指标 |
+| `OA_t`, `F1_t`, `precision_t` | 目标域分类指标 |
 | `OA_delta`, `F1_delta`, `precision_delta` | 精度下降值 |
 | `OA_delta_relative`, `F1_delta_relative` | 相对精度下降 |
-| `mean_diff_sum`, `mean_diff_abs_sum` | 均值差异统计 |
-| `FD_score` | Fréchet距离分数 |
-| `FD_raw_difference`, `FD_absolute_difference` | 加权FD分数 |
-| `FD_normalized_difference`, `FD_normalized_absolute` | 归一化加权FD分数 |
+| `FD_sum` | **核心指标**：原始 Fréchet Distance 分数 |
+
+### FCDTM-Test 度量结果
+
+FCDTM-Test 是研发 FCDTM 算法过程中的终极测试模型，包含了所有可能的组合方式。
+
+| 字段名 | 说明 |
+|--------|------|
+| `source`, `target` | 源域/目标域名称 |
+| `class_index`, `class_name` | 类别索引和名称 |
+| `OA_s`, `F1_s`, `precision_s` | 源域分类指标 |
+| `OA_t`, `F1_t`, `precision_t` | 目标域分类指标 |
+| `OA_delta`, `F1_delta`, `precision_delta` | 精度下降值 |
+| 均值差异基础统计 | `mean_dif_absolute_sum` 等 |
+| 均值差异×权重差异 | `mean_dif_absolute_y0_y1_diff` 等（共16种） |
+| FD分数 | `FD_sum`, `FD_y0_y1_diff` 等（共5种） |
+
+**核心公式**：
+```
+最优组合 = Σ(|mean_t - mean_s| × y0_y1_diff)
+```
+其中：
+- `|mean_t - mean_s|`：目标域与源域特征均值差异的绝对值
+- `y0_y1_diff`：模型最后一层权重的类别间差异
+
+该组合在实验中与迁移后精度下降的相关性最高。
 
 #### DS 度量结果
 
@@ -635,12 +757,12 @@ postprocess/
 ### 功能特性
 
 - **相关性分析**：计算度量指标与精度下降的 Pearson/Spearman 相关系数
-- **按类别分析**：支持按不同类别（Cropland, Forest, Water等）分别分析
+- **按类别分析**：支持按不同类别（Cropland, Forest, Water等）和迁移方向分别分析
 - **可视化**：
-  - **热力图**（一张）：行=类别×度量指标，列=精度指标
+  - **热力图**（一张）：行=度量指标，列=类别+迁移方向，值=相关系数
   - **散点图**（每指标一张）：不同类别用不同颜色区分
 - **批量处理**：支持批量分析多个度量类型和任务
-- **跨域分析**：合并所有任务数据进行整体分析
+- **灵活目录结构**：支持层级结构和扁平结构
 
 ### 使用方法
 
@@ -650,77 +772,66 @@ postprocess/
 # 进入后处理目录
 cd postprocess
 
-# 默认配置运行
+# 默认配置运行（分析FD、FCDTM-Test、DS、GBC）
 ./run_analysis.sh
 
-# 包含跨域分析
-./run_analysis.sh --cross-domain
-
 # 指定度量类型
-./run_analysis.sh --metric_types FD DS
+./run_analysis.sh --metric_types FD FCDTM-Test
+
+# 指定单个度量
+./run_analysis.sh --metric_types FCDTM-Test
 
 # 完整参数
 ./run_analysis.sh \
-    --result_root ../results \
+    --result_root ../result \
     --output_dir ../analysis \
-    --metric_types FD DS GBC \
-    --batch_sizes 1 4 \
-    --cross-domain
+    --metric_types FD FCDTM-Test DS \
+    --batch_sizes 1 \
+    --correlation_methods pearson
 ```
 
 #### 方式二：Python 命令行
 
 ```bash
 python postprocess/analyze_correlation.py \
-    --result_root ./results \
+    --result_root ./result \
     --output_dir ./analysis \
-    --metric_types FD DS GBC \
-    --correlation_methods pearson spearman \
-    --accuracy_cols F1_delta OA_delta \
-    --cross_domain
+    --metric_types FD FCDTM-Test DS \
+    --batch_sizes 1 \
+    --correlation_methods pearson
 ```
 
 #### 方式三：Python API
 
 ```python
 from postprocess.config import PostprocessConfig
-from postprocess.loader import ResultLoader
+from postprocess.loader import load_all_csv_files, merge_all_data
 from postprocess.visualization import CorrelationVisualizer
 
 # 创建配置
 config = PostprocessConfig(
-    result_root="./results",
+    result_root="./result",
     output_dir="./analysis",
-    metric_types=["FD", "DS", "GBC"]
 )
 
-# 加载数据
-loader = ResultLoader(config)
-loader.load_all()
+# 加载数据（支持层级结构和扁平结构）
+loader = load_all_csv_files("./result")
+df = merge_all_data(loader)
 
 # 可视化
 visualizer = CorrelationVisualizer(config)
-df = loader.get_dataframe("FD_dwq_s2_xj_s2_batch1")
 
-# 获取度量指标列表
-metric_cols = config.get_metric_score_columns("FD")
+# 绘制热力图（行=度量指标，列=类别+迁移方向）
+from postprocess.config import METRIC_SCORE_COLUMNS
+metric_cols = METRIC_SCORE_COLUMNS["FCDTM-Test"]
 
-# 绘制按类别的热力图（一张图）
-# 行：类别×度量指标，列：精度指标
-fig, corr_df = visualizer.draw_heatmap_by_class(
-    df, metric_cols, ["F1_delta", "OA_delta"],
+fig, corr_df = visualizer.draw_heatmap_metrics_vs_class_task(
+    df, metric_cols, "F1_delta",
     method="pearson",
-    save_path="./heatmap_by_class.png"
+    save_path="./heatmap_F1_delta.png"
 )
 
-# 绘制单个度量指标的散点图（不同类别用不同颜色）
-visualizer.draw_scatter_one_metric_by_class(
-    df, "FD_sum", "F1_delta",
-    class_col="class_index",
-    save_path="./scatter_FD_sum.png"
-)
-
-# 为所有度量指标绘制散点图
+# 绘制散点图
 visualizer.draw_all_scatter_by_class(
     df, metric_cols, "F1_delta",
     output_dir="./fig"
@@ -731,41 +842,35 @@ visualizer.draw_all_scatter_by_class(
 
 ```
 analysis/
-├── analysis_summary.json              # 分析摘要
-├── FD/
-│   ├── dwq_s2_xj_s2/
-│   │   ├── csv/
-│   │   │   └── correlation_by_class_pearson.csv   # 相关性矩阵
-│   │   └── fig/
-│   │       ├── heatmap_by_class_pearson.png       # 一张热力图
-│   │       │                                       # 行：类别×度量指标
-│   │       │                                       # 列：精度指标
-│   │       ├── F1_delta_scatter_FD_sum.png        # 散点图（每指标一张）
-│   │       ├── F1_delta_scatter_mean_dif_*.png    # 不同类别用不同颜色
-│   │       └── ...
-│   └── cross_domain/                  # 跨域分析结果
-│       └── ...
-├── DS/
-│   └── ...
-└── GBC/
-    └── ...
+├── fig/
+│   ├── heatmap_F1_delta_pearson.png              # 热力图
+│   │                                                 # 行：度量指标
+│   │                                                 # 列：类别+迁移方向
+│   │                                                 # 值：相关系数
+│   ├── correlation_F1_delta_pearson.csv          # 相关性矩阵CSV
+│   ├── F1_delta_scatter_mean_dif_absolute_y0_y1_diff.png  # 散点图
+│   └── F1_delta_scatter_FCDTM_score.png          # 散点图
+└── csv/
+    └── correlation_F1_delta_pearson.csv          # 相关性矩阵
 ```
 
 ### 热力图结构示例
 
 ```
-                          F1_delta  OA_delta  precision_delta
-cls1_Cropland_FD_sum         -0.72     -0.68            -0.65
-cls1_Cropland_mean_dif_sum    0.45      0.42             0.40
-cls2_Forest_FD_sum           -0.68     -0.65            -0.62
-cls2_Forest_mean_dif_sum      0.42      0.38             0.35
-cls6_Water_FD_sum            -0.75     -0.72            -0.70
-...
+                              Cropland_dwq_s2  Forest_dwq_s2  Water_dwq_s2  ...
+mean_dif_absolute_y0_y1_diff    0.85           0.92           0.78        ...
+FCDTM_score                     0.82           0.89           0.75        ...
+FD_sum                          0.75           0.80           0.68        ...
 ```
 
-### FD 度量完整指标列表
+**说明**：
+- 行（纵坐标）：度量指标
+- 列（横坐标）：类别+迁移方向（如 Cropland_dwq_s2 表示 Cropland 类别在 dwq→s2 迁移任务中）
+- 值：相关系数（-1 到 1），反映该度量指标与精度下降的相关程度
 
-FD 度量的相关性分析包含以下 27 个指标：
+### FCDTM-Test 度量指标列表
+
+FCDTM-Test 包含所有可能的组合方式，共 25 个指标：
 
 | 类别 | 指标名 | 说明 |
 |------|--------|------|
@@ -775,20 +880,30 @@ FD 度量的相关性分析包含以下 27 个指标：
 | | `mean_dif_relative_abs_sum` | 均值相对差异绝对值之和 |
 | 加权差异 | `mean_dif_absolute_y0_y1_diff` | 均值差异 × 权重差异 |
 | | `mean_dif_absolute_y0_y1_diff_abs` | 均值差异 × 权重差异绝对值 |
+| | `mean_dif_absolute_y0_y1_diff_normalized` | 均值差异 × 归一化权重差异 |
+| | `mean_dif_absolute_y0_y1_diff_abs_normalized` | 均值差异 × 归一化权重差异绝对值 |
 | | ... | （共16个加权差异指标） |
-| FD分数 | `FD_sum` | Fréchet距离 |
+| FD分数 | `FD_sum` | 原始Fréchet距离 |
 | | `FD_y0_y1_diff` | 加权FD |
 | | `FD_y0_y1_diff_abs` | 绝对加权FD |
 | | `FD_y0_y1_diff_normalized` | 归一化加权FD |
 | | `FD_y0_y1_diff_abs_normalized` | 归一化绝对加权FD |
 
+### FD 度量指标列表
+
+FD 仅包含原始算法，共 1 个指标：
+
+| 指标名 | 说明 |
+|--------|------|
+| `FD_sum` | 原始 Fréchet Distance 分数 |
+
 ### 相关性矩阵示例
 
 ```
-              F1_delta  OA_delta  precision_delta
-FD_sum           -0.72     -0.68            -0.65
-mean_dif_sum      0.45      0.42             0.40
-FD_weighted      -0.75     -0.71            -0.68
+                              Cropland_dwq_s2  Forest_dwq_s2  Water_dwq_s2
+FD_sum                          0.75           0.80           0.68
+mean_dif_absolute_y0_y1_diff    0.85           0.92           0.78
+FD_y0_y1_diff                   0.82           0.89           0.75
 ```
 
 ---

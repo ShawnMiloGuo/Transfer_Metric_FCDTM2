@@ -16,7 +16,7 @@ import numpy as np
 from typing import List, Optional
 from tqdm import tqdm
 
-from .base import BaseMetric, MetricResult, calculate_frechet_distance
+from .base import BaseMetric, MetricResult
 from feature_extractor import FDFeatureExtractor
 from model import ModelManager
 
@@ -47,10 +47,8 @@ class FCDTMMetric(BaseMetric):
         "OA_s", "F1_s", "precision_s",
         # 目标域指标 (使用 _t 后缀)
         "OA_t", "F1_t", "precision_t",
-        # FCDTM 核心度量
-        "mean_dif_absolute_y0_y1_diff",  # 核心度量：均值差异绝对值 × 权重差异
-        # FCDTM 综合分数
-        "FCDTM_score",  # 综合分数 (等价于 FD_y0_y1_diff)
+        # FCDTM 核心度量：均值差异 × 权重差异
+        "mean_dif_absolute_y0_y1_diff",
     ]
     
     # 索引说明（相对于COLUMN_NAMES）:
@@ -59,8 +57,7 @@ class FCDTMMetric(BaseMetric):
     # 6-8: 源域指标
     # 9-11: 目标域指标
     # 12: FCDTM核心度量
-    # 13: FCDTM综合分数
-    METRIC_PLOT_INDICES = [12, 13]  # mean_dif_absolute_y0_y1_diff, FCDTM_score
+    METRIC_PLOT_INDICES = [12]  # mean_dif_absolute_y0_y1_diff
     ACCURACY_PLOT_INDICES = [0, 1]  # OA_delta, F1_delta
     
     def compute(
@@ -186,20 +183,15 @@ class FCDTMMetric(BaseMetric):
         """
         # 计算均值差异绝对值
         # mean_dif_absolute = mean_t - mean_s (注意顺序)
+        # 关键：这里使用 mean_dif_absolute 而不是 mean_dif_absolute_abs
+        # 因为 FCDTM-Test 中 mean_dif_absolute_y0_y1_diff = sum((mean_t - mean_s) * weight)
+        # 没有对均值差异取绝对值
         mean_dif_absolute = target_stats.mean - source_stats.mean
-        mean_dif_absolute_abs = np.abs(mean_dif_absolute)
         
-        # FCDTM 核心度量：均值差异绝对值 × 权重差异 (y0_y1_diff)
+        # FCDTM 核心度量：均值差异 × 权重差异 (y0_y1_diff)
+        # 与 FCDTM-Test 中的 mean_dif_absolute_y0_y1_diff 计算方式一致
         weight = weight_diff['y0_y1_diff'].numpy()
-        mean_dif_absolute_y0_y1_diff = float(np.sum(mean_dif_absolute_abs * weight))
-        
-        # 计算 FCDTM 综合分数 (加权 FD)
-        fcdtm_score = calculate_frechet_distance(
-            source_stats.mean * weight,
-            target_stats.mean * weight,
-            source_stats.covariance,
-            target_stats.covariance
-        )
+        mean_dif_absolute_y0_y1_diff = float(np.sum(mean_dif_absolute * weight))
         
         # 计算相对变化
         oa_rel = (source_metrics.overall_accuracy - target_metrics.overall_accuracy) / (source_metrics.overall_accuracy + 1e-8)
@@ -240,8 +232,6 @@ class FCDTMMetric(BaseMetric):
                 "precision_t": target_metrics.precision,
                 # FCDTM 核心度量
                 "mean_dif_absolute_y0_y1_diff": mean_dif_absolute_y0_y1_diff,
-                # FCDTM 综合分数
-                "FCDTM_score": fcdtm_score,
             }
         )
         
