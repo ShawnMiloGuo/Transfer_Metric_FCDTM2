@@ -203,45 +203,93 @@ class CorrelationVisualizer:
         xlabel: str = "",
         ylabel: str = "",
         figsize: Tuple[int, int] = (8, 6),
-        show_regression: bool = True,
+        show_regression: bool = False,
         legend: bool = True,
         save_path: Optional[str] = None
     ) -> plt.Figure:
         """
-        绘制单个度量指标的散点图（不同类别用不同颜色）
+        绘制单个度量指标的散点图（不同迁移过程+类别用不同颜色）
         
-        这是一个指标一张散点图，不同类别用不同颜色区分。
+        这是一个指标一张散点图，不同迁移过程+类别用不同颜色区分。
+        标签格式为 "SOURCE->TARGET ClassName"（如 "DWQ_S2->XJ_S2 Cropland"）
         """
         fig, ax = plt.subplots(figsize=figsize)
         
-        # 获取类别列表
-        classes = df[class_col].unique()
-        classes = sorted([c for c in classes if pd.notna(c)])
+        # 获取所有唯一的（迁移过程，类别）组合
+        groups = []
+        if 'source' in df.columns and 'target' in df.columns:
+            # 按 source->target 和 class 分组
+            # 去重获取唯一的组合
+            unique_combos = df[['source', 'target', class_col, 'class_name']].drop_duplicates()
+            
+            for _, row in unique_combos.iterrows():
+                source = str(row['source']).upper()
+                target = str(row['target']).upper()
+                
+                # 获取类别索引和名称
+                cls = row[class_col]
+                if pd.isna(cls):
+                    continue
+                    
+                cls = int(cls) if not isinstance(cls, str) else cls
+                cls_name = str(row.get('class_name', ''))
+                if cls_name == 'nan' or cls_name == '':
+                    cls_name = CLASS_NAMES.get(int(cls) if isinstance(cls, int) else cls, f'class_{cls}')
+                
+                groups.append({
+                    'source': source,
+                    'target': target,
+                    'class_index': cls,
+                    'label': f"{source}->{target} {cls_name}"
+                })
+        else:
+            # 只有类别分组
+            classes = df[class_col].unique()
+            classes = sorted([c for c in classes if pd.notna(c)])
+            for cls in classes:
+                cls = int(cls) if not isinstance(cls, str) else cls
+                cls_name = CLASS_NAMES.get(cls, f"class_{cls}")
+                if "class_name" in df.columns:
+                    cls_name_val = df[df[class_col] == cls]["class_name"].iloc[0] if len(df[df[class_col] == cls]) > 0 else cls_name
+                    if pd.notna(cls_name_val):
+                        cls_name = str(cls_name_val)
+                groups.append({
+                    'source': '',
+                    'target': '',
+                    'class_index': cls,
+                    'label': cls_name
+                })
         
         # 颜色映射
-        colors = plt.cm.tab10(np.linspace(0, 1, len(classes)))
+        colors = plt.cm.tab10(np.linspace(0, 1, len(groups)))
         
-        for idx, cls in enumerate(classes):
-            cls_df = df[df[class_col] == cls]
-            x = cls_df[metric_col].values
-            y = cls_df[accuracy_col].values
+        for idx, group in enumerate(groups):
+            if 'source' in df.columns:
+                # 将 source 和 target 列转换为字符串类型，避免 .str 访问器报错
+                source_col = df['source'].astype(str).str.upper()
+                target_col = df['target'].astype(str).str.upper()
+                # 按 source->target 和 class 筛选
+                mask = (source_col == group['source']) & \
+                       (target_col == group['target']) & \
+                       (df[class_col] == group['class_index'])
+            else:
+                mask = df[class_col] == group['class_index']
+            
+            group_df = df[mask]
+            x = group_df[metric_col].values
+            y = group_df[accuracy_col].values
             
             # 移除NaN
-            mask = ~(np.isnan(x) | np.isnan(y))
-            x_clean = x[mask]
-            y_clean = y[mask]
+            mask_valid = ~(np.isnan(x) | np.isnan(y))
+            x_clean = x[mask_valid]
+            y_clean = y[mask_valid]
             
             if len(x_clean) == 0:
                 continue
             
-            # 获取类别名称
-            cls_name = CLASS_NAMES.get(int(cls), f"class_{int(cls)}")
-            if "class_name" in cls_df.columns:
-                cls_name = cls_df["class_name"].iloc[0]
-            
             # 绘制散点
-            ax.scatter(x_clean, y_clean, color=colors[idx], alpha=0.6, 
-                      s=30, label=f"{cls_name}")
+            ax.scatter(x_clean, y_clean, color=colors[idx], alpha=1, 
+                      s=10, label=group['label'])
             
             # 绘制回归线
             if show_regression and len(x_clean) > 2:
@@ -256,7 +304,7 @@ class CorrelationVisualizer:
         ax.set_ylabel(ylabel or accuracy_col, fontsize=12)
         ax.set_title(title or f"{metric_col} vs {accuracy_col}", fontsize=14)
         
-        if legend:
+        if legend and len(groups) > 0:
             ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=9)
         
         plt.tight_layout()
@@ -276,16 +324,30 @@ class CorrelationVisualizer:
         accuracy_col: str,
         class_col: str = "class_index",
         output_dir: str = "./fig",
-        prefix: str = ""
+        prefix: str = "",
+        metric_name_map: Optional[Dict[str, str]] = None
     ) -> List[str]:
         """
-        为每个度量指标绘制一张散点图（不同类别用不同颜色）
+        为每个度量指标绘制一张散点图（不同迁移过程+类别用不同颜色）
+        
+        参数:
+            df: 数据框
+            metric_cols: 度量列名列表
+            accuracy_col: 精度指标列名
+            class_col: 类别列名
+            output_dir: 输出目录
+            prefix: 文件名前缀
+            metric_name_map: 度量名称映射字典，用于将度量列名映射为简短的显示名称
+                           例如: {"mean_dif_absolute_y0_y1_diff": "FCDTM"}
         """
         saved_paths = []
         
         for metric_col in metric_cols:
             if metric_col not in df.columns:
                 continue
+            
+            # 获取度量显示名称
+            display_name = metric_name_map.get(metric_col, metric_col) if metric_name_map else metric_col
             
             save_path = os.path.join(
                 output_dir, 
@@ -295,7 +357,8 @@ class CorrelationVisualizer:
             self.draw_scatter_one_metric_by_class(
                 df, metric_col, accuracy_col,
                 class_col=class_col,
-                title=f"{metric_col} vs {accuracy_col}",
+                title=f"{display_name} vs {accuracy_col}",
+                xlabel=display_name,
                 save_path=save_path
             )
             plt.close()

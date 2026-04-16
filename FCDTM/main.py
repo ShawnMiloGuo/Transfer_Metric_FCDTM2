@@ -182,10 +182,12 @@ class TransferMetricRunner:
                         target_loader
                     )
                     
-                    # 更新结果中的class信息
+                    # 更新结果中的class信息和域信息
                     for r in metric_results:
                         r.class_index = class_idx
                         r.class_name = class_name
+                        r.source_domain = source_domain
+                        r.target_domain = target_domain
                     
                     # 转换为行数据
                     self.column_names = metric.get_column_names()

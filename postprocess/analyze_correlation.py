@@ -25,6 +25,7 @@ from postprocess.config import (
     PostprocessConfig, 
     METRIC_COLUMNS, 
     METRIC_SCORE_COLUMNS,
+    METRIC_NAME_MAP,
     ACCURACY_COLUMNS, 
     CLASS_NAMES,
     TASK_CONFIGS
@@ -94,7 +95,8 @@ def analyze_by_class(
         df, metric_cols, accuracy_col,
         class_col="class_index",
         output_dir=scatter_dir,
-        prefix=f"{accuracy_col}_"
+        prefix=f"{accuracy_col}_",
+        metric_name_map=METRIC_NAME_MAP
     )
     print(f"生成了 {len(saved_paths)} 张散点图")
     

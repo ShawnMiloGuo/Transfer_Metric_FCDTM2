@@ -66,10 +66,8 @@ METRIC_SCORE_COLUMNS = {
     ],
     # FCDTM: FCDTM最优度量，专注mean_dif_absolute_y0_y1_diff组合方式
     "FCDTM": [
-        # FCDTM 核心度量
-        "mean_dif_absolute_y0_y1_diff",  # 核心度量：均值差异绝对值 × 权重差异
-        # FCDTM 综合分数
-        "FCDTM_score",  # 综合分数 (等价于 FD_y0_y1_diff)
+        # FCDTM 核心度量：均值差异 × 权重差异
+        "mean_dif_absolute_y0_y1_diff",
     ],
     # FCDTM-Test: FCDTM研发过程中的测试模型，包含所有组合方式
     "FCDTM-Test": [
@@ -127,6 +125,46 @@ METRIC_SCORE_COLUMNS = {
 METRIC_COLUMNS = []
 for cols in METRIC_SCORE_COLUMNS.values():
     METRIC_COLUMNS.extend(cols)
+
+# 度量名称映射：将度量列名映射为简短的显示名称
+# 用于散点图和热力图的X轴标签
+METRIC_NAME_MAP: Dict[str, str] = {
+    # FD
+    "FD_sum": "FD",
+    "FD_y0_y1_diff": "FD (y0_y1_diff)",
+    "FD_y0_y1_diff_abs": "FD (y0_y1_diff_abs)",
+    "FD_y0_y1_diff_normalized": "FD (y0_y1_diff_norm)",
+    "FD_y0_y1_diff_abs_normalized": "FD (y0_y1_diff_abs_norm)",
+    # FCDTM
+    "mean_dif_absolute_y0_y1_diff": "FCDTM",
+    "mean_dif_absolute_y0_y1_diff_normalized": "FCDTM (normalized)",
+    # FCDTM-Test 常用组合
+    "mean_dif_absolute_sum": "FCDTM-Test (sum)",
+    "mean_dif_absolute_y0_y1_diff_abs": "FCDTM-Test (mean_dif_absolute_y0_y1_diff_abs)",
+    "mean_dif_absolute_y0_y1_diff_abs_normalized": "FCDTM-Test (mean_dif_absolute_y0_y1_diff_abs_norm)",
+    # DS
+    "dispersion_score": "DS",
+    "log_dispersion_score": "DS (log)",
+    "weighted_dispersion_score": "DS (weighted)",
+    "weighted_log_dispersion_score": "DS (weighted_log)",
+    # GBC
+    "diagonal_GBC": "GBC (diagonal)",
+    "spherical_GBC": "GBC (spherical)",
+    # OTCE
+    "OT_global": "OTCE (global)",
+    "OT_weighted": "OTCE (weighted)",
+    "OTCE_score": "OTCE",
+    "mean_discrepancy": "OTCE (mean_discrepancy)",
+    "coral_distance": "OTCE (coral)",
+    "MMD_linear": "OTCE (MMD)",
+    # LogME
+    "LogME_score": "LogME",
+    "LogME_fast": "LogME (fast)",
+    "target_within_class_dist": "LogME (within_class)",
+    "target_between_class_dist": "LogME (between_class)",
+    "target_fisher_ratio": "LogME (fisher)",
+    "center_shift": "LogME (center_shift)",
+}
 
 # 类别名称映射
 CLASS_NAMES = {

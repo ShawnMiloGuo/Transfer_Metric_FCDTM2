@@ -61,10 +61,19 @@ class MetricResult:
         返回:
             按列名顺序排列的值列表
         """
+        # 属性名映射：CSV列名 -> MetricResult属性名
+        attr_map = {
+            "source": "source_domain",
+            "target": "target_domain",
+        }
+        
         result = []
         for col in column_names:
-            if hasattr(self, col):
-                result.append(getattr(self, col))
+            # 处理属性名映射
+            attr_name = attr_map.get(col, col)
+            
+            if hasattr(self, attr_name):
+                result.append(getattr(self, attr_name))
             elif col in self.metric_scores:
                 result.append(self.metric_scores[col])
             else:

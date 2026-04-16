@@ -1033,6 +1033,16 @@ python test_all_metrics_v2.py
 如有问题或建议，请联系作者或提交 Issue。
 
 ---
+## 张拓实验调用代码
+### 模型计算
+```bash
+bash ./FCDTM/run.sh --metric "FCDTM" --task dwq_s2_xj_s2 --batch 4 --batch_target
+```
+### 后处理
+```bash
+bash ./postprocess/run_analysis.sh --batch_sizes 4 --metric_types "FD FCDTM FCDTM—Test"
+```
+
 
 ## 更新日志
 
