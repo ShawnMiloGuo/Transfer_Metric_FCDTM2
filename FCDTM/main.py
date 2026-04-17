@@ -32,6 +32,7 @@ import glob
 from typing import Dict, List
 from tqdm import tqdm
 
+import numpy as np
 import torch
 
 from config import Config, print_config_summary, CLASS_NAMES
@@ -235,10 +236,24 @@ class TransferMetricRunner:
                 writer.writerows(rows)
         print(f"结果已保存: {csv_path}")
         
-        # 保存JSON
+        # 保存JSON（处理numpy类型）
         json_path = os.path.join(output_dir, f"result_{self.config.metric_type}_{self.config.task_name}.json")
+        
+        def convert_to_native(obj):
+            """递归转换numpy类型为Python原生类型"""
+            if isinstance(obj, np.ndarray):
+                return obj.tolist()
+            elif isinstance(obj, (np.integer, np.floating)):
+                return obj.item()
+            elif isinstance(obj, dict):
+                return {k: convert_to_native(v) for k, v in obj.items()}
+            elif isinstance(obj, (list, tuple)):
+                return [convert_to_native(item) for item in obj]
+            else:
+                return obj
+        
         with open(json_path, "w", encoding="utf-8") as f:
-            json.dump(self.results, f, ensure_ascii=False, indent=2)
+            json.dump(convert_to_native(self.results), f, ensure_ascii=False, indent=2)
         print(f"结果已保存: {json_path}")
     
     def _generate_visualization(self, output_dir: str):

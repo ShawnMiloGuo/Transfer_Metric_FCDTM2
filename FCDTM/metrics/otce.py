@@ -144,7 +144,7 @@ def compute_conditional_ot(
         source_features, target_features,
         source_labels, target_labels
     )
-    results['OT_global'] = global_dist
+    results['OT_global'] = float(global_dist)
     
     # 按类别计算条件最优传输
     for c in range(num_classes):
@@ -167,15 +167,15 @@ def compute_conditional_ot(
             class_dist = np.linalg.norm(
                 np.mean(class_source, axis=0) - np.mean(class_target, axis=0)
             )
-            results[f'OT_class_{c}'] = class_dist
+            results[f'OT_class_{c}'] = float(class_dist)
             class_distances.append(class_dist)
     
     # 类别加权平均
     if class_distances:
-        results['OT_weighted'] = np.mean(class_distances)
+        results['OT_weighted'] = float(np.mean(class_distances))
     
     # OTCE 综合分数（距离越小，可迁移性越好）
-    results['OTCE_score'] = global_dist
+    results['OTCE_score'] = float(global_dist)
     
     return results
 
@@ -201,7 +201,7 @@ def compute_domain_discrepancy(
     # 1. 均值差异
     source_mean = np.mean(source_features, axis=0)
     target_mean = np.mean(target_features, axis=0)
-    results['mean_discrepancy'] = np.linalg.norm(source_mean - target_mean)
+    results['mean_discrepancy'] = float(np.linalg.norm(source_mean - target_mean))
     
     # 2. 协方差差异 (CORAL)
     source_cov = np.cov(source_features, rowvar=False)
@@ -211,13 +211,13 @@ def compute_domain_discrepancy(
         source_cov = np.array([[source_cov]])
         target_cov = np.array([[target_cov]])
     
-    results['coral_distance'] = np.linalg.norm(source_cov - target_cov, ord='fro')
+    results['coral_distance'] = float(np.linalg.norm(source_cov - target_cov, ord='fro'))
     
     # 3. MMD 近似（使用线性核）
-    mmd = np.linalg.norm(source_mean - target_mean) ** 2
-    mmd += np.trace(source_cov + target_cov - 2 * np.sqrt(
+    mmd = float(np.linalg.norm(source_mean - target_mean) ** 2)
+    mmd += float(np.trace(source_cov + target_cov - 2 * np.sqrt(
         np.abs(source_cov @ target_cov)
-    ))
+    )))
     results['MMD_linear'] = mmd
     
     return results
@@ -370,18 +370,18 @@ class OTCEMetric(BaseMetric):
         # 计算最优传输度量
         try:
             ot_results = compute_conditional_ot(
-                source_features, source_labels,
-                target_feat_arr, target_label_arr,
+                source_features, target_feat_arr,
+                source_labels, target_label_arr,
                 num_classes=2
             )
         except Exception as e:
             print(f"OT计算错误: {e}")
             ot_results = {
-                'OT_global': 0.0,
-                'OT_weighted': 0.0,
-                'OTCE_score': 0.0,
-                'OT_class_0': 0.0,
-                'OT_class_1': 0.0,
+                'OT_global': float(0.0),
+                'OT_weighted': float(0.0),
+                'OTCE_score': float(0.0),
+                'OT_class_0': float(0.0),
+                'OT_class_1': float(0.0),
             }
         
         # 计算域差异度量
@@ -389,12 +389,14 @@ class OTCEMetric(BaseMetric):
             domain_results = compute_domain_discrepancy(
                 source_features, target_feat_arr
             )
+            # 确保所有值都是 Python float，避免 JSON 序列化问题
+            domain_results = {k: float(v) for k, v in domain_results.items()}
         except Exception as e:
             print(f"域差异计算错误: {e}")
             domain_results = {
-                'mean_discrepancy': 0.0,
-                'coral_distance': 0.0,
-                'MMD_linear': 0.0,
+                'mean_discrepancy': float(0.0),
+                'coral_distance': float(0.0),
+                'MMD_linear': float(0.0),
             }
         
         # 创建结果
