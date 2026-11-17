@@ -1,0 +1,8 @@
+{
+ "status": "passed",
+ "FCDTM_hard_hand_calculation": true,
+ "FCDTM_soft_hand_calculation": true,
+ "zero_denominator_protected_vs_unprotected": true,
+ "GBC_spherical_and_diagonal_independent_unequal_variance_integrals": true,
+ "target_labels_read": false
+}

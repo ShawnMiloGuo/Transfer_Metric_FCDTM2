@@ -1,0 +1,7 @@
+{
+ "status": "passed",
+ "correlation_rows_independently_recomputed": 4000,
+ "PNG_PDF_pairs": 54,
+ "visual_QA": "four D42 summaries and representative task inspected",
+ "prediction_method_changes": false
+}

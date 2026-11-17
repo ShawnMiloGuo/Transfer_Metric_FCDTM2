@@ -1,0 +1,7 @@
+{
+ "status": "passed",
+ "records": 3300,
+ "score_replays": 26400,
+ "FD_independent_scipy_sqrtm_max_difference": 1.0168095485596496e-06,
+ "target_labels_read": false
+}

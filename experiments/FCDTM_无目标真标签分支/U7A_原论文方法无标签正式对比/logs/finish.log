@@ -1,0 +1,4 @@
+/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7A_原论文方法无标签正式对比/code/verify.py:17: LinAlgWarning: Matrix is singular. The result might be inaccurate or the array might not have a square root.
+  tt=c.aggregate(z,np.array(json.loads(r['indices'])));mt,ct=c.gaussian(tt);fd=float((ms-mt)@(ms-mt)+np.trace(cs)+np.trace(ct)-2*np.trace(sqrtm(cs@ct)).real);expected=max(fd,0.);observed=float(r['FD_global']);assert abs(expected-observed)<1e-5*max(1,abs(observed)),(expected,observed);maxd=max(maxd,abs(expected-observed))
+{"status": "passed", "records": 3300, "score_replays": 26400, "FD_independent_scipy_sqrtm_max_difference": 1.0168095485596496e-06, "target_labels_read": false}
+U7A results ready for local QA; not yet published

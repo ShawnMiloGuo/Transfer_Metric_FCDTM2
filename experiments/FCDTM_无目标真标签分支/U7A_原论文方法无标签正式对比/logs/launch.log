@@ -1,0 +1,30 @@
+UNIT PASSED
+WORKER 1_xj_landsat8 0 passed
+WORKER 1_dwq_landsat8 0 passed
+WORKER 1_dwq_sentinel2 0 passed
+WORKER 1_xj_sentinel2 0 passed
+WORKER 2_dwq_sentinel2 0 passed
+WORKER 2_dwq_landsat8 0 passed
+WORKER 2_xj_sentinel2 0 passed
+WORKER 3_dwq_sentinel2 0 passed
+WORKER 4_xj_sentinel2 0 passed
+WORKER 5_xj_landsat8 0 passed
+WORKER 3_xj_sentinel2 0 passed
+WORKER 3_xj_landsat8 0 passed
+WORKER 6_dwq_landsat8 0 passed
+WORKER 5_xj_sentinel2 0 passed
+WORKER 6_dwq_sentinel2 0 passed
+WORKER 6_xj_landsat8 0 passed
+WORKER 6_xj_sentinel2 0 passed
+WORKER 7_dwq_landsat8 0 passed
+WORKER 7_dwq_sentinel2 0 passed
+WORKER 7_xj_landsat8 0 passed
+WORKER 7_xj_sentinel2 0 passed
+WORKER 8_dwq_landsat8 0 passed
+WORKER 8_dwq_sentinel2 0 passed
+WORKER 8_xj_landsat8 0 passed
+WORKER 8_xj_sentinel2 0 passed
+SEALED 3300 score records before target truth
+/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/osgeo/gdal.py:606: FutureWarning: Neither gdal.UseExceptions() nor gdal.DontUseExceptions() has been explicitly called. In GDAL 4.0, exceptions will be enabled by default.
+  warnings.warn(
+EVALUATED AND PLOTTED
