@@ -1,0 +1,287 @@
+{
+  "version": "2026-11-17",
+  "status": "plan_only",
+  "methods": [
+    {
+      "id": "FCDTM-HardPL",
+      "group": "paper",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "replace target foreground labels with frozen candidate argmax",
+      "native_direction": "bad",
+      "review_comments": [
+        "R1-1",
+        "R2-1"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "FCDTM-SoftPL",
+      "group": "paper",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "target foreground probabilities; source true foreground remains",
+      "native_direction": "bad",
+      "review_comments": [
+        "R2-1"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "FD-global",
+      "group": "paper",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "pixel features; no class mask",
+      "native_direction": "bad",
+      "review_comments": [
+        "R2-6"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "FD-FG-PL",
+      "group": "paper_adaptation",
+      "original_requires_target_labels": "only_if_target_class_conditioned",
+      "allowed_target_ground_truth": false,
+      "adaptation": "foreground-conditioned FD requires pseudo target mask",
+      "native_direction": "bad",
+      "review_comments": [
+        "R2-6"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "DS-pixel",
+      "group": "paper",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "native prediction groups; squared L2 then log",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-6"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "GBC-PL",
+      "group": "paper",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "per-class target Gaussians use pseudo labels",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-6"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "AC-MSP",
+      "group": "reviewer",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "native mean maximum softmax probability",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "Entropy",
+      "group": "reviewer",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "native prediction entropy",
+      "native_direction": "bad",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "ATC-MC",
+      "group": "reviewer",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "source validation accuracy sets max-confidence threshold",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "ATC-NE",
+      "group": "reviewer",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "source validation accuracy sets negative-entropy threshold",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "DoC",
+      "group": "reviewer",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "native source minus target average confidence; regression source-only auxiliary tasks",
+      "native_direction": "bad",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "LogME-PL",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "official maximum label evidence with pseudo target labels",
+      "native_direction": "good",
+      "review_comments": [
+        "R1-1",
+        "R1-8",
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "Hscore-PL",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "class conditional feature covariance with pseudo labels",
+      "native_direction": "good",
+      "review_comments": [
+        "R1-8"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "LEEP-PL",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "source softmax and pseudo target labels",
+      "native_direction": "good",
+      "review_comments": [
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "NLEEP-PL",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "unlabeled GMM plus LEEP using pseudo target labels",
+      "native_direction": "good",
+      "review_comments": [
+        "R1-8"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "NCE-Pred-PL",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "two labels on same target inputs; identical self-label sequences yield constant zero",
+      "native_direction": "good",
+      "review_comments": [
+        "R1-1",
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "OTCE-PL-SrcCal",
+      "group": "reviewer",
+      "original_requires_target_labels": true,
+      "allowed_target_ground_truth": false,
+      "adaptation": "OT coupling distance plus coupling conditional entropy; source-only auxiliary calibration",
+      "native_direction": "source_definition_before_blinding",
+      "review_comments": [
+        "R1-8",
+        "R2-2"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    },
+    {
+      "id": "MMD-RBF-global",
+      "group": "reviewer_mentioned",
+      "original_requires_target_labels": false,
+      "allowed_target_ground_truth": false,
+      "adaptation": "classic global kernel discrepancy",
+      "native_direction": "bad",
+      "review_comments": [
+        "R1-8"
+      ],
+      "literature_input_audit": "completed",
+      "official_implementation_validation": "pending",
+      "formal_performance_run": "not_started",
+      "native_score_is_F1_AD": false
+    }
+  ],
+  "additional_candidate_architecture": {
+    "required": "DeepLabv3+",
+    "optional": "Transformer; exact model not mandated by reviewer",
+    "source_training": "pending",
+    "target_finetuning": false
+  }
+}

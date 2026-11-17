@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-17",
+  "inputs": {
+    "main.tex": "f480443c3c4e292175f69b8ace9a8c8c603c69fcf7dbcf1109d83bc1594a5ca4",
+    "Reference.bib": "889c43055f8d2c4fc293336a0f7c8d2261a17b5b82a7a62beb39e31c8d7c431d",
+    "../ReviewerComments/FCDTM_审稿意见.docx": "aa93ed4f76ef3982b7662f2baa6d160c12d75ef3f77cb1177c1f3a3ff3bb7d9f"
+  },
+  "table_task_counts": {
+    "ablation_region": 18,
+    "ablation_sensor": 20,
+    "cross_region": 17,
+    "cross_sensor": 20
+  },
+  "published_main_tasks": 37,
+  "declared_setup_tasks": 42,
+  "current_models": 25,
+  "current_tasks": 50,
+  "declared_missing_from_main": [
+    {
+      "cls": 2,
+      "src": "dwq_sentinel2",
+      "tgt": "xj_sentinel2"
+    },
+    {
+      "cls": 6,
+      "src": "dwq_landsat8",
+      "tgt": "xj_landsat8"
+    },
+    {
+      "cls": 6,
+      "src": "xj_sentinel2",
+      "tgt": "xj_landsat8"
+    },
+    {
+      "cls": 7,
+      "src": "dwq_landsat8",
+      "tgt": "xj_landsat8"
+    },
+    {
+      "cls": 7,
+      "src": "xj_sentinel2",
+      "tgt": "xj_landsat8"
+    }
+  ],
+  "declared_unavailable_current": [],
+  "snapshot_sha": {
+    "transfer_metric_eval/Comparison_OTCE_FOTCE_LogME/compare_metrics.py": "00d98432cef27a74bc0593bf5721a76555c655cb9880998d5ba34a39aae4cee7",
+    "transfer_metric_eval/Comparison_OTCE_FOTCE_LogME/metric_logme.py": "423e2738368509f1198875eef228ceb617ced5f68d003a6f3febc96aebdad213",
+    "transfer_metric_eval/Comparison_OTCE_FOTCE_LogME/metric_f_otce.py": "0535302539188e7e079b2aa2e94e92a1bd61b0cb358e265207727c28aa385f7f",
+    "FCDTM/config.py": "3508f09555c68e3035b2ab4cd11e792c90689af454d252c26b3da0063d628f32",
+    "FCDTM/transfer_metric_FD_DS.py": "89e453137729063b28e981ad118f44ed76f5211969b9710dc4d4c1775b46d5c0",
+    "FCDTM/feature_extractor.py": "b1e48518ee853df16715a1fdd4fa35172c5d7a6e100b828feb5566add1eb6558",
+    "FCDTM/metrics/otce.py": "614b993e2dac3688802e42fcaa2a5ab82fd9fe755f40db01adb87a483155320e",
+    "FCDTM/metrics/logme.py": "22a29a67aea1e08185e33e6149ef1a890c0d15a9465b20a3c707f5b379083792",
+    "FCDTM/metrics/gbc.py": "ebf1c2ccae8a1b7cedb4ad8a9d1f6598d9a5e984353ee70604ed5e34d2644d59",
+    "FCDTM/metrics/ds.py": "ea26bb3a51924c916a4bf5260b95a0c1dd1e8fe936b50e50459965c4516cfab5",
+    "FCDTM/metrics/fd.py": "4fa114966059a25e19c96898ee399684d1276821751293e6774eb196e9a37eff",
+    "FCDTM/metrics/base.py": "d3511cb8264ee07cbecf2b135f11b239d6f554970b7bcce2707ba3067f3cb90a"
+  },
+  "target_labels_read": false,
+  "performance_experiment_run": false
+}

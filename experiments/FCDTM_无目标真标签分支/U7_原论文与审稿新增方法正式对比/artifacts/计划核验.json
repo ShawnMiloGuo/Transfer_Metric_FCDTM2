@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checked": "literature/input/plan only; no new performance results",
+  "method_registry": 18,
+  "task_sets": [
+    37,
+    42,
+    50
+  ],
+  "missing_published_tasks": 5,
+  "all_declared_tasks_in_current_manifest": true,
+  "source_snapshots": 12,
+  "existing_modified_files": [
+    "README.md",
+    "TODO.md",
+    "实验设计.md"
+  ],
+  "old_experiments_unchanged": true,
+  "markdown_links_valid": true
+}

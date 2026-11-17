@@ -1,0 +1,144 @@
+P000 FCDTM 审稿意见中英对照
+P001 Reviewer(s) Comments:
+P002 审稿意见
+P003 Reviewer: 1
+P004 审稿人 1
+P005 Comments to the Author
+P006 致作者的意见
+P007 The paper proposes FCDTM, a transferability metric for remote sensing semantic segmentation. The target domain is decomposed into batch-level subdomains, relative feature-mean discrepancies between source and target are computed, and the per-dimension discrepancies are weighted using the parameters of the source model's segmentation head. The metric is evaluated on cross-region (Greater Bay Area and Xinjiang) and cross-sensor (Sentinel-2 and Landsat-8) transfers against FD, DS, and GBC, using Pearson and Spearman correlation with the per-task F1-score drop. The problem is well motivated for J-STARS, the literature review is thorough, the subdomain decomposition is a sound idea, and the application-oriented analysis in Section V-C is a valuable addition. Nevertheless, several major issues must be addressed before the paper can be accepted.
+P008 中文：本文提出了 FCDTM，一种用于遥感语义分割的可迁移性度量指标。该方法将目标域分解为批次级子域，计算源域与目标域之间特征均值的相对差异，并利用源模型分割头的参数对各维度的差异进行加权。论文在跨区域（粤港澳大湾区与新疆）和跨传感器（Sentinel-2 与 Landsat-8）迁移场景下，将该指标与 FD、DS 和 GBC 进行比较，并采用其与各任务 F1 分数下降量之间的 Pearson 和 Spearman 相关系数进行评价。该研究问题符合 J-STARS 的关注方向，研究动机充分，文献综述全面，子域分解的思路合理，第 V-C 节面向应用的分析也是有价值的补充。然而，论文在被接收之前，仍需解决以下几个主要问题。
+P009 Major comments.
+P010 主要意见
+P011 1. The Introduction criticizes feature-label alignment methods for their dependence on scarce target-domain labels; however, FCDTM itself requires target-domain labels to compute the per-class feature means, as shown in Eq. 6 where mu_Tk is computed from y_tk. The required labeling budget should be stated explicitly in the Abstract, and FCDTM should be quantitatively compared or clearly positioned against label-using baselines such as LogME or NCE. Moreover, the claims of reliability with only three labeled samples (Fig. 9a, and the statement that "even small sample sizes reliably capture the core relationship between FCDTM and AD") are statistically unsound, since a correlation over three points is not meaningful, and these claims should be removed or substantially re-framed.
+P012 中文：1. 引言批评特征—标签对齐方法依赖稀缺的目标域标签；然而，FCDTM 本身也需要目标域标签来计算各类别的特征均值，如公式（6）中 mu_Tk 由 y_tk 计算得到。摘要应明确说明所需的标注预算，并应将 FCDTM 与 LogME 或 NCE 等使用标签的基线方法进行定量比较，或明确说明它与这些方法之间的定位关系。此外，关于仅使用三个有标签样本即可获得可靠结果的说法（图9a，以及“即使样本量很小，也能可靠地捕捉 FCDTM 与 AD 之间的核心关系”这一表述）在统计上缺乏依据，因为仅基于三个点计算的相关性没有意义。这些说法应予以删除，或作实质性的重新表述。
+P013 Several design choices appear arbitrary and deserve justification and sensitivity analysis. Alpha is set to 10 "to enhance the weight difference" without further justification, beta is set to 1, and the number of subdomains K is never numerically reported, since only N_k = 4 images per batch is given. In addition, the random subdomain division is not accompanied by any variance analysis over splits or random seeds. Please provide a sensitivity analysis over alpha and K, and report the mean and standard deviation over multiple splits and seeds.
+P014 中文：若干设计选择显得较为随意，需要给出理由并开展敏感性分析。Alpha 被设为 10，理由仅为“增强权重差异”，缺乏进一步解释；beta 被设为 1；此外，论文从未给出子域数量 K 的具体数值，仅说明每个批次包含 N_k = 4 幅图像。随机划分子域的过程也没有提供针对不同划分或随机种子的方差分析。请开展关于 alpha 和 K 的敏感性分析，并报告多次划分及不同随机种子下的均值和标准差。
+P015 3. The weighting term in Eq. 10 relies on the background-class weights w0, yet according to Table II the background class (code 0) corresponds to snow and ice as well as moss and lichen, which is not a neutral reference. Please justify this design or provide alternatives, such as learned or normalized weights. This point is particularly important for rare classes such as wetland and built-up, whose target feature means are computed from very few pixels and may therefore be unstable.
+P016 中文：3. 公式（10）中的加权项依赖背景类别权重 w0，但根据表II，背景类别（编码0）对应冰雪以及苔藓和地衣，并不是一个中性的参考类别。请论证这一设计的合理性，或提供替代方案，例如学习得到的权重或归一化权重。对于湿地和建设用地等稀有类别，这一点尤其重要，因为它们的目标域特征均值由非常少的像素计算得到，因此可能不稳定。
+P017 4. Contribution 3 claims applicability to multi-class semantic segmentation, but all experiments are per-class binary decompositions. Please either provide the multi-class formulation with corresponding results, or restrict the claims to binary decomposition.
+P018 中文：4. 贡献3声称该方法适用于多类别语义分割，但所有实验都是逐类别的二分类分解。请给出多类别形式的数学定义及相应实验结果，或者将相关表述限定在二分类分解的范围内。
+P019 5. The cross-sensor experiments mix spectral and scale differences, since Sentinel-2 imagery at 10 m is compared with Landsat-8 imagery at 30 m, while labels from the 10 m WorldCover product are applied to the 30 m imagery. In addition, WorldCover v100 is itself a machine-learning-derived product whose per-class accuracy varies. Please detail the resampling strategy and provide the exact acquisition dates, since only "January to December 2020" is stated and seasonal differences may confound the cross-region analysis, and please discuss label noise as a limitation, particularly for the built-up and wetland classes examined in this study.
+P020 中文：5. 跨传感器实验混合了光谱差异与尺度差异：实验将10米分辨率的 Sentinel-2 影像与30米分辨率的 Landsat-8 影像进行比较，同时将10米 WorldCover 产品的标签应用于30米影像。此外，WorldCover v100 本身是由机器学习生成的产品，其各类别精度并不相同。请详细说明重采样策略，并提供确切的影像获取日期。目前仅写明“2020年1月至12月”，而季节差异可能对跨区域分析构成混杂影响。同时，请将标签噪声作为局限性进行讨论，特别是针对本研究涉及的建设用地和湿地类别。
+P021 6. Models and classes are "selected" because they "perform well" (Section III-C), which introduces selection bias, and the training-set sizes vary by nearly an order of magnitude across sensors, namely 5,963 versus 602 images for GBA and 3,444 versus 368 for XJ (Table III). Please state the selection criteria, report the source-model F1 scores, and evaluate the robustness of the metric on weaker or unselected models.
+P022 中文：6. 第 III-C 节因为模型和类别“表现良好”而对其进行“筛选”，这会引入选择偏差。此外，不同传感器的训练集规模相差接近一个数量级：大湾区分别为5,963幅与602幅图像，新疆分别为3,444幅与368幅图像（表III）。请说明筛选标准，报告源模型的 F1 分数，并在较弱或未被选中的模型上评估该指标的稳健性。
+P023 7. The statistical evaluation needs strengthening. Per-task correlations are computed over an unstated number of points, since K is not reported, without confidence intervals or significance tests, and averaging raw correlation coefficients across tasks is not a proper meta-analysis, for which the Fisher z transformation is recommended. Furthermore, minor numerical inconsistencies exist between Tables IV/V and the ablation Tables VI/VII for the identical weighted configuration, namely 0.886/0.882 versus 0.883/0.883 in the cross-region scene and 0.928/0.872 versus 0.928/0.873 in the cross-sensor scene, and these should be reconciled.
+P024 中文：7. 统计评价需要加强。由于未报告 K，各任务相关系数所依据的数据点数量不明确，也没有提供置信区间或显著性检验。直接对不同任务的原始相关系数求平均并不是恰当的元分析方法，建议采用 Fisher z 变换。此外，对于相同的加权配置，表IV/V与消融实验表VI/VII之间存在轻微的数值不一致：跨区域场景为0.886/0.882与0.883/0.883，跨传感器场景为0.928/0.872与0.928/0.873。请核对并统一这些结果。
+P025 8. Finally, given the broader set of metrics surveyed in Section I, such as H-score, NLEEP, OTCE, and MMD variants, please justify why only FD, DS, and GBC are compared, and please add at least one label-using baseline, for example LogME or H-score, together with implementation details. The U-Net feature layer used to compute z is not specified, the training hyperparameters such as the optimizer, learning rate, and number of epochs are absent, and no code or data availability statement is provided.
+P026 中文：8. 最后，考虑到第I节综述了更广泛的度量方法，例如 H-score、NLEEP、OTCE 和 MMD 的变体，请解释为何仅比较 FD、DS 和 GBC，并至少增加一种使用标签的基线方法，例如 LogME 或 H-score，同时提供实现细节。论文没有说明用于计算 z 的 U-Net 特征层，也缺少优化器、学习率、训练轮数等训练超参数，且没有提供代码或数据可用性声明。
+P027 Minor comments.
+P028 次要意见
+P029 Regarding the Abstract, "Comparing to the traditional metrics" should read "Compared to", and the abstract would benefit from being restructured, as it currently forms a single long paragraph.
+P030 中文：关于摘要，“Comparing to the traditional metrics”应改为“Compared to”。目前摘要是一个较长的单段落，建议调整其组织结构。
+P031 Recurrent grammar issues should also be corrected, for example "the commonly used U-Net model was selected as the semantic segmentation model is trained" in Section II-C and "Unlike existing metric that treat" in the Abstract, while "origin DS" should read "original DS" in Tables VIII and IX.
+P032 中文：还应纠正文中反复出现的语法问题，例如第 II-C 节中的“the commonly used U-Net model was selected as the semantic segmentation model is trained”和摘要中的“Unlike existing metric that treat”。另外，表VIII和表IX中的“origin DS”应改为“original DS”。
+P033 Concerning notation, the image space is written as R^{C x W x H} but the number of bands is then denoted B in Section II-D, while C is also used for the number of land-cover classes, and TP, FP, and FN in Eq. (14) are described as rates although they are counts.
+P034 中文：关于符号，图像空间写为 R^{C x W x H}，但第 II-D 节随后又用 B 表示波段数量，同时 C 还用于表示地表覆盖类别数量。此外，公式（14）中的 TP、FP 和 FN 实际上是计数，却被描述为比率。
+P035 The covariate-shift assumption P_S(y) = P_T(y) is unlikely to hold between GBA and Xinjiang, where class proportions differ markedly, and is inconsistent with the per-class binary decomposition, so this assumption should be discussed.
+P036 中文：大湾区与新疆的类别比例差异显著，因此协变量偏移假设 P_S(y) = P_T(y) 不太可能成立，而且这一假设与逐类别的二分类分解不一致。应对此假设进行讨论。
+P037 As for the figures, the legends in Fig. 9 are too small to read, the Regions 1-4 discussed in the text are not visually delimited in the figure, and the axis labels should be harmonized with the metric name (FCDTM) with consistent axis quantities across Figs. 4-9.
+P038 中文：关于图件，图9的图例太小，难以辨认；正文讨论的区域1至4没有在图中直观地划定；坐标轴标签应与指标名称 FCDTM 保持一致，且图4至图9中的坐标轴量应保持一致。
+P039 Finally, the keywords are generic, and "Software metrics" in particular is not representative of the contribution; please consider adding "Semantic segmentation" and "Domain adaptation".
+P040 中文：最后，关键词较为笼统，尤其是“Software metrics”（软件度量）不能体现本文的贡献。请考虑加入“Semantic segmentation”（语义分割）和“Domain adaptation”（域适应）。
+P045 Reviewer: 2审稿人 2
+P046 Comments to the Author
+P047 致作者的意见
+P048 Summary
+P049 概述
+P050 The manuscript proposes FCDTM, a transferability metric for remote sensing semantic segmentation. For each class, it computes the relative difference between source and target class-mean features (extracted by the source U-Net), weights it by the difference of segmentation-head parameters between background and the class, and correlates the resulting score with the F1 drop over random 4-image target "subdomains". Experiments cover cross-region (GBA <-> Xinjiang) and cross-sensor (Sentinel-2 <-> Landsat-8) binary segmentation tasks, with comparisons to FD, DS and GBC, an ablation of the weighting, and an application to DS.
+P051 中文：本文提出了 FCDTM，一种用于遥感语义分割的可迁移性度量指标。对于每个类别，该方法计算源域与目标域类别平均特征（由源域 U-Net 提取）之间的相对差异，利用背景类别与该类别之间的分割头参数差异进行加权，并分析所得分数与随机组成、每组包含4幅图像的目标“子域”上 F1 下降量之间的相关性。实验涵盖跨区域（大湾区与新疆双向迁移）和跨传感器（Sentinel-2 与 Landsat-8 双向迁移）的二分类分割任务，包括与 FD、DS 和 GBC 的比较、加权机制的消融实验，以及将该机制应用于 DS 的实验。
+P052 The problem is relevant and the idea of weighting feature dimensions by their influence on the decision is reasonable. However, I have substantial concerns about the methodology, the evaluation protocol and the fairness of the comparisons, detailed below.
+P053 中文：该研究问题具有相关性，按照特征维度对决策的影响来赋予权重的思路也是合理的。然而，我对方法、评价协议以及比较的公平性存在较大疑虑，具体如下。
+P054 Major comments.
+P055 主要意见
+P056 1. Dependence on target labels. Eq. (6) computes the target class mean using the ground-truth target labels y_tk. FCDTM is therefore a supervised metric with respect to the target domain. This contradicts the motivation in the Introduction, where reliance on target labels is presented as a key limitation of feature-label methods (LEEP, NCE, LogME). More importantly, the accuracy drop AD_k (Eq. 12) is computed on exactly the same labeled batches. If those labels are available, the F1 on the target batch can be computed directly, and the practical value of a proxy is unclear. The authors should state explicitly which information each metric uses (target images, target labels, source data, model head). They should also justify the use case, for example by showing that labels from a few batches allow predicting accuracy on other, unlabeled batches or regions, and test a label-free variant (e.g., masks from pseudo-labels or model predictions).
+P057 中文：1. 对目标域标签的依赖。公式（6）使用目标域真实标签 y_tk 计算目标域类别均值。因此，从目标域的角度看，FCDTM 是一种有监督的度量指标。这与引言中的研究动机相矛盾，因为引言将依赖目标域标签视为特征—标签方法（LEEP、NCE、LogME）的主要局限。更重要的是，精度下降量 AD_k（公式12）也是在完全相同的有标签批次上计算的。如果这些标签已经可用，就可以直接计算目标批次的 F1，因此采用代理指标的实际价值并不明确。作者应明确说明各指标使用哪些信息（目标域图像、目标域标签、源域数据、模型头）。作者还应论证其应用场景的合理性，例如证明少数批次的标签能够用于预测其他无标签批次或区域的精度，并测试不依赖标签的变体（例如使用伪标签或模型预测生成的掩膜）。
+P058 2. The metric is close to a linear proxy of the model's own output. With binary heads, alpha*(w_0 - w_c).dmu + (b_0 - b_c)*sum(dmu) essentially approximates the change in the mean logit margin of foreground pixels (up to the element-wise normalization in Eq. 7 and the factor alpha). Correlating this with the F1 drop on the same pixels is therefore partly expected by construction. To assess the real added value, FCDTM should be compared with output-based accuracy estimators that use the same model head, e.g., average softmax confidence, entropy, Average Thresholded Confidence (ATC) and Difference of Confidences (DoC) (see suggested references), as well as the label-based metrics already discussed in the Introduction (LEEP, NCE, LogME, OTCE), which are cited but not evaluated.
+P059 中文：2. 该指标接近于模型自身输出的一种线性代理。对于二分类头，alpha*(w_0 - w_c).dmu + (b_0 - b_c)*sum(dmu) 实质上近似于前景像素平均 logit 间隔的变化（除公式7中的逐元素归一化与 alpha 因子的影响外）。因此，它与同一批像素上的 F1 下降量存在相关性，部分是由其构造方式所决定的。为了评估其真正的增量价值，应将 FCDTM 与使用相同模型头、基于输出的精度估计方法进行比较，例如平均 softmax 置信度、熵、平均阈值置信度（Average Thresholded Confidence，ATC）以及置信度差异（Difference of Confidences，DoC）（参见建议参考文献）；同时，还应与引言中已经讨论、但仅被引用而未进行评价的标签型指标（LEEP、NCE、LogME、OTCE）进行比较。
+P060 3. Evaluation protocol: what is actually being measured. F1_s in Eq. (12) is constant within a task, so the Pearson/Spearman correlations in Tables IV-VII only measure how well the metric tracks the F1 of random 4-image target batches within one task. This is batch-level accuracy estimation, not transferability in the usual sense (ranking source models, source domains or tasks to guide transfer decisions). Please:
+P061 中文：3. 评价协议：实际测量的究竟是什么。公式（12）中的 F1_s 在同一任务内是常数，因此表IV至表VII中的 Pearson/Spearman 相关系数仅衡量该指标在单一任务内跟踪随机4幅目标图像批次的 F1 的能力。这属于批次级精度估计，而不是通常意义上的可迁移性评价（即对源模型、源域或任务进行排序，以指导迁移决策）。请：
+P062 (a) report the correlation pooled across tasks and classes;
+P063 中文：（a）报告合并不同任务和类别后计算的相关性；
+P064 (b) report the ranking performance across transfer tasks (e.g., Kendall tau between task-level FCDTM and task-level accuracy drop);
+P065 中文：（b）报告跨迁移任务的排序表现，例如任务级 FCDTM 与任务级精度下降量之间的 Kendall tau 系数；
+P066 (c) report the number of subdomains K per task, with confidence intervals or significance tests.
+P067 中文：（c）报告每个任务的子域数量 K，并提供置信区间或显著性检验。
+P068 Averaging correlation coefficients across tasks should be done via Fisher's z-transform. Figs. 4-7 also show that each task lies on a line with a very different slope and offset (e.g., cropland XJ->GBA reaches FCDTM values around 250, while built-up shows a much steeper slope). The metric is therefore not calibrated across tasks, which contradicts the claim of "best overall slope consistency" and limits its use for deciding whether to transfer without per-task calibration.
+P069 中文：对不同任务的相关系数求平均时，应采用 Fisher z 变换。图4至图7还显示，各任务对应的直线具有非常不同的斜率和截距，例如新疆迁移至大湾区的耕地任务中，FCDTM 值达到约250，而建设用地任务的斜率则陡得多。因此，该指标并未实现跨任务校准，这与“整体斜率一致性最佳”的表述相矛盾，也限制了它在不进行逐任务校准的情况下用于判断是否迁移的能力。
+P070 4. Formulation issues.
+P071 中文：4. 数学表述问题。
+P072 (a) Eq. (1) defines transferability through log-likelihoods, but this definition is never used; evaluation relies on the F1 drop. Please reconcile the two.
+P073 中文：（a）公式（1）通过对数似然定义可迁移性，但这一界定之后并未使用；评价依赖的是 F1 下降量。请协调这两者之间的关系。
+P074 (b) In Eq. (7), the element-wise division by the source mean is unstable when feature components are close to zero (likely after ReLU). Please explain how this is handled.
+P075 中文：（b）公式（7）逐元素除以源域均值，当特征分量接近零时会不稳定（经过 ReLU 后很可能出现这种情况）。请解释如何处理这一问题。
+P076 (c) In Eq. (10), the feature difference and (w_0 - w_c) are d-dimensional vectors while (b_0 - b_c) is a scalar, so the operation "." and the addition of a scalar to a vector must be defined precisely.
+P077 中文：（c）公式（10）中的特征差异与 (w_0 - w_c) 是 d 维向量，而 (b_0 - b_c) 是标量，因此必须精确定义运算符“.”以及标量与向量相加的操作。
+P078 (d) alpha = 10 multiplies the weights but not the biases, and beta = 1. A sensitivity analysis on alpha is needed, since it directly controls the relative contribution of the bias term.
+P079 中文：（d）alpha = 10 仅乘在权重上，而不乘在偏置上；beta = 1。需要对 alpha 开展敏感性分析，因为它直接控制偏置项的相对贡献。
+P080 (e) The weighting is fixed by the trained head, so describing it as "self-adaptive" is misleading.
+P081 中文：（e）权重由训练好的模型头固定，因此将其描述为“自适应”具有误导性。
+P082 (f) Only foreground-class features are used. Background shift, which drives false positives and therefore precision and F1, is ignored. How are batches with no pixel of class c handled (class mean and F1 undefined)?
+P083 中文：（f）方法仅使用前景类别的特征，忽略了背景偏移，而背景偏移会影响假阳性，进而影响精确率和 F1。对于不包含任何类别 c 像素的批次，应如何处理（此时类别均值和 F1 未定义）？
+P084 5. Assumptions. Section II-A assumes P_S(y) = P_T(y) and P_S(y|x) approximately equal to P_T(y|x). Class proportions clearly differ between GBA and Xinjiang (e.g., forest, bareland). WorldCover label definitions may also behave differently across regions and resolutions. Please discuss or relax these assumptions.
+P085 中文：5. 假设。第 II-A 节假设 P_S(y) = P_T(y)，且 P_S(y|x) 近似等于 P_T(y|x)。大湾区与新疆的类别比例明显不同，例如森林和裸地。WorldCover 标签定义在不同区域和分辨率下的实际表现也可能不同。请讨论或放宽这些假设。
+P086 6. Baselines and fairness. FD, DS and GBC were designed for image-level classification. Their adaptation to pixel-level segmentation with 4-image batches is not described: feature layer, pixel sampling, covariance estimation (FD with d-dimensional pixel features), use of labels or pseudo-labels, and sign conventions (higher GBC means higher transferability, so a negative correlation with accuracy drop is expected). Without these details the comparison cannot be assessed or reproduced. As noted in comment 1, FD is label-free while FCDTM uses target labels.
+P087 中文：6. 基线方法与公平性。FD、DS 和 GBC 原本面向图像级分类设计。论文没有说明如何将它们适配到每批4幅图像的像素级分割任务，包括特征层、像素采样、协方差估计（FD 使用 d 维像素特征）、标签或伪标签的使用，以及符号约定（GBC 越高表示可迁移性越高，因此预期它与精度下降量呈负相关）。缺少这些细节，就无法评估或复现比较结果。如意见1所述，FD 不需要标签，而 FCDTM 使用目标域标签。
+P088 7. Experimental setup and missing details.
+P089 中文：7. 实验设置与缺失的细节。
+P090 (a) Only one architecture (U-Net) is tested. Results with at least one other backbone (e.g., DeepLabv3+ or a transformer-based model) are needed to support generality.
+P091 中文：（a）仅测试了一种网络架构（U-Net）。需要至少增加一种其他骨干网络的结果，例如 DeepLabv3+ 或基于 Transformer 的模型，以支持方法的通用性。
+P092 (b) Only "models that perform well in both domains" were selected (Section III-C). This introduces a selection bias; please justify the criterion and report all classes.
+P093 中文：（b）仅选择了“在两个域中都表现良好的模型”（第 III-C 节），这会引入选择偏差。请论证该标准的合理性，并报告所有类别的结果。
+P094 (c) Source and target F1 values are not reported; please add them.
+P095 中文：（c）没有报告源域与目标域的 F1 值，请补充。
+P096 (d) Cross-sensor handling of the 10 m vs 30 m resolution is not described: resampling, tile footprint (256x256 tiles cover very different areas), and resampling of the 10 m WorldCover labels to 30 m.
+P097 中文：（d）没有说明跨传感器实验中如何处理10米与30米分辨率的差异，包括重采样、图像块的地面覆盖范围（256×256像素的图像块覆盖的实际面积非常不同），以及将10米 WorldCover 标签重采样至30米的方式。
+P098 (e) Training details are missing (optimizer, epochs, augmentation, normalization, class balancing). The Landsat-8 datasets are small (602 and 368 training tiles), which may affect the conclusions.
+P099 中文：（e）缺少训练细节，包括优化器、训练轮数、数据增强、归一化和类别平衡。Landsat-8 数据集规模较小（分别为602个和368个训练图像块），这可能影响结论。
+P100 (f) Contribution 3 claims applicability to multi-class segmentation, but only binary models are evaluated.
+P101 中文：（f）贡献3声称该方法适用于多类别分割，但仅评价了二分类模型。
+P102 (g) Code and data availability should be stated.
+P103 中文：（g）应说明代码和数据的可用性。
+P104 8. Inconsistencies between tables and text.
+P105 中文：8. 表格与正文之间的不一致。
+P106 - Table IV has 17 rows with averages 0.886/0.882, whereas Table VI reports the same method with 18 rows, including GBA->XJ Landsat-8 Water (0.833/0.9), which is absent from Table IV, and averages 0.883/0.883.
+P107 中文：— 表IV有17行，平均值为0.886/0.882；而表VI对同一方法报告了18行，包括表IV中缺失的大湾区→新疆 Landsat-8 水体任务（0.833/0.9），平均值为0.883/0.883。
+P108 - Section III-C states that a forest model was selected for Sentinel-2 cross-region transfer, but no GBA->XJ Sentinel-2 forest row appears in Table IV.
+P109 中文：— 第 III-C 节声称为 Sentinel-2 跨区域迁移选择了森林模型，但表IV中没有大湾区→新疆 Sentinel-2 森林任务这一行。
+P110 Please check all tables and the bolding.
+P111 中文：请检查所有表格及其加粗标记。
+P112 9. Weighted DS (Section V-B). The way the weighting is applied to DS is not described. The average gains are small (Pearson 0.620 vs 0.607 in Table VIII, 0.698 vs 0.684 in Table IX), several tasks get worse, and no significance test is provided. The conclusion that the weighting "has a positive effect on existing methods" is overstated.
+P113 中文：9. 加权 DS（第 V-B 节）。论文没有说明如何将加权机制应用于 DS。平均提升幅度较小（表VIII中 Pearson 相关系数为0.620对0.607，表IX中为0.698对0.684），若干任务的结果反而变差，而且没有提供显著性检验。关于该加权机制“对现有方法具有积极作用”的结论言过其实。
+P114 10. Section V-C and conclusions.
+P115 中文：10. 第 V-C 节与结论。
+P116 - Fitting the FCDTM-AD relation with 3 or 10 labeled samples again requires target labels. The interpretation of steep slopes as source-model overfitting is speculative and not supported by any experiment.
+P117 中文：— 使用3个或10个有标签样本拟合 FCDTM 与 AD 的关系，仍然需要目标域标签。将陡峭斜率解释为源模型过拟合属于推测，没有任何实验支持。
+P118 - The suggestion to use FCDTM as a loss term for transfer learning is not tested. It should either be demonstrated or presented only as future work, and removed from the conclusions and contributions.
+P119 中文：— 将 FCDTM 作为迁移学习损失项的建议尚未经过测试。应通过实验加以证明，或仅作为未来工作提出，并从结论和贡献中删除这一表述。
+P120 MINOR COMMENTS
+P121 次要意见
+P122 1. The title refers to "Classification Models", while the method and experiments address semantic segmentation.
+P123 中文：1. 标题使用了“Classification Models”（分类模型），而方法与实验针对的是语义分割。
+P124 2. The abstract mentions a "pixel-wise analysis strategy", but the metric is computed from class-mean features over 4-image batches. Please align the wording.
+P125 中文：2. 摘要提到“逐像素分析策略”，但该指标实际上根据每批4幅图像的类别平均特征计算。请统一相关表述。
+P126 3. Notation: x in R^{C x W x H} uses C for bands, while C also denotes the number of classes and B is announced for bands; the subscript y_sc in Eq. (4) is undefined; indices in Eq. (1) should be clarified.
+P127 中文：3. 符号：x 属于 R^{C x W x H}，其中 C 表示波段数，但 C 同时也表示类别数量，而文中又声称使用 B 表示波段数；公式（4）中的下标 y_sc 未定义；公式（1）中的索引应予以明确。
+P128 4. TP, FP and FN are counts, not "rates" (text after Eq. 14). Spearman is a rank correlation rather than a "non-linear correlation".
+P129 中文：4. TP、FP 和 FN 是计数，而不是“比率”（公式14之后的文字）。Spearman 相关性是秩相关，而不是“非线性相关”。
+P130 5. Subdomains are described as divided both "randomly" and "evenly". Please specify whether batches are spatially contiguous; with randomly drawn tiles, the spatial interpretation given in Section II-C does not hold.
+P131 中文：5. 文中既将子域划分描述为“随机”，又描述为“均匀”。请明确每个批次在空间上是否连续；如果图像块是随机抽取的，第 II-C 节所给出的空间解释就不成立。
+P132 6. Fig. 9 is too small to read, and the fitted lines in Fig. 9(a) with 3 samples are not meaningful. Please enlarge the figure and add confidence bands.
+P133 中文：6. 图9太小，难以阅读，且图9(a)中基于3个样本拟合的直线没有意义。请放大该图，并添加置信带。
+P134 7. The keyword "Software metrics" is not appropriate.
+P135 中文：7. 关键词“Software metrics”（软件度量）不合适。
+P136 8. References: [1] lacks volume and issue; [16] should cite Foundations and Trends in Machine Learning; FD is attributed to [18], [19] (AutoEval), please also cite the original Frechet distance / FID references.
+P137 中文：8. 参考文献：[1]缺少卷号和期号；[16]应注明发表于 Foundations and Trends in Machine Learning；FD 被归于文献[18]、[19]（AutoEval），请同时引用 Fréchet 距离/FID 的原始文献。
+P138 9. The manuscript would benefit from careful language editing (e.g., "to considering", "Unlike existing metric that treat", "cross regions and sensors").
+P139 中文：9. 建议对稿件进行仔细的语言润色，例如“to considering”“Unlike existing metric that treat”和“cross regions and sensors”等表述。
+P140 SUGGESTED REFERENCES
+P141 建议参考文献
+P142 [R1] D. Guillory, V. Shankar, S. Ebrahimi, T. Darrell, and L. Schmidt, "Predicting with confidence on unseen distributions," in Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV), 2021, pp. 1134-1144. DOI: 10.1109/ICCV48922.2021.00117
+P143 中文：[R1] D. Guillory、V. Shankar、S. Ebrahimi、T. Darrell 和 L. Schmidt：《在未见分布上利用置信度进行预测》，载于 IEEE/CVF 国际计算机视觉大会（ICCV）论文集，2021年，第1134—1144页。DOI：10.1109/ICCV48922.2021.00117。
+P144 [R2] S. Garg, S. Balakrishnan, Z. C. Lipton, B. Neyshabur, and H. Sedghi, "Leveraging unlabeled data to predict out-of-distribution performance," in Proc. Int. Conf. Learn. Represent. (ICLR), 2022. DOI: 10.48550/arXiv.2201.04234
+P145 中文：[R2] S. Garg、S. Balakrishnan、Z. C. Lipton、B. Neyshabur 和 H. Sedghi：《利用无标签数据预测分布外性能》，载于国际学习表征会议（ICLR），2022年。DOI：10.48550/arXiv.2201.04234。
+P146 [R3] D. Hendrycks and K. Gimpel, "A baseline for detecting misclassified and out-of-distribution examples in neural networks," in Proc. Int. Conf. Learn. Represent. (ICLR), 2017. DOI: 10.48550/arXiv.1610.02136
+P147 中文：[R3] D. Hendrycks 和 K. Gimpel：《一种检测神经网络误分类样本与分布外样本的基线方法》，载于国际学习表征会议（ICLR），2017年。DOI：10.48550/arXiv.1610.02136。
