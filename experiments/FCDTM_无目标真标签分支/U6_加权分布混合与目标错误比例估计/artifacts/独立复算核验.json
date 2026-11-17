@@ -1,0 +1,7 @@
+{
+ "status": "passed",
+ "records": 1300,
+ "scalar_mixture_predictions_replayed": 5200,
+ "max_difference": 1.887379141862766e-15,
+ "target_labels_read": false
+}

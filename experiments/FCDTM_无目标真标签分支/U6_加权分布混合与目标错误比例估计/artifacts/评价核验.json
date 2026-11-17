@@ -1,0 +1,10 @@
+{
+ "status": "passed",
+ "records": 1300,
+ "four_image_records": 500,
+ "pool_records": 800,
+ "common_correlation_tasks": 49,
+ "target_truth_read_after_seal": true,
+ "seal_sha": "74cb714fb6475679f0fb4229aa089c63511cd035e06e1ead8148904f29ad65a7",
+ "script_sha": "c4dd85bd8ddf6d564c60ee8452b2404012d30ad7d2c2b7026365ea1898acd452"
+}

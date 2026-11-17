@@ -1,0 +1,3 @@
+{"status": "passed", "records": 1300, "scalar_mixture_predictions_replayed": 5200, "max_difference": 1.887379141862766e-15, "target_labels_read": false}
+EVALUATED U6; truth read only after sealed replay passed
+U6 inference, independent replay and post-seal evaluation completed

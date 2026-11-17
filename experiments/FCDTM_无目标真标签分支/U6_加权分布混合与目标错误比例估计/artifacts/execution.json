@@ -1,0 +1,155 @@
+{
+ "seconds": 1219.1355702877045,
+ "workers": [
+  {
+   "cls": 1,
+   "src": "dwq_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 1,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 1,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 1,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 2,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 3,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 3,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 3,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 4,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 5,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 5,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 6,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 6,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 7,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 7,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 8,
+   "src": "xj_landsat8",
+   "code": 0,
+   "audit": "passed"
+  },
+  {
+   "cls": 8,
+   "src": "xj_sentinel2",
+   "code": 0,
+   "audit": "passed"
+  }
+ ]
+}

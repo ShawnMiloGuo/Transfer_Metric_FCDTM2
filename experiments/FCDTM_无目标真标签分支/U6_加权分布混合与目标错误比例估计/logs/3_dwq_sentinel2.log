@@ -1,0 +1,9 @@
+SOURCE 3 dwq_sentinel2 16
+SOURCE 3 dwq_sentinel2 32
+SOURCE 3 dwq_sentinel2 48
+SOURCE 3 dwq_sentinel2 64
+TARGET 3 dwq_sentinel2 dwq_landsat8 16
+TARGET 3 dwq_sentinel2 dwq_landsat8 32
+TARGET 3 dwq_sentinel2 xj_sentinel2 16
+TARGET 3 dwq_sentinel2 xj_sentinel2 32
+DONE 3 dwq_sentinel2

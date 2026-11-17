@@ -1,0 +1,10 @@
+{
+ "status": "passed",
+ "evaluation_rows": 1300,
+ "U5_baseline_scalars_identical": 2000,
+ "correlation_rows_recomputed": 1200,
+ "error_summaries_recomputed": 540,
+ "plots_png_pdf_pairs": 58,
+ "forecast_hashes_intact": true,
+ "evaluation_code_unchanged_since_freeze": true
+}
