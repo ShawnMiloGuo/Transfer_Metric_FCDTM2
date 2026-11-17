@@ -1,0 +1,15 @@
+{
+  "source": "main.tex",
+  "sha256": "f480443c3c4e292175f69b8ace9a8c8c603c69fcf7dbcf1109d83bc1594a5ca4",
+  "equations": [
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17"
+  ],
+  "figure_reference": "Figs/fig4.png",
+  "figure_sha256": "217a73211a4362d1d5aed90abd590d7129cc97aac2840c2235aea226629be5a7",
+  "target_labels_used_for_prediction": false
+}

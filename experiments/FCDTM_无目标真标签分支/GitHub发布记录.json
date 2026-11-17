@@ -1,0 +1,11 @@
+{
+ "branch": "codex/fcdtm-label-free",
+ "commit": "2428741a6f79b1d142a8c47450bc25d0ff1d9846",
+ "base": "a7e971a95a7f1f665c21e6f3d667e652c1a7f2dc",
+ "main_before": "a7e971a95a7f1f665c21e6f3d667e652c1a7f2dc",
+ "main_after": "a7e971a95a7f1f665c21e6f3d667e652c1a7f2dc",
+ "main_unchanged": true,
+ "files": 304,
+ "isolated_checkout": "/tmp/fcdtm-label-free-20261117-x11cupco",
+ "url": "https://github.com/ShawnMiloGuo/Transfer_Metric_FCDTM2/tree/codex/fcdtm-label-free"
+}

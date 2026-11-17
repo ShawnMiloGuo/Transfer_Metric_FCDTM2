@@ -1,0 +1,26 @@
+WORKERWORKER  2_dwq_sentinel21_xj_landsat8 0WORKER  passed
+0  passed
+1_dwq_landsat8 0 passed
+WORKER 3_dwq_sentinel2 0 passed
+WORKER 1_dwq_sentinel2 0 passedWORKER
+ 2_dwq_landsat8 0 passed
+WORKER 2_xj_sentinel2 0 passed
+WORKER 1_xj_sentinel2 0 passed
+WORKER 5_xj_sentinel2 0 passed
+WORKER 6_dwq_landsat8 0 passed
+WORKER 6_dwq_sentinel2 0 passed
+WORKER 4_xj_sentinel2 0 passed
+WORKER 3_xj_landsat8 0 passed
+WORKER 5_xj_landsat8 0 passed
+WORKER 6_xj_landsat8 0 passed
+WORKER 3_xj_sentinel2 0 passed
+WORKER 6_xj_sentinel2 0 passed
+WORKER 7_xj_landsat8 0 passed
+WORKER 7_dwq_landsat8 0 passed
+WORKER 8_xj_landsat8 0 passed
+WORKER 7_dwq_sentinel2 0 passed
+WORKER 8_dwq_landsat8 0 passed
+WORKER 7_xj_sentinel2 0 passed
+WORKER 8_dwq_sentinel2 0 passed
+WORKER 8_xj_sentinel2 0 passed
+SEALED U5 before target label evaluation

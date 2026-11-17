@@ -1,0 +1,9 @@
+{
+ "points": 2000,
+ "undefined_true_F1": 231,
+ "negative_AD_points": 329,
+ "correlation_rows_recomputed": 1100,
+ "four_controls_common_tasks": 50,
+ "forecasts_unchanged": true,
+ "all_values_same_as_frozen_predictor": true
+}

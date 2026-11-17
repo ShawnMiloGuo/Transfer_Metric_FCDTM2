@@ -1,0 +1,10 @@
+{
+ "files": {
+  "predictions.csv": "41001fd1863210f0402c36bafdde0cc1aa232ce219685eb6820381e019bad34e",
+  "grouping.json": "47c227055ed10611d6e471871528a09de7c503e955cb062ab864409cf83397ce"
+ },
+ "code_sha": "20dce442c687d32bb2fdccc710145be5113a9c15ed14caf288ae1fb11cd13f8a",
+ "protocol_sha": "70c4d3b6a1fd179a61b00d4e55b01198e283db9c29d1740707cee077878ef8e6",
+ "original_seal_sha": "fffd1f395bc8494e78cfaceed2548a843da3756cab214865f03f14fb0baba3ea",
+ "target_truth_read": false
+}

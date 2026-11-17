@@ -1,0 +1,8 @@
+{
+ "status": "passed",
+ "records": 500,
+ "scalar_predictions_replayed": 4000,
+ "max_replay_difference": 0.0,
+ "images_per_point": 4,
+ "target_labels_read": false
+}

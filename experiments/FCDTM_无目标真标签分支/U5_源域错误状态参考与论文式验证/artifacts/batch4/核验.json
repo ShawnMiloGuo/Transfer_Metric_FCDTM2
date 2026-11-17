@@ -1,0 +1,12 @@
+{
+ "status": "passed",
+ "records": 500,
+ "subdomain_images": 4,
+ "task_subdomains": 10,
+ "groups_disjoint_per_domain": true,
+ "all_40_images_covered": true,
+ "shared_all_models_classes": true,
+ "common_defined_tasks": 50,
+ "predictions_sealed_before_batch4_truth_read": true,
+ "code_sha": "20dce442c687d32bb2fdccc710145be5113a9c15ed14caf288ae1fb11cd13f8a"
+}

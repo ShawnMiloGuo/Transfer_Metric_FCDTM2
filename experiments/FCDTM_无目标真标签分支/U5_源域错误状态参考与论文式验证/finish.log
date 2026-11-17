@@ -1,0 +1,5 @@
+STAGE verify.py final
+{"status": "passed", "models": 25, "tasks": 50, "pool_predictions": 800, "source_images": 1600, "target_images": 2000, "access_audits": 25, "target_annotation_accesses": 0, "max_replay_difference": 0.0, "source_only_error_prototypes": true}
+STAGE evaluate.py
+EVALUATED U5; 2000 image points / 50 tasks / 800 pools
+COMPLETE U5 and paper-style scatter figures

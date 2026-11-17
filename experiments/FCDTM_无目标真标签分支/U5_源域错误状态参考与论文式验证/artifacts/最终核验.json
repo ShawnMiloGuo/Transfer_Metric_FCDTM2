@@ -1,0 +1,12 @@
+{
+ "status": "passed",
+ "models": 25,
+ "tasks": 50,
+ "pool_predictions": 800,
+ "source_images": 1600,
+ "target_images": 2000,
+ "access_audits": 25,
+ "target_annotation_accesses": 0,
+ "max_replay_difference": 0.0,
+ "source_only_error_prototypes": true
+}
