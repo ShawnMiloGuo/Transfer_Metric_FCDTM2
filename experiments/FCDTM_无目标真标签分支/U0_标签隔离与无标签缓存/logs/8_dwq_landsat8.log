@@ -1,0 +1,9 @@
+SOURCE 8 dwq_landsat8 16
+SOURCE 8 dwq_landsat8 32
+SOURCE 8 dwq_landsat8 48
+SOURCE 8 dwq_landsat8 64
+TARGET 8 dwq_landsat8 dwq_sentinel2 16
+TARGET 8 dwq_landsat8 dwq_sentinel2 32
+TARGET 8 dwq_landsat8 xj_landsat8 16
+TARGET 8 dwq_landsat8 xj_landsat8 32
+DONE 8 dwq_landsat8

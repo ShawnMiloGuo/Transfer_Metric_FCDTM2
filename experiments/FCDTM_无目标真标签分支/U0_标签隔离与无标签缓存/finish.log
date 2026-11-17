@@ -1,0 +1,5 @@
+STAGE verify.py final
+{"status": "passed", "models": 25, "tasks": 50, "target_image_passes": 2000, "source_image_passes": 1600, "target_annotation_accesses": 0, "historical_target_cache_accesses": 0, "system_call_audits": 25, "cache_whitelist_verified": true, "scope": "Python/GDAL guards plus strace native open audit, not OS sandbox"}
+STAGE evaluate.py
+EVALUATED 800 paired subpools; truth read only by separate evaluator
+COMPLETE U0/U1/U2 frozen first-round development

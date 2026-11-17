@@ -1,0 +1,12 @@
+{
+ "client_archive_date": "2026-11-17",
+ "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:46:25) [GCC 14.3.0]",
+ "numpy": "2.4.1",
+ "scipy": "1.17.0",
+ "torch": "2.5.0+cu124",
+ "matplotlib": "3.10.8",
+ "gdal": "3120100",
+ "platform": "Linux-3.10.0-1062.el7.x86_64-x86_64-with-glibc2.17",
+ "precompute_model_hashes_frozen": true,
+ "input_raster_content_hashes_precompute": false
+}

@@ -1,0 +1,10 @@
+{
+ "images": 2000,
+ "defined_F1": 1769,
+ "undefined_F1": 231,
+ "hard_empty": 277,
+ "true_empty": 598,
+ "high_conf_low_F1": 804,
+ "high_conf_low_F1_with_true_foreground": 547,
+ "diagnosis_only": true
+}

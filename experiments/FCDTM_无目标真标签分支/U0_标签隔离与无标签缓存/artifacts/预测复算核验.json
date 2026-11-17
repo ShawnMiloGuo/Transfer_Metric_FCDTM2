@@ -1,0 +1,28 @@
+{
+ "status": "passed",
+ "models": 25,
+ "tasks": 50,
+ "target_image_passes": 2000,
+ "source_image_passes": 1600,
+ "target_annotation_accesses": 0,
+ "historical_target_cache_accesses": 0,
+ "system_call_audits": 25,
+ "cache_whitelist_verified": true,
+ "scope": "Python/GDAL guards plus strace native open audit, not OS sandbox",
+ "risk_forecast_replayed": 800,
+ "max_replay_difference": 0.0,
+ "AD_identity_verified": true,
+ "shared_indices_verified": true,
+ "main_comparison_coverage": [
+  {
+   "experiment": "U1_硬软伪标签FCDTM",
+   "common_configs": 300,
+   "potential": 300
+  },
+  {
+   "experiment": "U2_权重引导双侧源风险",
+   "common_configs": 300,
+   "potential": 300
+  }
+ ]
+}

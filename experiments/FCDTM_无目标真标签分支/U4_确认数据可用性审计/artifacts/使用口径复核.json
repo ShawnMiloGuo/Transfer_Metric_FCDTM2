@@ -1,0 +1,18 @@
+{
+ "total": 526,
+ "train": 368,
+ "val": 158,
+ "strict_list_used": 522,
+ "strict_list_unseen": 4,
+ "source_reference_used": 437,
+ "target_declared_or_processed": 238,
+ "source_and_target": 153,
+ "source_only": 284,
+ "not_used_as_target": 288,
+ "target_cache_evidence": 238,
+ "target_cache_unseen": 288,
+ "declaration_without_cache_evidence": 0,
+ "old_strict_marked_but_no_source_or_target_role": [],
+ "target_labels_read": false,
+ "strict_unseen_not_guaranteed_never_opened": true
+}
