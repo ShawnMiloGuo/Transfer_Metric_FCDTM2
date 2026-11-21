@@ -1,0 +1,10 @@
+{
+  "figsize_inches": [
+    12.6,
+    13.2
+  ],
+  "annotation_points": 14.5,
+  "axis_label_points": 16,
+  "legend_points_D42": 14,
+  "design": "Minimum about 8 pt annotation at IEEE two-column width"
+}

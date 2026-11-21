@@ -1,0 +1,19 @@
+{
+ "artifacts/features/1_dwq_landsat8_source.npz": "bdcbcbce4e206ddc3bfde7d6a811338777b1c613f7e3c4fb7d92901b2519a291",
+ "artifacts/features/1_dwq_sentinel2_source.npz": "8ea9d6f8a783643663705366f482c73e17fbc46651c9b615f7bb31c414c738c4",
+ "artifacts/features/1_xj_sentinel2_source.npz": "6585a14b04a33a9c19d0bbd2c79ff9a4db388e76c41b86b5d5d57edebdd1fb3f",
+ "artifacts/features/1_xj_landsat8_source.npz": "f2c46806862c0e6dd77ba8775d68967e021684e38add5570cf89a55b4b2afaef",
+ "artifacts/features/1_dwq_landsat8__dwq_sentinel2.npz": "acde1ab7ac4fe630f163ad9830c759ab8cf84468f20ba48f4338f36849e38151",
+ "artifacts/features/1_dwq_sentinel2__dwq_landsat8.npz": "6e0980873c943a157240f8ae304a552187105679ffa5e498ecf6a7062b4c8e90",
+ "artifacts/features/1_xj_sentinel2__xj_landsat8.npz": "a2912ee8af6c555ae39d88d6219e77b79b66b87c0d5c1d04ae40d41ecbbbad81",
+ "artifacts/features/1_xj_landsat8__xj_sentinel2.npz": "beb6e96e0c52e19ae22cf384f6f62b8dad79aa1245db1920b0640adf68cc36e2",
+ "artifacts/features/1_dwq_landsat8__xj_landsat8.npz": "985a70e0cbf3007da340551eb0302a643c08cde8f4bb9f7df249432819b56a2c",
+ "artifacts/features/2_dwq_landsat8_source.npz": "56a0171687a38d2892decf87c6907b87339ed78ea987c145a8d138eae5976b44",
+ "artifacts/features/2_dwq_landsat8__dwq_sentinel2.npz": "3b7d4ce4699857265266719c4812234a8e5b9ccb30d4a9be738ae970e43fd069",
+ "artifacts/cache/1_dwq_landsat8__dwq_sentinel2.npz": "6bf3d44043d5dc9b80c110ca6627484b1cd897ea50e0d62e9cb375640f3a0bea",
+ "artifacts/cache/1_dwq_sentinel2__dwq_landsat8.npz": "1d7d631cacfc46d38c320c5c6f27f5f2ff712ed6d8f456ca82240db834db5772",
+ "artifacts/cache/1_xj_sentinel2__xj_landsat8.npz": "0e574ad61cec0a187f5c699cd98efb07d9454c91255b7e696eee1d6b7b84f9b1",
+ "artifacts/cache/1_xj_landsat8__xj_sentinel2.npz": "8efffe747880d13488943b28dafcfe358c9c3fc8c39b8ba41d2005c88bca1d9b",
+ "artifacts/cache/1_dwq_landsat8__xj_landsat8.npz": "d1b54dad25fbd1303ec623c16a12954082d03ff766116fb6fcb83ccee3e2fafd",
+ "artifacts/cache/2_dwq_landsat8__dwq_sentinel2.npz": "dfe4a5f525db8db3424287363b51829f8869094eca2d904cf718ed943ba70c7e"
+}

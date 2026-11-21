@@ -1,0 +1,27 @@
+SOURCE_PROGRESS 7 dwq_landsat8 16 of 64
+SOURCE_PROGRESS 7 dwq_landsat8 32 of 64
+SOURCE_PROGRESS 7 dwq_landsat8 48 of 64
+SOURCE_PROGRESS 7 dwq_landsat8 64 of 64
+TARGET_PROGRESS 7_dwq_landsat8 dwq_sentinel2 10 of 40
+TARGET_PROGRESS 7_dwq_landsat8 dwq_sentinel2 20 of 40
+TARGET_PROGRESS 7_dwq_landsat8 dwq_sentinel2 30 of 40
+TARGET_PROGRESS 7_dwq_landsat8 dwq_sentinel2 40 of 40
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 0 seconds 29
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 10 seconds 44
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 20 seconds 55
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 30 seconds 67
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 40 seconds 76
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 50 seconds 87
+PROGRESS 7_dwq_landsat8 dwq_sentinel2 60 seconds 133
+TARGET_PROGRESS 7_dwq_landsat8 xj_landsat8 10 of 40
+TARGET_PROGRESS 7_dwq_landsat8 xj_landsat8 20 of 40
+TARGET_PROGRESS 7_dwq_landsat8 xj_landsat8 30 of 40
+TARGET_PROGRESS 7_dwq_landsat8 xj_landsat8 40 of 40
+PROGRESS 7_dwq_landsat8 xj_landsat8 0 seconds 191
+PROGRESS 7_dwq_landsat8 xj_landsat8 10 seconds 198
+PROGRESS 7_dwq_landsat8 xj_landsat8 20 seconds 207
+PROGRESS 7_dwq_landsat8 xj_landsat8 30 seconds 215
+PROGRESS 7_dwq_landsat8 xj_landsat8 40 seconds 224
+PROGRESS 7_dwq_landsat8 xj_landsat8 50 seconds 235
+PROGRESS 7_dwq_landsat8 xj_landsat8 60 seconds 271
+DONE 7_dwq_landsat8 264

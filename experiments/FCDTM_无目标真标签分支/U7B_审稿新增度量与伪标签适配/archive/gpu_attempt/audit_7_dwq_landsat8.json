@@ -1,0 +1,10 @@
+{
+ "status": "failed",
+ "source_reads_complete": false,
+ "annotation_paths": [],
+ "unauthorized_annotations": [],
+ "historical_data_paths": [],
+ "trace_sha": "32db017ed498da9a74e27dec8a7ae97654f507f33baa0ea2816d78d7d5b080c0",
+ "source": "dwq_landsat8",
+ "cls": 7
+}

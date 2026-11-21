@@ -1,0 +1,978 @@
+[
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_S2_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_S2_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_S2_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_S2_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_L8_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_L8_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_L8_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/region_L8_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_GBA_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_GBA_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_GBA_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_GBA_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_XJ_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_XJ_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_XJ_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/D42/sensor_XJ_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_S2_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_S2_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_S2_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_S2_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_L8_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_L8_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_L8_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/region_L8_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_GBA_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_GBA_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_GBA_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_GBA_confidence_clustering.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_XJ_original.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_XJ_output.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_XJ_label_evidence.pdf"
+  },
+  {
+    "panel": "full2048",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/full2048/E50/sensor_XJ_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_S2_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_S2_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_S2_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_S2_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_S2",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_S2_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_L8_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_L8_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_L8_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_L8_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "region_L8",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/region_L8_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_GBA_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_GBA_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_GBA_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_GBA_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_GBA",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_GBA_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_XJ_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_XJ_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_XJ_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_XJ_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "D42",
+    "scenario": "sensor_XJ",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/D42/sensor_XJ_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_S2_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_S2_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_S2_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_S2_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_S2",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_S2_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_L8_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_L8_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_L8_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_L8_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "region_L8",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/region_L8_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_GBA_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_GBA_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_GBA_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_GBA_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_GBA",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_GBA_transport.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "original",
+    "methods": [
+      "DS",
+      "FD",
+      "GBC-PL",
+      "FCDTM-HardPL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_XJ_original.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "output",
+    "methods": [
+      "AC / MSP",
+      "Entropy",
+      "ATC-MC",
+      "ATC-NE",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_XJ_output.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "label_evidence",
+    "methods": [
+      "LogME-ICML-PL",
+      "H-score-PL",
+      "LEEP-PL",
+      "NCE-Pred-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_XJ_label_evidence.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "confidence_clustering",
+    "methods": [
+      "DoC-gap",
+      "DoC-Acc-SrcCal",
+      "NLEEP-PL",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_XJ_confidence_clustering.pdf"
+  },
+  {
+    "panel": "shared256",
+    "cohort": "E50",
+    "scenario": "sensor_XJ",
+    "family": "transport",
+    "methods": [
+      "OTCE-PL-SrcCal",
+      "MMD-RBF-global",
+      "FCDTM-SoftPL"
+    ],
+    "file": "artifacts/figures/shared256/E50/sensor_XJ_transport.pdf"
+  }
+]

@@ -1,0 +1,27 @@
+SOURCE_PROGRESS 6 dwq_sentinel2 16 of 64
+SOURCE_PROGRESS 6 dwq_sentinel2 32 of 64
+SOURCE_PROGRESS 6 dwq_sentinel2 48 of 64
+SOURCE_PROGRESS 6 dwq_sentinel2 64 of 64
+TARGET_PROGRESS 6_dwq_sentinel2 dwq_landsat8 10 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 dwq_landsat8 20 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 dwq_landsat8 30 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 dwq_landsat8 40 of 40
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 0 seconds 25
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 10 seconds 38
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 20 seconds 48
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 30 seconds 60
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 40 seconds 72
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 50 seconds 87
+PROGRESS 6_dwq_sentinel2 dwq_landsat8 60 seconds 141
+TARGET_PROGRESS 6_dwq_sentinel2 xj_sentinel2 10 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 xj_sentinel2 20 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 xj_sentinel2 30 of 40
+TARGET_PROGRESS 6_dwq_sentinel2 xj_sentinel2 40 of 40
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 0 seconds 213
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 10 seconds 222
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 20 seconds 231
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 30 seconds 239
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 40 seconds 249
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 50 seconds 259
+PROGRESS 6_dwq_sentinel2 xj_sentinel2 60 seconds 295
+DONE 6_dwq_sentinel2 264

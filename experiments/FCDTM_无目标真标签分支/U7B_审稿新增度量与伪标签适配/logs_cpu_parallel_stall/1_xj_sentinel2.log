@@ -1,0 +1,8 @@
+SOURCE_PROGRESS 1 xj_sentinel2 16 of 64
+SOURCE_PROGRESS 1 xj_sentinel2 32 of 64
+SOURCE_PROGRESS 1 xj_sentinel2 48 of 64
+SOURCE_PROGRESS 1 xj_sentinel2 64 of 64
+TARGET_PROGRESS 1_xj_sentinel2 xj_landsat8 10 of 40
+TARGET_PROGRESS 1_xj_sentinel2 xj_landsat8 20 of 40
+TARGET_PROGRESS 1_xj_sentinel2 xj_landsat8 30 of 40
+TARGET_PROGRESS 1_xj_sentinel2 xj_landsat8 40 of 40

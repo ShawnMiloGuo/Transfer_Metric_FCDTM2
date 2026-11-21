@@ -1,0 +1,10 @@
+{
+ "status": "failed",
+ "source_reads_complete": false,
+ "annotation_paths": [],
+ "unauthorized_annotations": [],
+ "historical_data_paths": [],
+ "trace_sha": "2d257b7cc107bae1e64820f62a9be33ad6c608ecd62fca09c993346f36178d87",
+ "source": "dwq_sentinel2",
+ "cls": 1
+}

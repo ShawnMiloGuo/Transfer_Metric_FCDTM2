@@ -1,0 +1,21 @@
+REUSED_CPU_SOURCE 1_xj_landsat8
+REUSED_CPU_TARGET 1_xj_landsat8 xj_sentinel2
+PROGRESS 1_xj_landsat8 xj_sentinel2 0 seconds 8
+PROGRESS 1_xj_landsat8 xj_sentinel2 10 seconds 15
+PROGRESS 1_xj_landsat8 xj_sentinel2 20 seconds 24
+PROGRESS 1_xj_landsat8 xj_sentinel2 30 seconds 31
+PROGRESS 1_xj_landsat8 xj_sentinel2 40 seconds 38
+PROGRESS 1_xj_landsat8 xj_sentinel2 50 seconds 47
+PROGRESS 1_xj_landsat8 xj_sentinel2 60 seconds 72
+TARGET_PROGRESS 1_xj_landsat8 dwq_landsat8 10 of 40
+TARGET_PROGRESS 1_xj_landsat8 dwq_landsat8 20 of 40
+TARGET_PROGRESS 1_xj_landsat8 dwq_landsat8 30 of 40
+TARGET_PROGRESS 1_xj_landsat8 dwq_landsat8 40 of 40
+PROGRESS 1_xj_landsat8 dwq_landsat8 0 seconds 119
+PROGRESS 1_xj_landsat8 dwq_landsat8 10 seconds 133
+PROGRESS 1_xj_landsat8 dwq_landsat8 20 seconds 144
+PROGRESS 1_xj_landsat8 dwq_landsat8 30 seconds 154
+PROGRESS 1_xj_landsat8 dwq_landsat8 40 seconds 167
+PROGRESS 1_xj_landsat8 dwq_landsat8 50 seconds 181
+PROGRESS 1_xj_landsat8 dwq_landsat8 60 seconds 238
+DONE 1_xj_landsat8 264

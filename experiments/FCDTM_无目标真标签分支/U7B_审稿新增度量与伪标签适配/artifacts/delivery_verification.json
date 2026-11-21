@@ -1,0 +1,12 @@
+{
+  "seal_entries_verified": 232,
+  "score_records": 6600,
+  "evaluation_preserves_predictions": true,
+  "source_only_audits_passed": 25,
+  "native_trace_hashes_verified": 25,
+  "all_method_figures": 72,
+  "figure_table_annotations_match": true,
+  "figures_cover_all_applicable_methods_in_all_scenarios": true,
+  "large_files_retained_on_server": 150,
+  "target_reference_reopened_by_verifier": false
+}

@@ -1,0 +1,30 @@
+UNIT PASSED {"LogME_author_ICML": [{"case": "full_rank", "author": -0.9212332171288443, "exact_moments": -0.9212332171288444, "absolute_difference": 1.1102230246251565e-16}, {"case": "small_scale", "author": -0.9334712087975766, "exact_moments": -0.9334712087975765, "absolute_difference": 1.1102230246251565e-16}, {"case": "large_scale", "author": -1.103272129693519, "exact_moments": -1.1032721296935193, "absolute_difference": 2.220446049250313e-16}, {"case": "singular", "author": -0.9137274139774112, "exact_moments": -0.9137274139774114, "absolute_difference": 2.220446049250313e-16}, {"case": "one_group", "author": -1.4192978703945212, "exact_moments": -1.4192978703945212, "absolute_difference": 0.0}], "Hscore_direct": 2.7755575615628914e-17, "LEEP_reference": true, "ATC_author_threshold_both": true, "ATC_boundary_extension_all_correct_or_all_wrong": true, "OT_exact_against_all_720_permutations": true, "OTCE_conditional_entropy_log2": true, "MMD_unbiased_explicit_loops": true, "NLEEP_GMM_then_LEEP_reference": {"score": -0.6769522633129076, "converged": true, "iterations": 22, "pca_dimensions": 6}, "NLEEP_8192_timing": {"seconds": 3.5879621505737305, "converged": true, "iterations": 66, "pca_dimensions": 25}, "target_reference_read": false}
+REUSE_COMPLETED_CPU_WORKER 1_dwq_landsat8
+CPU_WORKER 2_dwq_landsat8 0 passed
+CPU_WORKER 1_dwq_sentinel2 0 passed
+CPU_WORKER 1_xj_sentinel2 0 passed
+CPU_WORKER 1_xj_landsat8 0 passed
+CPU_WORKER 2_dwq_sentinel2 0 passed
+CPU_WORKER 3_xj_landsat8 0 passed
+CPU_WORKER 3_dwq_sentinel2 0 passed
+CPU_WORKER 3_xj_sentinel2 0 passed
+CPU_WORKER 2_xj_sentinel2 0 passed
+CPU_WORKER 5_xj_sentinel2 0 passed
+CPU_WORKER 4_xj_sentinel2 0 passed
+CPU_WORKER 5_xj_landsat8 0 passed
+CPU_WORKER 6_dwq_landsat8 0 passed
+CPU_WORKER 6_dwq_sentinel2 0 passed
+CPU_WORKER 6_xj_sentinel2 0 passed
+CPU_WORKER 6_xj_landsat8 0 passed
+CPU_WORKER 7_dwq_landsat8 0 passed
+CPU_WORKER 7_dwq_sentinel2 0 passed
+CPU_WORKER 7_xj_sentinel2 0 passed
+CPU_WORKER 8_dwq_landsat8 0 passed
+CPU_WORKER 7_xj_landsat8 0 passed
+CPU_WORKER 8_dwq_sentinel2 0 passed
+CPU_WORKER 8_xj_landsat8 0 passed
+CPU_WORKER 8_xj_sentinel2 0 passed
+SEALED ALL 6600 CPU predictions before target evaluation
+ADDED SOURCE-ONLY DoC accuracy regression and resealed; target reference reads=0
+CANONICALIZED AND RESEALED before target references: 788 roundoff-only values
+EVALUATION COMPLETE 6600 records; both sampling panels; all 18 comparator entries (including raw and source-calibrated DoC)

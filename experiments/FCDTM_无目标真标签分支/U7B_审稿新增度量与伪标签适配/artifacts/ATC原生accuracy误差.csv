@@ -1,0 +1,7 @@
+panel,method,unit,records,MAE,bias
+full2048,ATC_MC,pixel_accuracy_not_foreground_F1,2500,0.07416126098632812,0.04061590576171875
+full2048,ATC_NE,pixel_accuracy_not_foreground_F1,2500,0.07416126098632812,0.04061590576171875
+full2048,DoC_Acc_SrcCal,pixel_accuracy_not_foreground_F1,2500,0.09689113014492966,0.05463784032404023
+shared256,ATC_MC,pixel_accuracy_not_foreground_F1,2500,0.08345765380859375,0.04776829833984375
+shared256,ATC_NE,pixel_accuracy_not_foreground_F1,2500,0.08345765380859375,0.04776829833984375
+shared256,DoC_Acc_SrcCal,pixel_accuracy_not_foreground_F1,2500,0.09281988604002156,0.053175941666410084

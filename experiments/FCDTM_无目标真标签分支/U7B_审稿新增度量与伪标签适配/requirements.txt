@@ -1,0 +1,6 @@
+numpy==2.4.1
+scipy==1.17.0
+scikit-learn==1.6.1
+matplotlib==3.10.8
+torch==2.5.0
+# GDAL 3.12.1 and strace are environment-level dependencies.

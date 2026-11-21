@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/code/worker_full.py", line 78, in <module>
+    if __name__=='__main__':main(int(sys.argv[1]),sys.argv[2],int(sys.argv[3]))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/code/worker_full.py", line 26, in main
+    assert sha(modelinfo['ck'])==modelinfo['sha'];sys.path.insert(0,str(old.REPO));dev=torch.device('cuda:'+str(device));model=torch.load(modelinfo['ck'],map_location='cpu',weights_only=False).eval().to(dev);holder={};hook=model.outc.register_forward_pre_hook(lambda mod,a:holder.update(z=a[0]));v=(model.outc.weight[1]-model.outc.weight[0]).detach().flatten().cpu().double().numpy();bias=float((model.outc.bias[1]-model.outc.bias[0]).detach().cpu());weight=-10*v-bias
+                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1340, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 927, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/Shanxin.Guo/anaconda3/envs/FCDTM/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1326, in convert
+    return t.to(
+           ^^^^^
+RuntimeError: CUDA error: unknown error
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

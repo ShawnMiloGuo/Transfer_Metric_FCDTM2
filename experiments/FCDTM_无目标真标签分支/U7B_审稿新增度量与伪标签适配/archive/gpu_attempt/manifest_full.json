@@ -1,0 +1,3388 @@
+{
+ "models": [
+  {
+   "cls": 1,
+   "src": "dwq_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_1/unet_epoch166_best_val.pth",
+   "sha": "60b3e4aa02587e5039a58329190501dc6e4d42fd8a5c139dcb73887f41e09f62",
+   "ref": [
+    "dwql8_i31j25.tif",
+    "dwql8_i22j21.tif",
+    "dwql8_i23j18.tif",
+    "dwql8_i29j22.tif",
+    "dwql8_i12j15.tif",
+    "dwql8_i15j33.tif",
+    "dwql8_i31j17.tif",
+    "dwql8_i15j20.tif",
+    "dwql8_i24j21.tif",
+    "dwql8_i17j15.tif",
+    "dwql8_i28j28.tif",
+    "dwql8_i31j14.tif",
+    "dwql8_i18j27.tif",
+    "dwql8_i19j39.tif",
+    "dwql8_i35j17.tif",
+    "dwql8_i18j26.tif",
+    "dwql8_i14j1.tif",
+    "dwql8_i19j33.tif",
+    "dwql8_i11j38.tif",
+    "dwql8_i17j14.tif",
+    "dwql8_i21j39.tif",
+    "dwql8_i26j21.tif",
+    "dwql8_i21j47.tif",
+    "dwql8_i14j23.tif",
+    "dwql8_i24j46.tif",
+    "dwql8_i29j20.tif",
+    "dwql8_i38j13.tif",
+    "dwql8_i13j35.tif",
+    "dwql8_i15j14.tif",
+    "dwql8_i16j44.tif",
+    "dwql8_i24j18.tif",
+    "dwql8_i22j26.tif",
+    "dwql8_i14j39.tif",
+    "dwql8_i12j3.tif",
+    "dwql8_i17j29.tif",
+    "dwql8_i20j23.tif",
+    "dwql8_i19j41.tif",
+    "dwql8_i31j12.tif",
+    "dwql8_i26j37.tif",
+    "dwql8_i31j11.tif",
+    "dwql8_i17j17.tif",
+    "dwql8_i15j41.tif",
+    "dwql8_i16j23.tif",
+    "dwql8_i29j12.tif",
+    "dwql8_i30j25.tif",
+    "dwql8_i28j22.tif",
+    "dwql8_i25j29.tif",
+    "dwql8_i25j23.tif",
+    "dwql8_i17j13.tif",
+    "dwql8_i9j10.tif",
+    "dwql8_i22j47.tif",
+    "dwql8_i16j26.tif",
+    "dwql8_i27j42.tif",
+    "dwql8_i27j17.tif",
+    "dwql8_i17j18.tif",
+    "dwql8_i11j11.tif",
+    "dwql8_i16j12.tif",
+    "dwql8_i9j36.tif",
+    "dwql8_i15j4.tif",
+    "dwql8_i19j45.tif",
+    "dwql8_i31j27.tif",
+    "dwql8_i7j13.tif",
+    "dwql8_i10j16.tif",
+    "dwql8_i15j8.tif"
+   ]
+  },
+  {
+   "cls": 1,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_1/unet_epoch40_best_val.pth",
+   "sha": "e34c7e613e4b4d8275a3912ba3ee2d76670a12f552b68e702fcca59809d8196b",
+   "ref": [
+    "dwqs2_i51j68.tif",
+    "dwqs2_i55j124.tif",
+    "dwqs2_i57j146.tif",
+    "dwqs2_i36j114.tif",
+    "dwqs2_i71j53.tif",
+    "dwqs2_i34j21.tif",
+    "dwqs2_i69j109.tif",
+    "dwqs2_i23j34.tif",
+    "dwqs2_i75j89.tif",
+    "dwqs2_i61j67.tif",
+    "dwqs2_i6j42.tif",
+    "dwqs2_i75j82.tif",
+    "dwqs2_i44j99.tif",
+    "dwqs2_i73j124.tif",
+    "dwqs2_i37j18.tif",
+    "dwqs2_i82j40.tif",
+    "dwqs2_i74j45.tif",
+    "dwqs2_i86j63.tif",
+    "dwqs2_i59j74.tif",
+    "dwqs2_i103j62.tif",
+    "dwqs2_i54j33.tif",
+    "dwqs2_i39j53.tif",
+    "dwqs2_i96j77.tif",
+    "dwqs2_i99j37.tif",
+    "dwqs2_i62j84.tif",
+    "dwqs2_i39j20.tif",
+    "dwqs2_i73j66.tif",
+    "dwqs2_i51j73.tif",
+    "dwqs2_i99j76.tif",
+    "dwqs2_i51j41.tif",
+    "dwqs2_i48j126.tif",
+    "dwqs2_i51j70.tif",
+    "dwqs2_i58j73.tif",
+    "dwqs2_i39j113.tif",
+    "dwqs2_i50j52.tif",
+    "dwqs2_i38j118.tif",
+    "dwqs2_i95j32.tif",
+    "dwqs2_i77j112.tif",
+    "dwqs2_i32j102.tif",
+    "dwqs2_i68j88.tif",
+    "dwqs2_i47j34.tif",
+    "dwqs2_i105j66.tif",
+    "dwqs2_i79j49.tif",
+    "dwqs2_i55j82.tif",
+    "dwqs2_i61j134.tif",
+    "dwqs2_i35j44.tif",
+    "dwqs2_i52j160.tif",
+    "dwqs2_i48j39.tif",
+    "dwqs2_i74j95.tif",
+    "dwqs2_i48j117.tif",
+    "dwqs2_i38j97.tif",
+    "dwqs2_i109j47.tif",
+    "dwqs2_i40j80.tif",
+    "dwqs2_i24j31.tif",
+    "dwqs2_i51j101.tif",
+    "dwqs2_i33j15.tif",
+    "dwqs2_i36j31.tif",
+    "dwqs2_i27j101.tif",
+    "dwqs2_i39j59.tif",
+    "dwqs2_i39j115.tif",
+    "dwqs2_i57j128.tif",
+    "dwqs2_i42j137.tif",
+    "dwqs2_i72j124.tif",
+    "dwqs2_i72j85.tif"
+   ]
+  },
+  {
+   "cls": 1,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_1/unet_epoch104_best_val.pth",
+   "sha": "59cd4ed6d37b863e49f6cb258ab33218a2ce24e7e76976a091da7ed4c44e9512",
+   "ref": [
+    "xjl8_i17j5.tif",
+    "xjl8_i17j19.tif",
+    "xjl8_i15j5.tif",
+    "xjl8_i22j11.tif",
+    "xjl8_i17j13.tif",
+    "xjl8_i16j13.tif",
+    "xjl8_i11j15.tif",
+    "xjl8_i3j17.tif",
+    "xjl8_i15j9.tif",
+    "xjl8_i5j13.tif",
+    "xjl8_i14j4.tif",
+    "xjl8_i4j10.tif",
+    "xjl8_i13j19.tif",
+    "xjl8_i22j23.tif",
+    "xjl8_i13j18.tif",
+    "xjl8_i21j3.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i12j15.tif",
+    "xjl8_i11j17.tif",
+    "xjl8_i12j10.tif",
+    "xjl8_i18j10.tif",
+    "xjl8_i14j15.tif",
+    "xjl8_i24j15.tif",
+    "xjl8_i5j26.tif",
+    "xjl8_i12j13.tif",
+    "xjl8_i21j9.tif",
+    "xjl8_i22j19.tif",
+    "xjl8_i13j11.tif",
+    "xjl8_i25j14.tif",
+    "xjl8_i22j16.tif",
+    "xjl8_i14j12.tif",
+    "xjl8_i19j15.tif",
+    "xjl8_i12j16.tif",
+    "xjl8_i14j8.tif",
+    "xjl8_i19j6.tif",
+    "xjl8_i17j9.tif",
+    "xjl8_i11j12.tif",
+    "xjl8_i6j22.tif",
+    "xjl8_i25j16.tif",
+    "xjl8_i15j13.tif",
+    "xjl8_i1j7.tif",
+    "xjl8_i2j10.tif",
+    "xjl8_i15j19.tif",
+    "xjl8_i11j19.tif",
+    "xjl8_i13j23.tif",
+    "xjl8_i15j6.tif",
+    "xjl8_i23j21.tif",
+    "xjl8_i6j20.tif",
+    "xjl8_i6j7.tif",
+    "xjl8_i9j13.tif",
+    "xjl8_i3j12.tif",
+    "xjl8_i9j23.tif",
+    "xjl8_i17j7.tif",
+    "xjl8_i19j2.tif",
+    "xjl8_i18j3.tif",
+    "xjl8_i12j11.tif",
+    "xjl8_i15j20.tif",
+    "xjl8_i4j12.tif",
+    "xjl8_i22j5.tif",
+    "xjl8_i23j5.tif",
+    "xjl8_i16j20.tif",
+    "xjl8_i22j14.tif",
+    "xjl8_i14j25.tif",
+    "xjl8_i8j21.tif"
+   ]
+  },
+  {
+   "cls": 1,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_1/unet_epoch137_best_val.pth",
+   "sha": "8e5f2ce5b39881c4598d4a567a2655790bfff68a507c63ce9c55a44ed1984310",
+   "ref": [
+    "xjs2_i67j22.tif",
+    "xjs2_i37j15.tif",
+    "xjs2_i24j48.tif",
+    "xjs2_i67j50.tif",
+    "xjs2_i21j76.tif",
+    "xjs2_i33j79.tif",
+    "xjs2_i49j39.tif",
+    "xjs2_i52j44.tif",
+    "xjs2_i51j64.tif",
+    "xjs2_i54j47.tif",
+    "xjs2_i64j10.tif",
+    "xjs2_i59j60.tif",
+    "xjs2_i23j73.tif",
+    "xjs2_i47j15.tif",
+    "xjs2_i18j70.tif",
+    "xjs2_i66j53.tif",
+    "xjs2_i35j67.tif",
+    "xjs2_i71j55.tif",
+    "xjs2_i17j69.tif",
+    "xjs2_i38j26.tif",
+    "xjs2_i43j9.tif",
+    "xjs2_i4j27.tif",
+    "xjs2_i18j27.tif",
+    "xjs2_i12j38.tif",
+    "xjs2_i55j6.tif",
+    "xjs2_i39j33.tif",
+    "xjs2_i51j74.tif",
+    "xjs2_i46j56.tif",
+    "xjs2_i45j53.tif",
+    "xjs2_i22j49.tif",
+    "xjs2_i74j22.tif",
+    "xjs2_i24j76.tif",
+    "xjs2_i38j19.tif",
+    "xjs2_i60j15.tif",
+    "xjs2_i25j59.tif",
+    "xjs2_i13j38.tif",
+    "xjs2_i46j74.tif",
+    "xjs2_i26j39.tif",
+    "xjs2_i34j22.tif",
+    "xjs2_i42j8.tif",
+    "xjs2_i38j33.tif",
+    "xjs2_i74j21.tif",
+    "xjs2_i55j63.tif",
+    "xjs2_i34j75.tif",
+    "xjs2_i27j33.tif",
+    "xjs2_i64j61.tif",
+    "xjs2_i25j37.tif",
+    "xjs2_i24j34.tif",
+    "xjs2_i39j56.tif",
+    "xjs2_i40j43.tif",
+    "xjs2_i70j35.tif",
+    "xjs2_i23j82.tif",
+    "xjs2_i49j23.tif",
+    "xjs2_i28j27.tif",
+    "xjs2_i18j73.tif",
+    "xjs2_i81j56.tif",
+    "xjs2_i40j20.tif",
+    "xjs2_i58j32.tif",
+    "xjs2_i29j60.tif",
+    "xjs2_i82j49.tif",
+    "xjs2_i29j21.tif",
+    "xjs2_i67j42.tif",
+    "xjs2_i76j34.tif",
+    "xjs2_i35j35.tif"
+   ]
+  },
+  {
+   "cls": 2,
+   "src": "dwq_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_2/unet_epoch518_best_val.pth",
+   "sha": "6460ec6ee5bea59a4ba8ba3bdd95936b20fb5722d384be69ecead144942fac73",
+   "ref": [
+    "dwql8_i17j15.tif",
+    "dwql8_i7j14.tif",
+    "dwql8_i12j40.tif",
+    "dwql8_i8j37.tif",
+    "dwql8_i13j35.tif",
+    "dwql8_i13j15.tif",
+    "dwql8_i15j31.tif",
+    "dwql8_i34j15.tif",
+    "dwql8_i10j17.tif",
+    "dwql8_i14j5.tif",
+    "dwql8_i16j16.tif",
+    "dwql8_i24j15.tif",
+    "dwql8_i24j35.tif",
+    "dwql8_i14j27.tif",
+    "dwql8_i13j6.tif",
+    "dwql8_i19j41.tif",
+    "dwql8_i5j12.tif",
+    "dwql8_i14j22.tif",
+    "dwql8_i12j32.tif",
+    "dwql8_i29j13.tif",
+    "dwql8_i32j28.tif",
+    "dwql8_i10j13.tif",
+    "dwql8_i11j38.tif",
+    "dwql8_i18j26.tif",
+    "dwql8_i30j29.tif",
+    "dwql8_i11j26.tif",
+    "dwql8_i22j15.tif",
+    "dwql8_i6j12.tif",
+    "dwql8_i26j28.tif",
+    "dwql8_i14j36.tif",
+    "dwql8_i26j37.tif",
+    "dwql8_i17j29.tif",
+    "dwql8_i5j9.tif",
+    "dwql8_i33j25.tif",
+    "dwql8_i28j20.tif",
+    "dwql8_i27j42.tif",
+    "dwql8_i15j8.tif",
+    "dwql8_i15j4.tif",
+    "dwql8_i16j37.tif",
+    "dwql8_i32j16.tif",
+    "dwql8_i23j24.tif",
+    "dwql8_i16j1.tif",
+    "dwql8_i14j6.tif",
+    "dwql8_i18j17.tif",
+    "dwql8_i19j40.tif",
+    "dwql8_i24j24.tif",
+    "dwql8_i16j10.tif",
+    "dwql8_i11j4.tif",
+    "dwql8_i14j23.tif",
+    "dwql8_i22j42.tif",
+    "dwql8_i21j46.tif",
+    "dwql8_i12j15.tif",
+    "dwql8_i24j27.tif",
+    "dwql8_i27j22.tif",
+    "dwql8_i8j11.tif",
+    "dwql8_i12j13.tif",
+    "dwql8_i9j34.tif",
+    "dwql8_i32j20.tif",
+    "dwql8_i15j33.tif",
+    "dwql8_i28j21.tif",
+    "dwql8_i23j26.tif",
+    "dwql8_i9j10.tif",
+    "dwql8_i14j17.tif",
+    "dwql8_i21j41.tif"
+   ]
+  },
+  {
+   "cls": 2,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_2/unet_epoch113_best_val.pth",
+   "sha": "eaa307ecb825ca30077b23a207e2bf38be72bd2781b46c960a4cbd27291a6ab9",
+   "ref": [
+    "dwqs2_i55j102.tif",
+    "dwqs2_i51j101.tif",
+    "dwqs2_i32j29.tif",
+    "dwqs2_i92j77.tif",
+    "dwqs2_i63j123.tif",
+    "dwqs2_i74j93.tif",
+    "dwqs2_i34j16.tif",
+    "dwqs2_i96j32.tif",
+    "dwqs2_i62j80.tif",
+    "dwqs2_i58j127.tif",
+    "dwqs2_i44j85.tif",
+    "dwqs2_i67j80.tif",
+    "dwqs2_i45j117.tif",
+    "dwqs2_i68j44.tif",
+    "dwqs2_i22j46.tif",
+    "dwqs2_i74j60.tif",
+    "dwqs2_i59j92.tif",
+    "dwqs2_i109j44.tif",
+    "dwqs2_i85j52.tif",
+    "dwqs2_i42j44.tif",
+    "dwqs2_i33j34.tif",
+    "dwqs2_i48j85.tif",
+    "dwqs2_i73j94.tif",
+    "dwqs2_i46j109.tif",
+    "dwqs2_i64j58.tif",
+    "dwqs2_i41j46.tif",
+    "dwqs2_i36j59.tif",
+    "dwqs2_i45j19.tif",
+    "dwqs2_i67j86.tif",
+    "dwqs2_i70j46.tif",
+    "dwqs2_i42j113.tif",
+    "dwqs2_i62j142.tif",
+    "dwqs2_i49j114.tif",
+    "dwqs2_i48j26.tif",
+    "dwqs2_i65j64.tif",
+    "dwqs2_i31j106.tif",
+    "dwqs2_i37j41.tif",
+    "dwqs2_i69j103.tif",
+    "dwqs2_i101j47.tif",
+    "dwqs2_i54j116.tif",
+    "dwqs2_i70j126.tif",
+    "dwqs2_i78j83.tif",
+    "dwqs2_i40j105.tif",
+    "dwqs2_i49j40.tif",
+    "dwqs2_i78j111.tif",
+    "dwqs2_i30j105.tif",
+    "dwqs2_i10j34.tif",
+    "dwqs2_i60j116.tif",
+    "dwqs2_i44j53.tif",
+    "dwqs2_i38j80.tif",
+    "dwqs2_i61j125.tif",
+    "dwqs2_i77j85.tif",
+    "dwqs2_i20j34.tif",
+    "dwqs2_i44j3.tif",
+    "dwqs2_i99j49.tif",
+    "dwqs2_i46j23.tif",
+    "dwqs2_i50j27.tif",
+    "dwqs2_i93j77.tif",
+    "dwqs2_i38j118.tif",
+    "dwqs2_i85j112.tif",
+    "dwqs2_i47j111.tif",
+    "dwqs2_i25j111.tif",
+    "dwqs2_i39j101.tif",
+    "dwqs2_i47j41.tif"
+   ]
+  },
+  {
+   "cls": 2,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_2/unet_epoch200_best_val.pth",
+   "sha": "17983a76c9fb5d3817a4359189bccea98e7be80f0d2476be7d4fcea88defd732",
+   "ref": [
+    "xjs2_i53j44.tif",
+    "xjs2_i55j10.tif",
+    "xjs2_i75j54.tif",
+    "xjs2_i15j67.tif",
+    "xjs2_i32j75.tif",
+    "xjs2_i10j29.tif",
+    "xjs2_i68j28.tif",
+    "xjs2_i39j31.tif",
+    "xjs2_i40j69.tif",
+    "xjs2_i34j79.tif",
+    "xjs2_i51j10.tif",
+    "xjs2_i34j17.tif",
+    "xjs2_i22j22.tif",
+    "xjs2_i60j9.tif",
+    "xjs2_i64j10.tif",
+    "xjs2_i13j38.tif",
+    "xjs2_i21j28.tif",
+    "xjs2_i30j52.tif",
+    "xjs2_i50j11.tif",
+    "xjs2_i57j68.tif",
+    "xjs2_i76j26.tif",
+    "xjs2_i32j28.tif",
+    "xjs2_i43j63.tif",
+    "xjs2_i53j8.tif",
+    "xjs2_i59j25.tif",
+    "xjs2_i50j23.tif",
+    "xjs2_i52j69.tif",
+    "xjs2_i80j66.tif",
+    "xjs2_i86j66.tif",
+    "xjs2_i44j51.tif",
+    "xjs2_i46j75.tif",
+    "xjs2_i11j34.tif",
+    "xjs2_i17j64.tif",
+    "xjs2_i62j43.tif",
+    "xjs2_i18j68.tif",
+    "xjs2_i45j38.tif",
+    "xjs2_i56j21.tif",
+    "xjs2_i67j16.tif",
+    "xjs2_i39j33.tif",
+    "xjs2_i31j30.tif",
+    "xjs2_i68j5.tif",
+    "xjs2_i62j66.tif",
+    "xjs2_i75j68.tif",
+    "xjs2_i39j34.tif",
+    "xjs2_i7j31.tif",
+    "xjs2_i51j76.tif",
+    "xjs2_i15j37.tif",
+    "xjs2_i61j67.tif",
+    "xjs2_i18j66.tif",
+    "xjs2_i34j72.tif",
+    "xjs2_i63j56.tif",
+    "xjs2_i26j21.tif",
+    "xjs2_i65j22.tif",
+    "xjs2_i41j51.tif",
+    "xjs2_i61j65.tif",
+    "xjs2_i49j12.tif",
+    "xjs2_i29j50.tif",
+    "xjs2_i54j73.tif",
+    "xjs2_i34j20.tif",
+    "xjs2_i63j55.tif",
+    "xjs2_i70j35.tif",
+    "xjs2_i14j37.tif",
+    "xjs2_i31j54.tif",
+    "xjs2_i59j62.tif"
+   ]
+  },
+  {
+   "cls": 3,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_3/unet_epoch174_best_val.pth",
+   "sha": "50ade8613411a66451403819b59463bd27d5a022343f7d7fee4db90cfa1644f0",
+   "ref": [
+    "dwqs2_i9j42.tif",
+    "dwqs2_i42j85.tif",
+    "dwqs2_i33j34.tif",
+    "dwqs2_i50j21.tif",
+    "dwqs2_i95j39.tif",
+    "dwqs2_i48j78.tif",
+    "dwqs2_i81j77.tif",
+    "dwqs2_i53j98.tif",
+    "dwqs2_i76j63.tif",
+    "dwqs2_i53j69.tif",
+    "dwqs2_i42j38.tif",
+    "dwqs2_i62j97.tif",
+    "dwqs2_i96j80.tif",
+    "dwqs2_i34j112.tif",
+    "dwqs2_i56j106.tif",
+    "dwqs2_i55j131.tif",
+    "dwqs2_i61j78.tif",
+    "dwqs2_i92j44.tif",
+    "dwqs2_i39j94.tif",
+    "dwqs2_i30j115.tif",
+    "dwqs2_i30j51.tif",
+    "dwqs2_i104j57.tif",
+    "dwqs2_i34j39.tif",
+    "dwqs2_i77j78.tif",
+    "dwqs2_i56j107.tif",
+    "dwqs2_i69j85.tif",
+    "dwqs2_i107j54.tif",
+    "dwqs2_i68j61.tif",
+    "dwqs2_i59j55.tif",
+    "dwqs2_i57j118.tif",
+    "dwqs2_i49j45.tif",
+    "dwqs2_i58j152.tif",
+    "dwqs2_i16j30.tif",
+    "dwqs2_i45j127.tif",
+    "dwqs2_i86j64.tif",
+    "dwqs2_i57j122.tif",
+    "dwqs2_i84j83.tif",
+    "dwqs2_i44j19.tif",
+    "dwqs2_i22j104.tif",
+    "dwqs2_i53j111.tif",
+    "dwqs2_i54j140.tif",
+    "dwqs2_i47j33.tif",
+    "dwqs2_i48j79.tif",
+    "dwqs2_i58j53.tif",
+    "dwqs2_i67j48.tif",
+    "dwqs2_i76j82.tif",
+    "dwqs2_i35j122.tif",
+    "dwqs2_i22j44.tif",
+    "dwqs2_i39j117.tif",
+    "dwqs2_i90j65.tif",
+    "dwqs2_i39j5.tif",
+    "dwqs2_i73j148.tif",
+    "dwqs2_i95j82.tif",
+    "dwqs2_i90j108.tif",
+    "dwqs2_i89j55.tif",
+    "dwqs2_i26j17.tif",
+    "dwqs2_i94j40.tif",
+    "dwqs2_i69j62.tif",
+    "dwqs2_i1j40.tif",
+    "dwqs2_i7j38.tif",
+    "dwqs2_i36j81.tif",
+    "dwqs2_i73j88.tif",
+    "dwqs2_i28j34.tif",
+    "dwqs2_i48j45.tif"
+   ]
+  },
+  {
+   "cls": 3,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_3/unet_epoch288_best_val.pth",
+   "sha": "04409aa7cff67430189af2ba7fd93c8dac7106ab949cd1af338d15983aea780c",
+   "ref": [
+    "xjl8_i13j23.tif",
+    "xjl8_i8j7.tif",
+    "xjl8_i21j5.tif",
+    "xjl8_i5j23.tif",
+    "xjl8_i6j25.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i20j3.tif",
+    "xjl8_i15j9.tif",
+    "xjl8_i5j16.tif",
+    "xjl8_i20j8.tif",
+    "xjl8_i19j6.tif",
+    "xjl8_i14j6.tif",
+    "xjl8_i14j18.tif",
+    "xjl8_i24j15.tif",
+    "xjl8_i16j13.tif",
+    "xjl8_i23j21.tif",
+    "xjl8_i16j8.tif",
+    "xjl8_i23j17.tif",
+    "xjl8_i9j23.tif",
+    "xjl8_i11j4.tif",
+    "xjl8_i22j11.tif",
+    "xjl8_i22j16.tif",
+    "xjl8_i21j9.tif",
+    "xjl8_i7j8.tif",
+    "xjl8_i24j19.tif",
+    "xjl8_i22j10.tif",
+    "xjl8_i25j16.tif",
+    "xjl8_i5j12.tif",
+    "xjl8_i23j11.tif",
+    "xjl8_i9j17.tif",
+    "xjl8_i15j11.tif",
+    "xjl8_i8j14.tif",
+    "xjl8_i23j15.tif",
+    "xjl8_i25j12.tif",
+    "xjl8_i25j9.tif",
+    "xjl8_i14j8.tif",
+    "xjl8_i6j14.tif",
+    "xjl8_i19j17.tif",
+    "xjl8_i20j14.tif",
+    "xjl8_i25j8.tif",
+    "xjl8_i11j20.tif",
+    "xjl8_i15j7.tif",
+    "xjl8_i11j14.tif",
+    "xjl8_i17j20.tif",
+    "xjl8_i25j14.tif",
+    "xjl8_i26j18.tif",
+    "xjl8_i14j21.tif",
+    "xjl8_i13j21.tif",
+    "xjl8_i6j17.tif",
+    "xjl8_i24j11.tif",
+    "xjl8_i6j18.tif",
+    "xjl8_i6j22.tif",
+    "xjl8_i14j12.tif",
+    "xjl8_i9j13.tif",
+    "xjl8_i11j17.tif",
+    "xjl8_i11j11.tif",
+    "xjl8_i17j5.tif",
+    "xjl8_i17j7.tif",
+    "xjl8_i15j8.tif",
+    "xjl8_i10j26.tif",
+    "xjl8_i9j10.tif",
+    "xjl8_i19j15.tif",
+    "xjl8_i10j9.tif",
+    "xjl8_i22j19.tif"
+   ]
+  },
+  {
+   "cls": 3,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_3/unet_epoch193_best_val.pth",
+   "sha": "327f1f5e8aceb8fc10d6ea59ddc4e356b2ecdc6ac24c1c4f25acb254bb12e3a8",
+   "ref": [
+    "xjs2_i61j66.tif",
+    "xjs2_i51j29.tif",
+    "xjs2_i25j72.tif",
+    "xjs2_i47j26.tif",
+    "xjs2_i10j46.tif",
+    "xjs2_i65j59.tif",
+    "xjs2_i36j33.tif",
+    "xjs2_i53j48.tif",
+    "xjs2_i57j29.tif",
+    "xjs2_i36j12.tif",
+    "xjs2_i46j56.tif",
+    "xjs2_i28j24.tif",
+    "xjs2_i43j26.tif",
+    "xjs2_i78j46.tif",
+    "xjs2_i25j71.tif",
+    "xjs2_i26j15.tif",
+    "xjs2_i37j42.tif",
+    "xjs2_i15j38.tif",
+    "xjs2_i50j9.tif",
+    "xjs2_i77j62.tif",
+    "xjs2_i25j23.tif",
+    "xjs2_i58j70.tif",
+    "xjs2_i65j31.tif",
+    "xjs2_i75j24.tif",
+    "xjs2_i44j17.tif",
+    "xjs2_i66j17.tif",
+    "xjs2_i76j22.tif",
+    "xjs2_i64j61.tif",
+    "xjs2_i68j12.tif",
+    "xjs2_i25j46.tif",
+    "xjs2_i33j80.tif",
+    "xjs2_i19j61.tif",
+    "xjs2_i34j28.tif",
+    "xjs2_i34j17.tif",
+    "xjs2_i29j73.tif",
+    "xjs2_i27j76.tif",
+    "xjs2_i58j58.tif",
+    "xjs2_i23j74.tif",
+    "xjs2_i34j71.tif",
+    "xjs2_i76j64.tif",
+    "xjs2_i30j39.tif",
+    "xjs2_i78j55.tif",
+    "xjs2_i17j77.tif",
+    "xjs2_i73j50.tif",
+    "xjs2_i73j25.tif",
+    "xjs2_i58j9.tif",
+    "xjs2_i47j55.tif",
+    "xjs2_i49j12.tif",
+    "xjs2_i53j68.tif",
+    "xjs2_i60j60.tif",
+    "xjs2_i48j71.tif",
+    "xjs2_i16j31.tif",
+    "xjs2_i59j10.tif",
+    "xjs2_i54j59.tif",
+    "xjs2_i19j40.tif",
+    "xjs2_i19j80.tif",
+    "xjs2_i58j30.tif",
+    "xjs2_i24j51.tif",
+    "xjs2_i70j21.tif",
+    "xjs2_i57j50.tif",
+    "xjs2_i21j62.tif",
+    "xjs2_i37j67.tif",
+    "xjs2_i15j28.tif",
+    "xjs2_i42j43.tif"
+   ]
+  },
+  {
+   "cls": 4,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_4/unet_epoch59_best_val.pth",
+   "sha": "de342782ba96fb5870471ad0f97fbb7df20001877ea2bb7ef5bd3542bf71f850",
+   "ref": [
+    "xjs2_i41j33.tif",
+    "xjs2_i15j74.tif",
+    "xjs2_i38j62.tif",
+    "xjs2_i61j68.tif",
+    "xjs2_i45j22.tif",
+    "xjs2_i25j59.tif",
+    "xjs2_i51j25.tif",
+    "xjs2_i62j22.tif",
+    "xjs2_i31j26.tif",
+    "xjs2_i71j11.tif",
+    "xjs2_i70j66.tif",
+    "xjs2_i38j25.tif",
+    "xjs2_i40j34.tif",
+    "xjs2_i47j17.tif",
+    "xjs2_i72j65.tif",
+    "xjs2_i26j18.tif",
+    "xjs2_i70j1.tif",
+    "xjs2_i28j56.tif",
+    "xjs2_i11j45.tif",
+    "xjs2_i9j48.tif",
+    "xjs2_i31j14.tif",
+    "xjs2_i68j48.tif",
+    "xjs2_i52j23.tif",
+    "xjs2_i76j50.tif",
+    "xjs2_i22j14.tif",
+    "xjs2_i39j61.tif",
+    "xjs2_i60j41.tif",
+    "xjs2_i68j61.tif",
+    "xjs2_i17j22.tif",
+    "xjs2_i1j20.tif",
+    "xjs2_i49j56.tif",
+    "xjs2_i60j17.tif",
+    "xjs2_i50j35.tif",
+    "xjs2_i58j59.tif",
+    "xjs2_i18j68.tif",
+    "xjs2_i18j65.tif",
+    "xjs2_i44j47.tif",
+    "xjs2_i43j29.tif",
+    "xjs2_i14j19.tif",
+    "xjs2_i82j51.tif",
+    "xjs2_i35j52.tif",
+    "xjs2_i29j81.tif",
+    "xjs2_i15j28.tif",
+    "xjs2_i60j39.tif",
+    "xjs2_i60j46.tif",
+    "xjs2_i31j12.tif",
+    "xjs2_i51j44.tif",
+    "xjs2_i30j76.tif",
+    "xjs2_i59j74.tif",
+    "xjs2_i25j34.tif",
+    "xjs2_i61j70.tif",
+    "xjs2_i65j41.tif",
+    "xjs2_i53j32.tif",
+    "xjs2_i56j30.tif",
+    "xjs2_i40j9.tif",
+    "xjs2_i50j17.tif",
+    "xjs2_i48j46.tif",
+    "xjs2_i35j74.tif",
+    "xjs2_i15j38.tif",
+    "xjs2_i47j34.tif",
+    "xjs2_i40j29.tif",
+    "xjs2_i42j47.tif",
+    "xjs2_i55j72.tif",
+    "xjs2_i63j37.tif"
+   ]
+  },
+  {
+   "cls": 5,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_5/unet_epoch961_best_val.pth",
+   "sha": "c47cb292a622f8fded25c20a4fd1888b8b232bc502803cca72277fbcc50b44b0",
+   "ref": [
+    "xjl8_i14j6.tif",
+    "xjl8_i12j20.tif",
+    "xjl8_i24j16.tif",
+    "xjl8_i11j19.tif",
+    "xjl8_i17j19.tif",
+    "xjl8_i14j15.tif",
+    "xjl8_i17j5.tif",
+    "xjl8_i3j14.tif",
+    "xjl8_i11j4.tif",
+    "xjl8_i15j13.tif",
+    "xjl8_i20j10.tif",
+    "xjl8_i15j19.tif",
+    "xjl8_i25j8.tif",
+    "xjl8_i13j21.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i12j15.tif",
+    "xjl8_i21j9.tif",
+    "xjl8_i28j22.tif",
+    "xjl8_i18j17.tif",
+    "xjl8_i6j25.tif",
+    "xjl8_i9j23.tif",
+    "xjl8_i19j2.tif",
+    "xjl8_i19j6.tif",
+    "xjl8_i13j19.tif",
+    "xjl8_i11j10.tif",
+    "xjl8_i19j23.tif",
+    "xjl8_i6j20.tif",
+    "xjl8_i18j18.tif",
+    "xjl8_i18j6.tif",
+    "xjl8_i11j20.tif",
+    "xjl8_i14j24.tif",
+    "xjl8_i14j25.tif",
+    "xjl8_i15j5.tif",
+    "xjl8_i5j11.tif",
+    "xjl8_i11j15.tif",
+    "xjl8_i21j3.tif",
+    "xjl8_i14j12.tif",
+    "xjl8_i7j23.tif",
+    "xjl8_i12j11.tif",
+    "xjl8_i5j9.tif",
+    "xjl8_i25j9.tif",
+    "xjl8_i14j4.tif",
+    "xjl8_i25j13.tif",
+    "xjl8_i17j7.tif",
+    "xjl8_i5j12.tif",
+    "xjl8_i21j4.tif",
+    "xjl8_i27j17.tif",
+    "xjl8_i18j13.tif",
+    "xjl8_i16j19.tif",
+    "xjl8_i7j8.tif",
+    "xjl8_i12j3.tif",
+    "xjl8_i20j8.tif",
+    "xjl8_i12j16.tif",
+    "xjl8_i20j14.tif",
+    "xjl8_i6j14.tif",
+    "xjl8_i11j11.tif",
+    "xjl8_i17j22.tif",
+    "xjl8_i6j23.tif",
+    "xjl8_i14j18.tif",
+    "xjl8_i12j10.tif",
+    "xjl8_i24j13.tif",
+    "xjl8_i6j10.tif",
+    "xjl8_i22j10.tif",
+    "xjl8_i26j18.tif"
+   ]
+  },
+  {
+   "cls": 5,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_5/unet_epoch180_best_val.pth",
+   "sha": "d8f0b2d1a1656115c8b2e6dfdb4c23f408fbd9295e4ab76b4f8b387f29f0935a",
+   "ref": [
+    "xjs2_i30j21.tif",
+    "xjs2_i56j33.tif",
+    "xjs2_i76j35.tif",
+    "xjs2_i78j41.tif",
+    "xjs2_i60j66.tif",
+    "xjs2_i50j37.tif",
+    "xjs2_i31j77.tif",
+    "xjs2_i53j32.tif",
+    "xjs2_i39j65.tif",
+    "xjs2_i12j64.tif",
+    "xjs2_i74j65.tif",
+    "xjs2_i60j15.tif",
+    "xjs2_i61j13.tif",
+    "xjs2_i76j26.tif",
+    "xjs2_i80j63.tif",
+    "xjs2_i16j30.tif",
+    "xjs2_i56j8.tif",
+    "xjs2_i62j66.tif",
+    "xjs2_i66j68.tif",
+    "xjs2_i23j26.tif",
+    "xjs2_i52j15.tif",
+    "xjs2_i44j39.tif",
+    "xjs2_i38j38.tif",
+    "xjs2_i64j2.tif",
+    "xjs2_i26j57.tif",
+    "xjs2_i28j56.tif",
+    "xjs2_i32j55.tif",
+    "xjs2_i66j55.tif",
+    "xjs2_i33j26.tif",
+    "xjs2_i32j61.tif",
+    "xjs2_i57j36.tif",
+    "xjs2_i64j35.tif",
+    "xjs2_i34j78.tif",
+    "xjs2_i38j58.tif",
+    "xjs2_i73j36.tif",
+    "xjs2_i12j54.tif",
+    "xjs2_i52j27.tif",
+    "xjs2_i69j8.tif",
+    "xjs2_i43j40.tif",
+    "xjs2_i19j40.tif",
+    "xjs2_i36j55.tif",
+    "xjs2_i14j63.tif",
+    "xjs2_i58j58.tif",
+    "xjs2_i56j21.tif",
+    "xjs2_i72j68.tif",
+    "xjs2_i49j19.tif",
+    "xjs2_i22j18.tif",
+    "xjs2_i64j55.tif",
+    "xjs2_i18j70.tif",
+    "xjs2_i18j30.tif",
+    "xjs2_i37j64.tif",
+    "xjs2_i40j16.tif",
+    "xjs2_i68j33.tif",
+    "xjs2_i29j60.tif",
+    "xjs2_i81j47.tif",
+    "xjs2_i18j49.tif",
+    "xjs2_i31j79.tif",
+    "xjs2_i39j46.tif",
+    "xjs2_i74j43.tif",
+    "xjs2_i29j33.tif",
+    "xjs2_i40j74.tif",
+    "xjs2_i82j45.tif",
+    "xjs2_i30j76.tif",
+    "xjs2_i7j35.tif"
+   ]
+  },
+  {
+   "cls": 6,
+   "src": "dwq_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_6/unet_epoch287_best_val.pth",
+   "sha": "0b17473e1cdcfffe097cc9ad52c99e7d3e34e0934c1aa06f2f095ef37c8c8b3c",
+   "ref": [
+    "dwql8_i17j9.tif",
+    "dwql8_i8j14.tif",
+    "dwql8_i19j40.tif",
+    "dwql8_i9j9.tif",
+    "dwql8_i33j20.tif",
+    "dwql8_i3j12.tif",
+    "dwql8_i13j16.tif",
+    "dwql8_i19j22.tif",
+    "dwql8_i30j29.tif",
+    "dwql8_i24j20.tif",
+    "dwql8_i19j45.tif",
+    "dwql8_i19j39.tif",
+    "dwql8_i12j15.tif",
+    "dwql8_i8j32.tif",
+    "dwql8_i29j28.tif",
+    "dwql8_i14j39.tif",
+    "dwql8_i31j12.tif",
+    "dwql8_i11j38.tif",
+    "dwql8_i12j16.tif",
+    "dwql8_i15j20.tif",
+    "dwql8_i24j46.tif",
+    "dwql8_i28j28.tif",
+    "dwql8_i7j14.tif",
+    "dwql8_i31j28.tif",
+    "dwql8_i9j8.tif",
+    "dwql8_i14j42.tif",
+    "dwql8_i25j47.tif",
+    "dwql8_i14j27.tif",
+    "dwql8_i29j12.tif",
+    "dwql8_i17j25.tif",
+    "dwql8_i31j14.tif",
+    "dwql8_i21j39.tif",
+    "dwql8_i13j35.tif",
+    "dwql8_i13j14.tif",
+    "dwql8_i8j11.tif",
+    "dwql8_i34j19.tif",
+    "dwql8_i17j48.tif",
+    "dwql8_i13j28.tif",
+    "dwql8_i17j39.tif",
+    "dwql8_i19j21.tif",
+    "dwql8_i9j14.tif",
+    "dwql8_i23j18.tif",
+    "dwql8_i13j10.tif",
+    "dwql8_i31j27.tif",
+    "dwql8_i14j7.tif",
+    "dwql8_i11j4.tif",
+    "dwql8_i8j37.tif",
+    "dwql8_i9j31.tif",
+    "dwql8_i27j17.tif",
+    "dwql8_i16j43.tif",
+    "dwql8_i25j36.tif",
+    "dwql8_i11j26.tif",
+    "dwql8_i7j9.tif",
+    "dwql8_i16j28.tif",
+    "dwql8_i18j33.tif",
+    "dwql8_i28j37.tif",
+    "dwql8_i22j15.tif",
+    "dwql8_i16j5.tif",
+    "dwql8_i6j12.tif",
+    "dwql8_i30j25.tif",
+    "dwql8_i32j16.tif",
+    "dwql8_i21j47.tif",
+    "dwql8_i11j11.tif",
+    "dwql8_i14j9.tif"
+   ]
+  },
+  {
+   "cls": 6,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_6/unet_epoch71_best_val.pth",
+   "sha": "a1c16ecfcea252bd62a7935c0add8118e114288947bdfa1fc151733fd1a74bf3",
+   "ref": [
+    "dwqs2_i36j113.tif",
+    "dwqs2_i68j88.tif",
+    "dwqs2_i79j71.tif",
+    "dwqs2_i41j86.tif",
+    "dwqs2_i35j79.tif",
+    "dwqs2_i96j41.tif",
+    "dwqs2_i78j57.tif",
+    "dwqs2_i44j124.tif",
+    "dwqs2_i39j7.tif",
+    "dwqs2_i48j55.tif",
+    "dwqs2_i41j48.tif",
+    "dwqs2_i46j52.tif",
+    "dwqs2_i37j40.tif",
+    "dwqs2_i25j126.tif",
+    "dwqs2_i42j67.tif",
+    "dwqs2_i71j62.tif",
+    "dwqs2_i41j127.tif",
+    "dwqs2_i12j37.tif",
+    "dwqs2_i45j133.tif",
+    "dwqs2_i99j85.tif",
+    "dwqs2_i55j66.tif",
+    "dwqs2_i64j85.tif",
+    "dwqs2_i16j28.tif",
+    "dwqs2_i89j88.tif",
+    "dwqs2_i61j55.tif",
+    "dwqs2_i87j73.tif",
+    "dwqs2_i38j5.tif",
+    "dwqs2_i59j55.tif",
+    "dwqs2_i28j43.tif",
+    "dwqs2_i28j45.tif",
+    "dwqs2_i7j36.tif",
+    "dwqs2_i70j103.tif",
+    "dwqs2_i11j23.tif",
+    "dwqs2_i60j117.tif",
+    "dwqs2_i35j107.tif",
+    "dwqs2_i48j126.tif",
+    "dwqs2_i47j157.tif",
+    "dwqs2_i70j59.tif",
+    "dwqs2_i81j58.tif",
+    "dwqs2_i97j46.tif",
+    "dwqs2_i56j120.tif",
+    "dwqs2_i90j53.tif",
+    "dwqs2_i49j76.tif",
+    "dwqs2_i62j47.tif",
+    "dwqs2_i72j104.tif",
+    "dwqs2_i54j80.tif",
+    "dwqs2_i56j46.tif",
+    "dwqs2_i44j34.tif",
+    "dwqs2_i28j54.tif",
+    "dwqs2_i47j79.tif",
+    "dwqs2_i46j92.tif",
+    "dwqs2_i94j48.tif",
+    "dwqs2_i42j112.tif",
+    "dwqs2_i53j38.tif",
+    "dwqs2_i42j28.tif",
+    "dwqs2_i64j106.tif",
+    "dwqs2_i60j155.tif",
+    "dwqs2_i108j50.tif",
+    "dwqs2_i78j43.tif",
+    "dwqs2_i41j55.tif",
+    "dwqs2_i66j118.tif",
+    "dwqs2_i58j106.tif",
+    "dwqs2_i39j117.tif",
+    "dwqs2_i77j85.tif"
+   ]
+  },
+  {
+   "cls": 6,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_6/unet_epoch157_best_val.pth",
+   "sha": "01b2873c9588bf35a3e0ce4fcbc3727e398f60caa2b49925f32b4fcf5add7258",
+   "ref": [
+    "xjl8_i10j13.tif",
+    "xjl8_i15j7.tif",
+    "xjl8_i6j25.tif",
+    "xjl8_i9j4.tif",
+    "xjl8_i6j7.tif",
+    "xjl8_i5j23.tif",
+    "xjl8_i6j22.tif",
+    "xjl8_i12j16.tif",
+    "xjl8_i15j13.tif",
+    "xjl8_i15j6.tif",
+    "xjl8_i22j10.tif",
+    "xjl8_i22j14.tif",
+    "xjl8_i15j8.tif",
+    "xjl8_i25j21.tif",
+    "xjl8_i11j23.tif",
+    "xjl8_i4j20.tif",
+    "xjl8_i4j10.tif",
+    "xjl8_i28j22.tif",
+    "xjl8_i15j10.tif",
+    "xjl8_i21j3.tif",
+    "xjl8_i25j8.tif",
+    "xjl8_i6j17.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i24j11.tif",
+    "xjl8_i11j14.tif",
+    "xjl8_i23j9.tif",
+    "xjl8_i19j2.tif",
+    "xjl8_i25j9.tif",
+    "xjl8_i2j10.tif",
+    "xjl8_i24j7.tif",
+    "xjl8_i9j17.tif",
+    "xjl8_i11j10.tif",
+    "xjl8_i24j19.tif",
+    "xjl8_i4j12.tif",
+    "xjl8_i3j17.tif",
+    "xjl8_i14j4.tif",
+    "xjl8_i22j19.tif",
+    "xjl8_i13j13.tif",
+    "xjl8_i24j22.tif",
+    "xjl8_i8j21.tif",
+    "xjl8_i11j17.tif",
+    "xjl8_i25j12.tif",
+    "xjl8_i7j23.tif",
+    "xjl8_i12j3.tif",
+    "xjl8_i22j6.tif",
+    "xjl8_i16j8.tif",
+    "xjl8_i15j5.tif",
+    "xjl8_i14j21.tif",
+    "xjl8_i21j12.tif",
+    "xjl8_i17j22.tif",
+    "xjl8_i7j15.tif",
+    "xjl8_i13j6.tif",
+    "xjl8_i11j20.tif",
+    "xjl8_i18j6.tif",
+    "xjl8_i11j11.tif",
+    "xjl8_i5j12.tif",
+    "xjl8_i5j11.tif",
+    "xjl8_i7j8.tif",
+    "xjl8_i20j12.tif",
+    "xjl8_i6j18.tif",
+    "xjl8_i6j14.tif",
+    "xjl8_i19j17.tif",
+    "xjl8_i8j14.tif",
+    "xjl8_i19j7.tif"
+   ]
+  },
+  {
+   "cls": 6,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_6/unet_epoch199_best_val.pth",
+   "sha": "557f88a58e72f6d8bb8ddc22af03b214b70b508ce102e2c519f3fbaf55844951",
+   "ref": [
+    "xjs2_i44j63.tif",
+    "xjs2_i55j6.tif",
+    "xjs2_i42j12.tif",
+    "xjs2_i62j60.tif",
+    "xjs2_i58j66.tif",
+    "xjs2_i12j36.tif",
+    "xjs2_i36j29.tif",
+    "xjs2_i18j33.tif",
+    "xjs2_i16j54.tif",
+    "xjs2_i50j29.tif",
+    "xjs2_i47j59.tif",
+    "xjs2_i64j12.tif",
+    "xjs2_i21j20.tif",
+    "xjs2_i17j59.tif",
+    "xjs2_i18j71.tif",
+    "xjs2_i64j22.tif",
+    "xjs2_i15j78.tif",
+    "xjs2_i23j40.tif",
+    "xjs2_i73j11.tif",
+    "xjs2_i80j63.tif",
+    "xjs2_i18j55.tif",
+    "xjs2_i39j28.tif",
+    "xjs2_i39j23.tif",
+    "xjs2_i54j8.tif",
+    "xjs2_i53j66.tif",
+    "xjs2_i33j31.tif",
+    "xjs2_i75j51.tif",
+    "xjs2_i60j5.tif",
+    "xjs2_i48j71.tif",
+    "xjs2_i40j21.tif",
+    "xjs2_i69j34.tif",
+    "xjs2_i57j54.tif",
+    "xjs2_i16j30.tif",
+    "xjs2_i81j44.tif",
+    "xjs2_i21j48.tif",
+    "xjs2_i39j34.tif",
+    "xjs2_i80j58.tif",
+    "xjs2_i19j83.tif",
+    "xjs2_i4j27.tif",
+    "xjs2_i51j47.tif",
+    "xjs2_i23j57.tif",
+    "xjs2_i41j33.tif",
+    "xjs2_i34j19.tif",
+    "xjs2_i61j47.tif",
+    "xjs2_i59j71.tif",
+    "xjs2_i14j56.tif",
+    "xjs2_i36j77.tif",
+    "xjs2_i81j47.tif",
+    "xjs2_i61j68.tif",
+    "xjs2_i8j45.tif",
+    "xjs2_i24j47.tif",
+    "xjs2_i40j12.tif",
+    "xjs2_i25j74.tif",
+    "xjs2_i59j74.tif",
+    "xjs2_i71j21.tif",
+    "xjs2_i48j28.tif",
+    "xjs2_i48j46.tif",
+    "xjs2_i51j50.tif",
+    "xjs2_i36j10.tif",
+    "xjs2_i43j29.tif",
+    "xjs2_i63j46.tif",
+    "xjs2_i59j60.tif",
+    "xjs2_i37j59.tif",
+    "xjs2_i79j61.tif"
+   ]
+  },
+  {
+   "cls": 7,
+   "src": "dwq_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_7/unet_epoch195_best_val.pth",
+   "sha": "1e85d072c70b4acfa8a7a40e611a3cb0b669f5f4350ea3a3f92e611503b3604c",
+   "ref": [
+    "dwql8_i8j11.tif",
+    "dwql8_i17j18.tif",
+    "dwql8_i7j7.tif",
+    "dwql8_i16j44.tif",
+    "dwql8_i13j10.tif",
+    "dwql8_i18j43.tif",
+    "dwql8_i16j16.tif",
+    "dwql8_i27j24.tif",
+    "dwql8_i19j41.tif",
+    "dwql8_i13j37.tif",
+    "dwql8_i9j9.tif",
+    "dwql8_i22j28.tif",
+    "dwql8_i5j9.tif",
+    "dwql8_i27j14.tif",
+    "dwql8_i9j36.tif",
+    "dwql8_i24j39.tif",
+    "dwql8_i12j30.tif",
+    "dwql8_i25j23.tif",
+    "dwql8_i14j13.tif",
+    "dwql8_i26j35.tif",
+    "dwql8_i13j17.tif",
+    "dwql8_i23j19.tif",
+    "dwql8_i10j5.tif",
+    "dwql8_i13j35.tif",
+    "dwql8_i5j12.tif",
+    "dwql8_i27j19.tif",
+    "dwql8_i19j45.tif",
+    "dwql8_i14j39.tif",
+    "dwql8_i18j14.tif",
+    "dwql8_i19j30.tif",
+    "dwql8_i32j20.tif",
+    "dwql8_i16j13.tif",
+    "dwql8_i31j17.tif",
+    "dwql8_i16j10.tif",
+    "dwql8_i28j22.tif",
+    "dwql8_i18j39.tif",
+    "dwql8_i9j14.tif",
+    "dwql8_i25j36.tif",
+    "dwql8_i25j29.tif",
+    "dwql8_i30j19.tif",
+    "dwql8_i18j26.tif",
+    "dwql8_i17j13.tif",
+    "dwql8_i12j3.tif",
+    "dwql8_i29j38.tif",
+    "dwql8_i30j17.tif",
+    "dwql8_i12j26.tif",
+    "dwql8_i19j22.tif",
+    "dwql8_i26j28.tif",
+    "dwql8_i13j15.tif",
+    "dwql8_i12j31.tif",
+    "dwql8_i28j20.tif",
+    "dwql8_i7j8.tif",
+    "dwql8_i16j37.tif",
+    "dwql8_i8j35.tif",
+    "dwql8_i11j13.tif",
+    "dwql8_i31j22.tif",
+    "dwql8_i29j15.tif",
+    "dwql8_i19j21.tif",
+    "dwql8_i24j20.tif",
+    "dwql8_i21j39.tif",
+    "dwql8_i13j2.tif",
+    "dwql8_i30j25.tif",
+    "dwql8_i24j21.tif",
+    "dwql8_i16j35.tif"
+   ]
+  },
+  {
+   "cls": 7,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_7/unet_epoch50_best_val.pth",
+   "sha": "85ffc61832453cf03e84b5f9264dad21bed49d69bac0d51fa14f24f7c16e479b",
+   "ref": [
+    "dwqs2_i28j39.tif",
+    "dwqs2_i31j87.tif",
+    "dwqs2_i9j36.tif",
+    "dwqs2_i76j82.tif",
+    "dwqs2_i88j67.tif",
+    "dwqs2_i90j70.tif",
+    "dwqs2_i49j130.tif",
+    "dwqs2_i76j52.tif",
+    "dwqs2_i51j113.tif",
+    "dwqs2_i78j135.tif",
+    "dwqs2_i91j56.tif",
+    "dwqs2_i59j134.tif",
+    "dwqs2_i12j46.tif",
+    "dwqs2_i53j111.tif",
+    "dwqs2_i62j129.tif",
+    "dwqs2_i30j54.tif",
+    "dwqs2_i91j109.tif",
+    "dwqs2_i33j27.tif",
+    "dwqs2_i46j51.tif",
+    "dwqs2_i98j78.tif",
+    "dwqs2_i46j57.tif",
+    "dwqs2_i68j114.tif",
+    "dwqs2_i90j36.tif",
+    "dwqs2_i28j25.tif",
+    "dwqs2_i78j72.tif",
+    "dwqs2_i42j67.tif",
+    "dwqs2_i32j44.tif",
+    "dwqs2_i16j30.tif",
+    "dwqs2_i46j119.tif",
+    "dwqs2_i59j103.tif",
+    "dwqs2_i90j69.tif",
+    "dwqs2_i24j119.tif",
+    "dwqs2_i57j62.tif",
+    "dwqs2_i100j48.tif",
+    "dwqs2_i80j48.tif",
+    "dwqs2_i72j58.tif",
+    "dwqs2_i74j118.tif",
+    "dwqs2_i40j23.tif",
+    "dwqs2_i58j84.tif",
+    "dwqs2_i74j127.tif",
+    "dwqs2_i82j69.tif",
+    "dwqs2_i57j122.tif",
+    "dwqs2_i87j37.tif",
+    "dwqs2_i54j86.tif",
+    "dwqs2_i44j86.tif",
+    "dwqs2_i32j23.tif",
+    "dwqs2_i96j65.tif",
+    "dwqs2_i69j64.tif",
+    "dwqs2_i26j33.tif",
+    "dwqs2_i48j139.tif",
+    "dwqs2_i74j95.tif",
+    "dwqs2_i61j142.tif",
+    "dwqs2_i34j106.tif",
+    "dwqs2_i83j38.tif",
+    "dwqs2_i39j115.tif",
+    "dwqs2_i38j111.tif",
+    "dwqs2_i43j99.tif",
+    "dwqs2_i84j79.tif",
+    "dwqs2_i94j57.tif",
+    "dwqs2_i41j65.tif",
+    "dwqs2_i43j50.tif",
+    "dwqs2_i64j110.tif",
+    "dwqs2_i51j47.tif",
+    "dwqs2_i60j112.tif"
+   ]
+  },
+  {
+   "cls": 7,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_7/unet_epoch418_best_val.pth",
+   "sha": "ac8df0c8a588ef69b5cb303f9fbc500fb8492d932b5f13cab80172e0896a5b0f",
+   "ref": [
+    "xjl8_i25j16.tif",
+    "xjl8_i11j10.tif",
+    "xjl8_i1j7.tif",
+    "xjl8_i14j24.tif",
+    "xjl8_i6j25.tif",
+    "xjl8_i8j25.tif",
+    "xjl8_i18j6.tif",
+    "xjl8_i24j7.tif",
+    "xjl8_i13j6.tif",
+    "xjl8_i15j20.tif",
+    "xjl8_i2j10.tif",
+    "xjl8_i8j7.tif",
+    "xjl8_i14j18.tif",
+    "xjl8_i5j16.tif",
+    "xjl8_i22j14.tif",
+    "xjl8_i20j14.tif",
+    "xjl8_i19j15.tif",
+    "xjl8_i7j8.tif",
+    "xjl8_i17j9.tif",
+    "xjl8_i20j12.tif",
+    "xjl8_i19j7.tif",
+    "xjl8_i26j17.tif",
+    "xjl8_i14j12.tif",
+    "xjl8_i17j22.tif",
+    "xjl8_i16j8.tif",
+    "xjl8_i21j12.tif",
+    "xjl8_i6j23.tif",
+    "xjl8_i20j10.tif",
+    "xjl8_i11j11.tif",
+    "xjl8_i23j5.tif",
+    "xjl8_i15j11.tif",
+    "xjl8_i20j5.tif",
+    "xjl8_i5j12.tif",
+    "xjl8_i25j13.tif",
+    "xjl8_i4j20.tif",
+    "xjl8_i11j20.tif",
+    "xjl8_i19j17.tif",
+    "xjl8_i18j13.tif",
+    "xjl8_i22j19.tif",
+    "xjl8_i11j22.tif",
+    "xjl8_i9j4.tif",
+    "xjl8_i5j9.tif",
+    "xjl8_i18j3.tif",
+    "xjl8_i15j10.tif",
+    "xjl8_i18j5.tif",
+    "xjl8_i15j7.tif",
+    "xjl8_i22j6.tif",
+    "xjl8_i12j15.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i27j17.tif",
+    "xjl8_i18j10.tif",
+    "xjl8_i13j13.tif",
+    "xjl8_i5j26.tif",
+    "xjl8_i13j21.tif",
+    "xjl8_i9j17.tif",
+    "xjl8_i14j15.tif",
+    "xjl8_i14j21.tif",
+    "xjl8_i6j22.tif",
+    "xjl8_i17j20.tif",
+    "xjl8_i15j5.tif",
+    "xjl8_i9j10.tif",
+    "xjl8_i24j13.tif",
+    "xjl8_i22j10.tif",
+    "xjl8_i7j15.tif"
+   ]
+  },
+  {
+   "cls": 7,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_7/unet_epoch87_best_val.pth",
+   "sha": "aa1297cc5f13ac9b7ad8281b24032ffe40b5b76b78056427deab2c5e14c545df",
+   "ref": [
+    "xjs2_i37j37.tif",
+    "xjs2_i30j59.tif",
+    "xjs2_i39j21.tif",
+    "xjs2_i32j79.tif",
+    "xjs2_i19j16.tif",
+    "xjs2_i52j23.tif",
+    "xjs2_i38j31.tif",
+    "xjs2_i38j73.tif",
+    "xjs2_i38j56.tif",
+    "xjs2_i31j65.tif",
+    "xjs2_i74j31.tif",
+    "xjs2_i55j16.tif",
+    "xjs2_i38j33.tif",
+    "xjs2_i20j54.tif",
+    "xjs2_i52j46.tif",
+    "xjs2_i56j15.tif",
+    "xjs2_i75j24.tif",
+    "xjs2_i6j32.tif",
+    "xjs2_i55j72.tif",
+    "xjs2_i50j6.tif",
+    "xjs2_i25j66.tif",
+    "xjs2_i19j40.tif",
+    "xjs2_i49j56.tif",
+    "xjs2_i43j9.tif",
+    "xjs2_i16j46.tif",
+    "xjs2_i58j17.tif",
+    "xjs2_i82j45.tif",
+    "xjs2_i30j61.tif",
+    "xjs2_i14j30.tif",
+    "xjs2_i45j32.tif",
+    "xjs2_i60j41.tif",
+    "xjs2_i60j11.tif",
+    "xjs2_i14j16.tif",
+    "xjs2_i67j7.tif",
+    "xjs2_i44j75.tif",
+    "xjs2_i36j37.tif",
+    "xjs2_i86j61.tif",
+    "xjs2_i70j36.tif",
+    "xjs2_i42j35.tif",
+    "xjs2_i51j32.tif",
+    "xjs2_i18j79.tif",
+    "xjs2_i54j68.tif",
+    "xjs2_i70j34.tif",
+    "xjs2_i15j62.tif",
+    "xjs2_i40j34.tif",
+    "xjs2_i51j50.tif",
+    "xjs2_i7j35.tif",
+    "xjs2_i81j44.tif",
+    "xjs2_i42j48.tif",
+    "xjs2_i19j20.tif",
+    "xjs2_i38j19.tif",
+    "xjs2_i25j39.tif",
+    "xjs2_i9j43.tif",
+    "xjs2_i14j55.tif",
+    "xjs2_i72j31.tif",
+    "xjs2_i77j35.tif",
+    "xjs2_i82j50.tif",
+    "xjs2_i39j61.tif",
+    "xjs2_i9j48.tif",
+    "xjs2_i37j43.tif",
+    "xjs2_i35j14.tif",
+    "xjs2_i42j54.tif",
+    "xjs2_i10j35.tif",
+    "xjs2_i48j16.tif"
+   ]
+  },
+  {
+   "cls": 8,
+   "src": "dwq_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_8/unet_epoch303_best_val.pth",
+   "sha": "b63fde6a111319816557c4ebfc7bb72840a08a109c944ce695f5883701cabb46",
+   "ref": [
+    "dwql8_i18j27.tif",
+    "dwql8_i21j25.tif",
+    "dwql8_i18j33.tif",
+    "dwql8_i17j14.tif",
+    "dwql8_i29j14.tif",
+    "dwql8_i21j39.tif",
+    "dwql8_i32j26.tif",
+    "dwql8_i32j28.tif",
+    "dwql8_i14j5.tif",
+    "dwql8_i3j11.tif",
+    "dwql8_i16j18.tif",
+    "dwql8_i29j12.tif",
+    "dwql8_i28j21.tif",
+    "dwql8_i31j17.tif",
+    "dwql8_i2j13.tif",
+    "dwql8_i22j26.tif",
+    "dwql8_i28j18.tif",
+    "dwql8_i9j31.tif",
+    "dwql8_i17j39.tif",
+    "dwql8_i23j28.tif",
+    "dwql8_i35j17.tif",
+    "dwql8_i26j22.tif",
+    "dwql8_i28j22.tif",
+    "dwql8_i16j26.tif",
+    "dwql8_i9j15.tif",
+    "dwql8_i10j10.tif",
+    "dwql8_i10j16.tif",
+    "dwql8_i12j40.tif",
+    "dwql8_i12j8.tif",
+    "dwql8_i14j7.tif",
+    "dwql8_i22j47.tif",
+    "dwql8_i33j25.tif",
+    "dwql8_i19j33.tif",
+    "dwql8_i13j2.tif",
+    "dwql8_i14j17.tif",
+    "dwql8_i16j23.tif",
+    "dwql8_i18j41.tif",
+    "dwql8_i17j42.tif",
+    "dwql8_i10j5.tif",
+    "dwql8_i10j33.tif",
+    "dwql8_i12j16.tif",
+    "dwql8_i26j35.tif",
+    "dwql8_i27j24.tif",
+    "dwql8_i17j29.tif",
+    "dwql8_i24j39.tif",
+    "dwql8_i13j28.tif",
+    "dwql8_i14j27.tif",
+    "dwql8_i25j29.tif",
+    "dwql8_i30j17.tif",
+    "dwql8_i18j14.tif",
+    "dwql8_i14j9.tif",
+    "dwql8_i19j14.tif",
+    "dwql8_i25j36.tif",
+    "dwql8_i11j4.tif",
+    "dwql8_i30j25.tif",
+    "dwql8_i24j21.tif",
+    "dwql8_i30j29.tif",
+    "dwql8_i21j41.tif",
+    "dwql8_i13j14.tif",
+    "dwql8_i12j15.tif",
+    "dwql8_i7j7.tif",
+    "dwql8_i9j36.tif",
+    "dwql8_i26j37.tif",
+    "dwql8_i16j1.tif"
+   ]
+  },
+  {
+   "cls": 8,
+   "src": "dwq_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_8/unet_epoch62_best_val.pth",
+   "sha": "07731296ecc9166a07599ef27df54b791b87e66d6bcda96df71eb7529b80c9df",
+   "ref": [
+    "dwqs2_i27j101.tif",
+    "dwqs2_i37j122.tif",
+    "dwqs2_i55j57.tif",
+    "dwqs2_i76j64.tif",
+    "dwqs2_i90j72.tif",
+    "dwqs2_i100j48.tif",
+    "dwqs2_i60j45.tif",
+    "dwqs2_i87j119.tif",
+    "dwqs2_i45j133.tif",
+    "dwqs2_i60j116.tif",
+    "dwqs2_i94j30.tif",
+    "dwqs2_i71j79.tif",
+    "dwqs2_i30j97.tif",
+    "dwqs2_i55j103.tif",
+    "dwqs2_i37j49.tif",
+    "dwqs2_i56j60.tif",
+    "dwqs2_i58j127.tif",
+    "dwqs2_i73j104.tif",
+    "dwqs2_i43j123.tif",
+    "dwqs2_i45j142.tif",
+    "dwqs2_i32j103.tif",
+    "dwqs2_i69j120.tif",
+    "dwqs2_i81j89.tif",
+    "dwqs2_i31j12.tif",
+    "dwqs2_i40j130.tif",
+    "dwqs2_i27j15.tif",
+    "dwqs2_i42j86.tif",
+    "dwqs2_i80j42.tif",
+    "dwqs2_i51j103.tif",
+    "dwqs2_i93j84.tif",
+    "dwqs2_i32j12.tif",
+    "dwqs2_i62j91.tif",
+    "dwqs2_i40j67.tif",
+    "dwqs2_i51j79.tif",
+    "dwqs2_i32j100.tif",
+    "dwqs2_i97j56.tif",
+    "dwqs2_i72j148.tif",
+    "dwqs2_i63j53.tif",
+    "dwqs2_i41j131.tif",
+    "dwqs2_i45j19.tif",
+    "dwqs2_i72j103.tif",
+    "dwqs2_i95j54.tif",
+    "dwqs2_i35j42.tif",
+    "dwqs2_i8j40.tif",
+    "dwqs2_i85j121.tif",
+    "dwqs2_i54j34.tif",
+    "dwqs2_i49j128.tif",
+    "dwqs2_i99j67.tif",
+    "dwqs2_i10j24.tif",
+    "dwqs2_i85j67.tif",
+    "dwqs2_i87j75.tif",
+    "dwqs2_i79j86.tif",
+    "dwqs2_i35j25.tif",
+    "dwqs2_i83j43.tif",
+    "dwqs2_i28j54.tif",
+    "dwqs2_i97j63.tif",
+    "dwqs2_i52j135.tif",
+    "dwqs2_i47j53.tif",
+    "dwqs2_i64j126.tif",
+    "dwqs2_i38j137.tif",
+    "dwqs2_i47j41.tif",
+    "dwqs2_i13j38.tif",
+    "dwqs2_i62j84.tif",
+    "dwqs2_i73j88.tif"
+   ]
+  },
+  {
+   "cls": 8,
+   "src": "xj_landsat8",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_8/unet_epoch173_best_val.pth",
+   "sha": "66930f6a7e95fda67bb61407303f33e86d727a9714a2ed2f3eda71ee3c5b5306",
+   "ref": [
+    "xjl8_i13j13.tif",
+    "xjl8_i26j17.tif",
+    "xjl8_i11j19.tif",
+    "xjl8_i3j12.tif",
+    "xjl8_i15j8.tif",
+    "xjl8_i5j11.tif",
+    "xjl8_i9j4.tif",
+    "xjl8_i15j5.tif",
+    "xjl8_i22j16.tif",
+    "xjl8_i24j11.tif",
+    "xjl8_i13j10.tif",
+    "xjl8_i6j25.tif",
+    "xjl8_i17j5.tif",
+    "xjl8_i17j9.tif",
+    "xjl8_i17j7.tif",
+    "xjl8_i22j23.tif",
+    "xjl8_i12j16.tif",
+    "xjl8_i14j18.tif",
+    "xjl8_i19j7.tif",
+    "xjl8_i22j8.tif",
+    "xjl8_i13j18.tif",
+    "xjl8_i25j12.tif",
+    "xjl8_i20j14.tif",
+    "xjl8_i11j14.tif",
+    "xjl8_i18j17.tif",
+    "xjl8_i9j13.tif",
+    "xjl8_i8j21.tif",
+    "xjl8_i11j17.tif",
+    "xjl8_i14j6.tif",
+    "xjl8_i9j23.tif",
+    "xjl8_i15j9.tif",
+    "xjl8_i5j16.tif",
+    "xjl8_i20j12.tif",
+    "xjl8_i25j13.tif",
+    "xjl8_i18j6.tif",
+    "xjl8_i26j18.tif",
+    "xjl8_i16j19.tif",
+    "xjl8_i15j6.tif",
+    "xjl8_i16j8.tif",
+    "xjl8_i12j10.tif",
+    "xjl8_i14j15.tif",
+    "xjl8_i6j14.tif",
+    "xjl8_i16j13.tif",
+    "xjl8_i17j19.tif",
+    "xjl8_i13j19.tif",
+    "xjl8_i21j3.tif",
+    "xjl8_i13j21.tif",
+    "xjl8_i12j15.tif",
+    "xjl8_i20j3.tif",
+    "xjl8_i20j8.tif",
+    "xjl8_i23j21.tif",
+    "xjl8_i7j19.tif",
+    "xjl8_i12j3.tif",
+    "xjl8_i17j22.tif",
+    "xjl8_i13j23.tif",
+    "xjl8_i8j7.tif",
+    "xjl8_i22j6.tif",
+    "xjl8_i15j19.tif",
+    "xjl8_i20j5.tif",
+    "xjl8_i18j10.tif",
+    "xjl8_i20j10.tif",
+    "xjl8_i18j5.tif",
+    "xjl8_i5j26.tif",
+    "xjl8_i6j10.tif"
+   ]
+  },
+  {
+   "cls": 8,
+   "src": "xj_sentinel2",
+   "ck": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_8/unet_epoch148_best_val.pth",
+   "sha": "c7802c2a558d0e3a4e31023ef9a6f9dd5d6309f6654acb00c3f4f605880d690e",
+   "ref": [
+    "xjs2_i66j23.tif",
+    "xjs2_i15j22.tif",
+    "xjs2_i86j66.tif",
+    "xjs2_i64j55.tif",
+    "xjs2_i65j41.tif",
+    "xjs2_i30j30.tif",
+    "xjs2_i48j48.tif",
+    "xjs2_i51j29.tif",
+    "xjs2_i22j61.tif",
+    "xjs2_i54j75.tif",
+    "xjs2_i26j72.tif",
+    "xjs2_i20j80.tif",
+    "xjs2_i62j66.tif",
+    "xjs2_i39j21.tif",
+    "xjs2_i37j30.tif",
+    "xjs2_i81j56.tif",
+    "xjs2_i41j11.tif",
+    "xjs2_i13j65.tif",
+    "xjs2_i8j28.tif",
+    "xjs2_i56j42.tif",
+    "xjs2_i55j53.tif",
+    "xjs2_i61j67.tif",
+    "xjs2_i51j32.tif",
+    "xjs2_i17j33.tif",
+    "xjs2_i69j64.tif",
+    "xjs2_i80j69.tif",
+    "xjs2_i51j47.tif",
+    "xjs2_i34j16.tif",
+    "xjs2_i73j35.tif",
+    "xjs2_i64j65.tif",
+    "xjs2_i44j39.tif",
+    "xjs2_i68j50.tif",
+    "xjs2_i48j35.tif",
+    "xjs2_i82j46.tif",
+    "xjs2_i19j61.tif",
+    "xjs2_i20j76.tif",
+    "xjs2_i27j33.tif",
+    "xjs2_i43j67.tif",
+    "xjs2_i45j43.tif",
+    "xjs2_i19j82.tif",
+    "xjs2_i65j13.tif",
+    "xjs2_i28j51.tif",
+    "xjs2_i53j8.tif",
+    "xjs2_i64j63.tif",
+    "xjs2_i30j42.tif",
+    "xjs2_i39j39.tif",
+    "xjs2_i55j52.tif",
+    "xjs2_i44j73.tif",
+    "xjs2_i13j55.tif",
+    "xjs2_i39j33.tif",
+    "xjs2_i40j16.tif",
+    "xjs2_i54j51.tif",
+    "xjs2_i61j5.tif",
+    "xjs2_i47j22.tif",
+    "xjs2_i51j22.tif",
+    "xjs2_i73j63.tif",
+    "xjs2_i43j48.tif",
+    "xjs2_i20j36.tif",
+    "xjs2_i14j66.tif",
+    "xjs2_i75j54.tif",
+    "xjs2_i22j19.tif",
+    "xjs2_i19j40.tif",
+    "xjs2_i24j61.tif",
+    "xjs2_i21j62.tif"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "cls": 1,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 1,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 1,
+   "src": "dwq_landsat8",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 1,
+   "src": "dwq_landsat8",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 1,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 1,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 1,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 1,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_landsat8",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 2,
+   "src": "dwq_landsat8",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 2,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 2,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 3,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 3,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 3,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 3,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 3,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 3,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 4,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 4,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 5,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 5,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 5,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 5,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_landsat8",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 6,
+   "src": "dwq_landsat8",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 6,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 6,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 6,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 6,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_landsat8",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 7,
+   "src": "dwq_landsat8",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 7,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 7,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 7,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 7,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_sentinel2",
+   "tgt": "dwq_landsat8"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_sentinel2",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_landsat8",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 8,
+   "src": "dwq_landsat8",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 8,
+   "src": "xj_sentinel2",
+   "tgt": "xj_landsat8"
+  },
+  {
+   "cls": 8,
+   "src": "xj_sentinel2",
+   "tgt": "dwq_sentinel2"
+  },
+  {
+   "cls": 8,
+   "src": "xj_landsat8",
+   "tgt": "xj_sentinel2"
+  },
+  {
+   "cls": 8,
+   "src": "xj_landsat8",
+   "tgt": "dwq_landsat8"
+  }
+ ],
+ "pools": {
+  "dwq_sentinel2": [
+   {
+    "name": "dwqs2_i20j111.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i61j42.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i76j132.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i54j66.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i64j103.tif",
+    "split": "val"
+   },
+   {
+    "name": "dwqs2_i62j116.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i50j28.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i50j162.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i59j119.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i31j103.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i54j130.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i51j53.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i77j54.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i42j71.tif",
+    "split": "val"
+   },
+   {
+    "name": "dwqs2_i39j96.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i38j14.tif",
+    "split": "val"
+   },
+   {
+    "name": "dwqs2_i42j110.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i50j12.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i17j47.tif",
+    "split": "val"
+   },
+   {
+    "name": "dwqs2_i74j90.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i69j92.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i60j136.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i71j52.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i73j112.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i76j57.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i72j111.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i39j58.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i81j53.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i8j44.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i38j100.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i38j93.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i56j86.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i94j68.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i48j63.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i67j128.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i45j55.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i46j107.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i19j54.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i41j25.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwqs2_i71j81.tif",
+    "split": "val"
+   }
+  ],
+  "dwq_landsat8": [
+   {
+    "name": "dwql8_i17j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i14j41.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i22j45.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i6j11.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i27j18.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i11j9.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i12j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i21j18.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i9j6.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i20j48.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i13j36.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i31j13.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i24j28.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i15j2.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i14j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i16j36.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i24j33.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i27j20.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i21j16.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i15j7.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i26j18.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i19j35.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i25j41.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i13j30.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i31j19.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i25j27.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i11j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i35j21.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i26j38.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i17j41.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i17j27.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i24j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i13j12.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i33j24.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i31j29.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i20j32.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i17j43.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i17j22.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i22j13.tif",
+    "split": "train"
+   },
+   {
+    "name": "dwql8_i17j6.tif",
+    "split": "train"
+   }
+  ],
+  "xj_sentinel2": [
+   {
+    "name": "xjs2_i79j54.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i56j46.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i66j8.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i43j32.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i34j66.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i31j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i34j52.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i9j39.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i32j41.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i63j34.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i32j80.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i67j13.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i40j57.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i55j36.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i17j21.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i43j74.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i64j48.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i40j26.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i24j68.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i27j35.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i73j67.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i54j54.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i35j63.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i46j52.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i49j7.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i58j23.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i59j4.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i35j48.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i6j33.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i36j32.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i48j49.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i26j80.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i46j38.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i43j17.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i36j27.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i78j56.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i29j69.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i1j19.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjs2_i36j71.tif",
+    "split": "val"
+   },
+   {
+    "name": "xjs2_i65j4.tif",
+    "split": "train"
+   }
+  ],
+  "xj_landsat8": [
+   {
+    "name": "xjl8_i23j22.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i14j22.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i16j22.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i21j7.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i6j24.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i7j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i11j7.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i15j4.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i10j10.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i14j20.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i15j3.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i13j15.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i7j6.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i5j5.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i11j21.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i10j23.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i5j18.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i5j22.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i21j16.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i17j2.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i13j20.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i22j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i18j7.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i12j8.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i15j14.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i26j15.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i16j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i6j9.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i13j14.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i22j1.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i13j24.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i7j20.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i25j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i3j10.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i17j10.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i17j3.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i10j17.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i18j4.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i15j15.tif",
+    "split": "train"
+   },
+   {
+    "name": "xjl8_i14j17.tif",
+    "split": "train"
+   }
+  ]
+ },
+ "cohorts": {
+  "P37": [
+   [
+    1,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    2,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    2,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    2,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    3,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    5,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    5,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    6,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ]
+  ],
+  "D42": [
+   [
+    1,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    2,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    2,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    2,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    2,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    3,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    5,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    5,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    6,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    6,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    6,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    7,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ]
+  ],
+  "E50": [
+   [
+    1,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    1,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    1,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    2,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    2,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    2,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    2,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    2,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    2,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    3,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    3,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    3,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    3,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    4,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    4,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    5,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    5,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    5,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    5,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    6,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    6,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    6,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    6,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    6,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    7,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    7,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    7,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    7,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "dwq_landsat8",
+    "xj_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "dwq_sentinel2",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "dwq_landsat8"
+   ],
+   [
+    8,
+    "xj_landsat8",
+    "xj_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "dwq_sentinel2"
+   ],
+   [
+    8,
+    "xj_sentinel2",
+    "xj_landsat8"
+   ]
+  ]
+ },
+ "files": {
+  "code/worker.py": "2de232254ccd7c6cfb6dcd45fe1d74df4113db29f323afdd61c6d9e9b9f69c3c",
+  "code/run.py": "0e4c3716fb7f835c659ec050eca7e572618a02ae865b83db8d82e23ecff29661",
+  "code/common.py": "e71a526ceb7c58679c9bd37499b1266f41223c540249c81f278016c54613b346",
+  "协议.md": "b2b5e07c65b12896f7aa54407018ef41093ff8b6eacc70d66bd32f69a87120c9"
+ },
+ "samples_per_image": 2048,
+ "seeds": [
+  290117,
+  290118,
+  290119,
+  290120,
+  290121
+ ],
+ "target_truth_for_predictors": false,
+ "experiment": "U7B",
+ "panels": [
+  "full2048",
+  "shared256"
+ ],
+ "shared_pixel_cap": 256,
+ "target_reference_for_predictors": false,
+ "code_sha256": {
+  "code/metrics.py": "aa2dcbdea15a86fa20e70fa133cf1222df90f997bd580b2e8840bd60241cc072",
+  "code/worker_full.py": "f22e08b995aa4d64c6c278e7ee1e24ee8a7d1e4c58563ff9b9f469389918225a",
+  "code/logme_exact_moments.py": "a8b6f27bff0180f684f1719ea851bd58ce64b5fd73468f3151d915454dab837a",
+  "code/score_moments.py": "6f194fdd5f1912fc43701f96398dd8e372df7424c94376058d172f86e4402782",
+  "协议.md": "04a47fdd5db0a5e92d41515c4df7a63999e1a620f60d494792278555e5fa7d12"
+ }
+}

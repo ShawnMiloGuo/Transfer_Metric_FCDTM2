@@ -1,0 +1,216 @@
+[
+  {
+    "key": "DS_pixel",
+    "label": "DS",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-6",
+    "target_information": "Predicted groups",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "FD_global",
+    "label": "FD",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-6",
+    "target_information": "None",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "GBC_spherical_PL",
+    "label": "GBC-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-6",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "FCDTM_HardPL",
+    "label": "FCDTM-HardPL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-1; R2-1",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": true
+  },
+  {
+    "key": "FCDTM_SoftPL",
+    "label": "FCDTM-SoftPL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-1; R2-1",
+    "target_information": "Soft probabilities",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": true
+  },
+  {
+    "key": "AC",
+    "label": "AC / MSP",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "Entropy",
+    "label": "Entropy",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "ATC_MC",
+    "label": "ATC-MC",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None; source threshold",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": true
+  },
+  {
+    "key": "ATC_NE",
+    "label": "ATC-NE",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None; source threshold",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": true
+  },
+  {
+    "key": "DoC",
+    "label": "DoC-gap",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None; source confidence",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "LogME_PL",
+    "label": "LogME-ICML-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-1/8; R2-2",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "Hscore_PL",
+    "label": "H-score-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-8",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "LEEP_PL",
+    "label": "LEEP-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "NCE_Pred_PL",
+    "label": "NCE-Pred-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-1; R2-2",
+    "target_information": "Predictions + pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "NLEEP_PL",
+    "label": "NLEEP-PL",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-8",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "OTCE_PL_SrcCal",
+    "label": "OTCE-PL-SrcCal",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-8; R2-2",
+    "target_information": "Hard pseudo-labels",
+    "panels": [
+      "shared256"
+    ],
+    "source_labels_required": true
+  },
+  {
+    "key": "MMD_RBF_global",
+    "label": "MMD-RBF-global",
+    "status": "evaluated_U7B",
+    "reviewer": "R1-8",
+    "target_information": "None",
+    "panels": [
+      "shared256"
+    ],
+    "source_labels_required": false
+  },
+  {
+    "key": "DoC_Acc_SrcCal",
+    "label": "DoC-Acc-SrcCal",
+    "status": "evaluated_U7B",
+    "reviewer": "R2-2",
+    "target_information": "None; source-only accuracy regression",
+    "panels": [
+      "full2048",
+      "shared256"
+    ],
+    "source_labels_required": true
+  }
+]
