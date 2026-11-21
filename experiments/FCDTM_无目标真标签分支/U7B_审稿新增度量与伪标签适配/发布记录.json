@@ -1,0 +1,10 @@
+{
+  "branch": "codex/fcdtm-label-free",
+  "results_commit": "d6dbd35c116730cc72c5b2227e241c3f5630228a",
+  "results_url": "https://github.com/ShawnMiloGuo/Transfer_Metric_FCDTM2/commit/d6dbd35c116730cc72c5b2227e241c3f5630228a",
+  "completed": "2026-11-22",
+  "main_sha": "a7e971a95a7f1f665c21e6f3d667e652c1a7f2dc",
+  "main_unchanged": true,
+  "manuscript_published": false,
+  "scope": "U7B experiment code, results, figures, analysis, plan and TODO"
+}

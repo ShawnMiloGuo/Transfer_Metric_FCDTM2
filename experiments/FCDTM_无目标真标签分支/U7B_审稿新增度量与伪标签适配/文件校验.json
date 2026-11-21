@@ -20,7 +20,7 @@
  "方法核验与文献.md": "742d958caae6bd787707888efbf021636aeb41091931c9ff57b63b20c833b6ce",
  "图表索引.md": "401fefe04c8e40f214b6e1bd5487d27690f69de5d7031f73c43a173e1ed49217",
  "requirements.txt": "e34732c536042c6abf59b97dbf373f4201a4c943a9c3e5d62e8169838eef2d82",
- "TODO.md": "1d0e25d6b666a4448647dfe0f703dcbe4ca9e55899718d1bd517b558cdb24312",
+ "TODO.md": "be0984d7a5488db45f0268241ba5aeccb1a6119809ac65d177f66462feb93f78",
  ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
  ".gitignore": "ca3f4bf4ed8472d1c03bf1da718a2c26883382a2d990a0957154efc2ea1102c0",
  "code/._worker_cached_retry.py": "676b0d036036b6cb4dc6a23791af35aa3eea19d236ddc7e2e08b6b5d8e87c57a",
@@ -414,5 +414,6 @@
  "logs/8_dwq_sentinel2.log": "8016777adbb68144dd94c8033a79a4aea04a608972644fbf41f43232b41f8e31",
  "logs/8_xj_landsat8.log": "d5a547edd0d4550cbc7591562c7868e48c8a1557cff347b289d945cb9c52d4d0",
  "logs/8_xj_sentinel2.log": "26a4bdedd571123dce35dbaca16d7e875dbe59db1670b797ee04422755465583",
- "logs/1_dwq_landsat8.log": "1ef33635efceb5e232aa0ab7ee227526161dc2b23f2970fcd5c3d8e71a9554da"
+ "logs/1_dwq_landsat8.log": "1ef33635efceb5e232aa0ab7ee227526161dc2b23f2970fcd5c3d8e71a9554da",
+ "发布记录.json": "b7c647d06fbff94a92ec768d7f1dd36f9ff3d1f36fcefcef2498aa9c76c0b35d"
 }
