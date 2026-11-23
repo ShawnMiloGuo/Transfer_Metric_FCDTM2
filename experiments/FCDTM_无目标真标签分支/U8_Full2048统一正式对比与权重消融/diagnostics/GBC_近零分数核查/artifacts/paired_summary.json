@@ -1,0 +1,8 @@
+{
+  "paired_batches": 419,
+  "PL_median_abs": 7.454112181896402e-09,
+  "GT_median_abs": 5.917888136980843e-05,
+  "PL_below1e_3": 364,
+  "GT_below1e_3": 258,
+  "PL_more_separated": 360
+}

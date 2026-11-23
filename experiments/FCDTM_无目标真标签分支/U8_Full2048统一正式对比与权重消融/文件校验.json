@@ -1,7 +1,7 @@
 {
   "协议.md": "7ff32d6db060ac4d6bd37ce9b69436b73e241434f6c1fe34418264a3cf9b6d81",
   "requirements.txt": "5c213e35479aa3ad8ababbb43afd05dd5e2fa14f88fb19a1e43909b32d128934",
-  "TODO.md": "e198189a0ba5d97229907c50b2edbce3de0ccd4b8bba81aeecd7c2aa9239010d",
+  "TODO.md": "9febd07ebc0d1c680fd2d01d92a08d43484dc1b7799fb00cf3e5ed1a10bfec27",
   "README.md": "226e19ed9cd75210a05fa4e62d5ffd71a6bf2786e4c46f5590666a4f2d14c3b8",
   "analysis_notes.md": "516c5bf97ad8f00c9e6dbfb56c679ac387d712105266937ab821724dbbe46f16",
   ".gitignore": "66197e163c23e23d4634362976ef0f37d1cb91142eeba2ceb22ab56886e5ae30",
@@ -355,5 +355,15 @@
   "figures/all_sensor_XJ_4x4.png": "207fbbdd30bbbb77d365307952a06f8c6aee82f2f50425338beef46898faa754",
   "figures/all_sensor_GBA_4x4.png": "98298ebb9f0991202f046dc8ee50fe7e751864f013527f5d6a8557bb3bd066c7",
   "figures/all_sensor_GBA_4x4.pdf": "83c276b81d31ffe107878795074893152221aabd87ebe60c0ce80c03b6acf708",
-  "figures/all_sensor_XJ_4x4.pdf": "f89c9613adf579ae08eece58f05eb0f67b85c68efed68a6eb6669f3330dee0fa"
+  "figures/all_sensor_XJ_4x4.pdf": "f89c9613adf579ae08eece58f05eb0f67b85c68efed68a6eb6669f3330dee0fa",
+  "diagnostics/GBC_近零分数核查/实验结果分析.md": "66d30a0d84610bd5b35d2b3b2cb13fc8478f266a1f01b7cddc259337e7ac2519",
+  "diagnostics/GBC_近零分数核查/核查协议.md": "5965ef6cdeb595e24e08a3c0a8cd4ca88d6e391ff13a1c97461b256fc7a186db",
+  "diagnostics/GBC_近零分数核查/artifacts/grouping_comparison.csv": "b231b99fab6a056570a7e111e6aaa2fed4018b0d1429fde47fccd316b5dd98c2",
+  "diagnostics/GBC_近零分数核查/artifacts/paired_summary.json": "523d80784de1b8dd41381832cec6cdf5cbea6a632f94b23cffa2aa9c0518e443",
+  "diagnostics/GBC_近零分数核查/artifacts/label_checksums.json": "d7438b5f24e40d12022f97ba24a80be880845ee4cc5c5aee49e48c18a0da4fe3",
+  "diagnostics/GBC_近零分数核查/artifacts/verification.json": "109304519c293cb56b7c707975764b21f6a0fe3a7a69d8057d5c2079995c878e",
+  "diagnostics/GBC_近零分数核查/code/audit_gbc.py": "f43b34bc9343303f8ded5180467247c1aa26137ef232b89e1e74461a6d71a0ea",
+  "diagnostics/GBC_近零分数核查/code/report.py": "268d1614b445a49bbbc1d71eb3da34164a3fd53b4ff766b3626ca1085aa6e6db",
+  "diagnostics/GBC_近零分数核查/figures/GBC_grouping_diagnostic.png": "a880772ea14f8b314d85df2e16a21dc72bbd7d070f27e803e1a87a19ccb633eb",
+  "diagnostics/GBC_近零分数核查/figures/GBC_grouping_diagnostic.pdf": "1f0dad7b0504554f8e96025e4564edb87ac74c5fdd40ae6b68b7356014aac0d6"
 }

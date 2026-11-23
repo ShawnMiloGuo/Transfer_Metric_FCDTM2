@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "all_finite_batch_scores": 2354,
+  "minimum_score": -0.6257873713380374,
+  "maximum_score": -7.480275688376588e-83,
+  "exact_zeros": 0,
+  "abs_below_1e_3": 2060,
+  "median_abs_score": 4.2244801611223966e-09,
+  "diagnostic_records": 550,
+  "independent_score_max_absolute_error": 1.2073675392798577e-14,
+  "target_reference_use": "post-seal diagnostic only; not used to modify scores or tuning",
+  "seconds": 26.56620740890503,
+  "PL_diagnostic": {
+    "finite": 470,
+    "exact_zeros": 0,
+    "median_abs": 4.6849659270446355e-09,
+    "abs_below_1e_3": 407
+  },
+  "GT_diagnostic": {
+    "finite": 429,
+    "exact_zeros": 0,
+    "median_abs": 5.917888136980843e-05,
+    "abs_below_1e_3": 264
+  }
+}
