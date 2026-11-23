@@ -2,7 +2,7 @@
   ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
   ".gitignore": "0571aede256dfe0d35fe587c7fe0a846a163d2c3e8af1684d171b3a7647d1014",
   "README.md": "ad236ad04e4a21faa3217429bf89675c2d5fcd56f3432d71847eba2506fab6a3",
-  "TODO.md": "6fe6f479acbddcecf0b3dc1d7ad10bb10e4ef190bbb7b459c5a3be1c8e87dd3d",
+  "TODO.md": "836d2cbe8172431e339058d63d9393d524d9e306d36c5ac5b953eae685349c8c",
   "analysis_notes.md": "cd92d3089b015e8e134e1b8688ffcc87ae60f02099d6be8e5cd031f5b1cce0f0",
   "archive/u7r-score-audit-wvr5yucn/artifacts/score_audit.json": "7510975a23d16ce51e8a7342db2c96ae99df147d8674bb027708499adf2fb057",
   "archive/u7r-score-audit-wvr5yucn/artifacts/score_seal.json": "6b3699fe6678a4310c098232cfe1f72ebf76fc5721eca14b20ce067583059fc9",
@@ -106,6 +106,7 @@
   "figures/index.json": "9ace156dae54b5e69e6dc3ba78127635ae77afb7d303a104ce365a4e78ac8634",
   "requirements.txt": "9d32aa830c5048c725c3d65c3c8603aaf59fada5bb03cc08b37f6d5b3a580880",
   "协议.md": "10149c188600ff68afd31d4755e54f9572bfe295db263f49c48252d8434fcd7d",
+  "发布记录.json": "d11a7a6d2dc56c550718783c7b6a1c0dbb67617c56c2fe8e6e123e104ab1bdd9",
   "图表索引.md": "f5dac71233b8f1254c1500d66b7155a943e9730844de42444ccee59ea424d1a7",
   "实验结果分析.md": "854da1b3e0113b7d62308a660d56db481d1ecdceec0e1139c04a7c825f84e26e"
 }
