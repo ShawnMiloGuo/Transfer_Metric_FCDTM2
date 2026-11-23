@@ -9,8 +9,8 @@
   "all_methods_in_both_direction_tables": true,
   "directional_rows": 42,
   "table_number_mapping": "VI combined, VII ranking, VIII/IX all-method directions, X/XI ablations",
-  "figure_pairs": 27,
-  "main_pages": 20,
+  "figure_pairs": 35,
+  "main_pages": 24,
   "supplement_pages": 28,
   "all_pages_rendered_and_visually_reviewed": true,
   "no_overfull_or_undefined": true,
@@ -19,7 +19,7 @@
   "OTCE_is_approximate": true,
   "MMD_is_exact": true,
   "independent_statistics_verified": true,
-  "main_pdf_sha": "6b1b972a6c4944b5b0eff605b5b9e4ad31b1a231fcbe5995eb4cd1030d80a69c",
+  "main_pdf_sha": "e61987ae8956e8a8745dd9f359fc4d04b8e455897a86865e674ef5ac4165fad3",
   "supp_pdf_sha": "ac8c91eb4eff9f3fc3d29a630c334bbf510d47097a34b1196754d2d89eef95b2",
-  "main_tex_sha": "4da7df5a82e00e072ec748799a8d4392b92ad0838f42ad0cd7449eaaa3c70b56"
+  "main_tex_sha": "1229df68672bac64b5afa19eb068591c58c7829d0849d008bd920b8a9c5dad4d"
 }

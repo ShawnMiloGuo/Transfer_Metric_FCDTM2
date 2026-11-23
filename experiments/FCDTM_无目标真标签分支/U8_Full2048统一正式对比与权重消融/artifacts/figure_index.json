@@ -25,5 +25,13 @@
   "task_family1",
   "task_family2",
   "task_family3",
-  "task_family4"
+  "task_family4",
+  "all_region_S2_part1",
+  "all_region_S2_part2",
+  "all_region_L8_part1",
+  "all_region_L8_part2",
+  "all_sensor_GBA_part1",
+  "all_sensor_GBA_part2",
+  "all_sensor_XJ_part1",
+  "all_sensor_XJ_part2"
 ]

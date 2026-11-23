@@ -1,0 +1,642 @@
+[
+  {
+    "scenario": "region_S2",
+    "method": "FCDTM_HardPL",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.522435395645473,
+    "table_rho": 0.37622536099051485
+  },
+  {
+    "scenario": "region_S2",
+    "method": "FCDTM_SoftPL",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.5264432083735777,
+    "table_rho": 0.3895500437125987
+  },
+  {
+    "scenario": "region_S2",
+    "method": "FD_global",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.0691283624421393,
+    "table_rho": -0.01983275230468237
+  },
+  {
+    "scenario": "region_S2",
+    "method": "DS_pixel",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.36083791758942013,
+    "table_rho": 0.28251292244913784
+  },
+  {
+    "scenario": "region_S2",
+    "method": "GBC_spherical_PL",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.12270244840096822,
+    "table_rho": 0.20048032751559458
+  },
+  {
+    "scenario": "region_S2",
+    "method": "AC",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.23684108868967008,
+    "table_rho": 0.22607631843094017
+  },
+  {
+    "scenario": "region_S2",
+    "method": "Entropy",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.23945622693106414,
+    "table_rho": 0.21628740314547784
+  },
+  {
+    "scenario": "region_S2",
+    "method": "ATC_MC",
+    "part": 1,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.20737154552904516,
+    "table_rho": 0.22203672140492
+  },
+  {
+    "scenario": "region_S2",
+    "method": "DoC",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.23684108868967008,
+    "table_rho": 0.22607631843094017
+  },
+  {
+    "scenario": "region_S2",
+    "method": "DoC_Acc_SrcCal",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.2023852301639056,
+    "table_rho": 0.17375308610770784
+  },
+  {
+    "scenario": "region_S2",
+    "method": "LogME_PL",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.17653348923859627,
+    "table_rho": 0.16942693162327987
+  },
+  {
+    "scenario": "region_S2",
+    "method": "Hscore_PL",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.45436083634970836,
+    "table_rho": 0.3499114564889717
+  },
+  {
+    "scenario": "region_S2",
+    "method": "LEEP_PL",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.20847619354556896,
+    "table_rho": 0.20277058694491884
+  },
+  {
+    "scenario": "region_S2",
+    "method": "NLEEP_PL",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.14851384690075503,
+    "table_rho": 0.16537096785106334
+  },
+  {
+    "scenario": "region_S2",
+    "method": "OTCE_PL_SrcCal",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.015365905266459756,
+    "table_rho": 0.00765535486821548
+  },
+  {
+    "scenario": "region_S2",
+    "method": "MMD_RBF_global",
+    "part": 2,
+    "points": 117,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.020608911695230513,
+    "table_rho": 0.020908630348268183
+  },
+  {
+    "scenario": "region_L8",
+    "method": "FCDTM_HardPL",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.547024787164591,
+    "table_rho": 0.4242883769304343
+  },
+  {
+    "scenario": "region_L8",
+    "method": "FCDTM_SoftPL",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.5958948945017489,
+    "table_rho": 0.4684736935104207
+  },
+  {
+    "scenario": "region_L8",
+    "method": "FD_global",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.1036451847541237,
+    "table_rho": 0.17782556658976995
+  },
+  {
+    "scenario": "region_L8",
+    "method": "DS_pixel",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.515695631969541,
+    "table_rho": 0.4199993453629828
+  },
+  {
+    "scenario": "region_L8",
+    "method": "GBC_spherical_PL",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.09930005241650923,
+    "table_rho": 0.1452427111104266
+  },
+  {
+    "scenario": "region_L8",
+    "method": "AC",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.059517338156916996,
+    "table_rho": -0.051438183383258694
+  },
+  {
+    "scenario": "region_L8",
+    "method": "Entropy",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.06345293636946238,
+    "table_rho": -0.04838317802299432
+  },
+  {
+    "scenario": "region_L8",
+    "method": "ATC_MC",
+    "part": 1,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.04969490531166647,
+    "table_rho": -0.05350688282724549
+  },
+  {
+    "scenario": "region_L8",
+    "method": "DoC",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.059517338156916996,
+    "table_rho": -0.051438183383258694
+  },
+  {
+    "scenario": "region_L8",
+    "method": "DoC_Acc_SrcCal",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.059517338156916975,
+    "table_rho": -0.051438183383258694
+  },
+  {
+    "scenario": "region_L8",
+    "method": "LogME_PL",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.13132550855369315,
+    "table_rho": -0.09423758307712539
+  },
+  {
+    "scenario": "region_L8",
+    "method": "Hscore_PL",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.5879296706772743,
+    "table_rho": 0.48135868385575387
+  },
+  {
+    "scenario": "region_L8",
+    "method": "LEEP_PL",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.14254671901809596,
+    "table_rho": -0.09078215292296765
+  },
+  {
+    "scenario": "region_L8",
+    "method": "NLEEP_PL",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": -0.14079286079374576,
+    "table_rho": -0.14025032232492546
+  },
+  {
+    "scenario": "region_L8",
+    "method": "OTCE_PL_SrcCal",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.21585417923518585,
+    "table_rho": 0.18784521100071844
+  },
+  {
+    "scenario": "region_L8",
+    "method": "MMD_RBF_global",
+    "part": 2,
+    "points": 79,
+    "nominal_points": 80,
+    "seed": 290117,
+    "table_Fisher_r": 0.13901883700089854,
+    "table_rho": 0.1549127539183997
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "FCDTM_HardPL",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.7340430198070529,
+    "table_rho": 0.5740606060606062
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "FCDTM_SoftPL",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.7164496687243879,
+    "table_rho": 0.5207272727272728
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "FD_global",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.07925936923874233,
+    "table_rho": 0.08896969696969699
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "DS_pixel",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.4625637465724012,
+    "table_rho": 0.2911515151515151
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "GBC_spherical_PL",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.12917163085427635,
+    "table_rho": 0.1655757575757576
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "AC",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.14133651668369623,
+    "table_rho": 0.11927272727272727
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "Entropy",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.1261326088028158,
+    "table_rho": 0.11733333333333333
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "ATC_MC",
+    "part": 1,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.14684589026321943,
+    "table_rho": 0.1264076379856673
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "DoC",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.14133651668369623,
+    "table_rho": 0.11927272727272727
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "DoC_Acc_SrcCal",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.1413365166836962,
+    "table_rho": 0.11927272727272727
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "LogME_PL",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.07899219252083509,
+    "table_rho": 0.08606060606060605
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "Hscore_PL",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.6711054209851742,
+    "table_rho": 0.48096969696969694
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "LEEP_PL",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.079597292492567,
+    "table_rho": 0.07806060606060608
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "NLEEP_PL",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.15394334994541267,
+    "table_rho": 0.1696969696969697
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "OTCE_PL_SrcCal",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.32568143822675044,
+    "table_rho": 0.2581818181818182
+  },
+  {
+    "scenario": "sensor_GBA",
+    "method": "MMD_RBF_global",
+    "part": 2,
+    "points": 100,
+    "nominal_points": 100,
+    "seed": 290117,
+    "table_Fisher_r": 0.11148725692880194,
+    "table_rho": 0.020121212121212116
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "FCDTM_HardPL",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.6146490814946618,
+    "table_rho": 0.4853807387461126
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "FCDTM_SoftPL",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.6710490292261314,
+    "table_rho": 0.5409666358191169
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "FD_global",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.1618361729385634,
+    "table_rho": -0.12566969251590882
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "DS_pixel",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.5596647342097861,
+    "table_rho": 0.3912150463804176
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "GBC_spherical_PL",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.03460177592623491,
+    "table_rho": 0.1087965932244124
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "AC",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.04626904360697694,
+    "table_rho": -0.019274857282948338
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "Entropy",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.003788893387207279,
+    "table_rho": 0.014077798794602312
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "ATC_MC",
+    "part": 1,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.11977018107583745,
+    "table_rho": -0.04334051279431651
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "DoC",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.04626904360697694,
+    "table_rho": -0.019274857282948338
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "DoC_Acc_SrcCal",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.026081534718417527,
+    "table_rho": 0.023856455848364815
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "LogME_PL",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.18697591430181304,
+    "table_rho": -0.10921726703848422
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "Hscore_PL",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.6018967778314084,
+    "table_rho": 0.4709270720621815
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "LEEP_PL",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.22347776418192272,
+    "table_rho": -0.09497000391378412
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "NLEEP_PL",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.23816660642827303,
+    "table_rho": -0.1127808483365349
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "OTCE_PL_SrcCal",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": 0.508216250630855,
+    "table_rho": 0.3949957544631516
+  },
+  {
+    "scenario": "sensor_XJ",
+    "method": "MMD_RBF_global",
+    "part": 2,
+    "points": 104,
+    "nominal_points": 120,
+    "seed": 290117,
+    "table_Fisher_r": -0.13760483081579933,
+    "table_rho": -0.05980208077236412
+  }
+]
