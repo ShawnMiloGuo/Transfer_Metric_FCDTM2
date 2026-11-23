@@ -33,5 +33,9 @@
   "all_sensor_GBA_part1",
   "all_sensor_GBA_part2",
   "all_sensor_XJ_part1",
-  "all_sensor_XJ_part2"
+  "all_sensor_XJ_part2",
+  "all_region_S2_4x4",
+  "all_region_L8_4x4",
+  "all_sensor_GBA_4x4",
+  "all_sensor_XJ_4x4"
 ]

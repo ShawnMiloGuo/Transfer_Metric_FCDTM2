@@ -9,3 +9,5 @@
 论文及本地集成脚本保存在fcdtm-label-free；不向公开仓库上传完整论文。实验代码与结果发布独立codex/fcdtm-label-free分支。
 
 正文全方法连续图：outputs.py后运行main_all_methods.py /本地/fcdtm-label-free；图6–9各两页8面板。
+
+当前PDF批注版式以layout_review.py /本地/fcdtm-label-free作为最后步骤，覆盖配对列、前两名标注、4×4主图及方向图例。

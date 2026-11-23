@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "paired_table_cells_verified": 1344,
+  "method_panels_verified": 64,
+  "comment_items": 8,
+  "best_second_verified_from_unrounded_values": true,
+  "direction_keys_verified": true,
+  "score_values_unchanged": true
+}
