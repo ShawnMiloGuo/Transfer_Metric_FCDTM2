@@ -1,0 +1,29 @@
+\begin{table*}[!t]
+\color{revisioncolor}\centering\footnotesize
+\setlength{\tabcolsep}{6pt}
+\caption{Across-Transfer-Task Ranking Against Actual AD (D42)}
+\label{tab:task_ranking}
+\begin{tabular}{lcccc}\hline
+Method & \multicolumn{2}{c}{Full2048} & \multicolumn{2}{c}{Shared256} \\
+ & Kendall $\tau_b$ [95\% CI] & Spearman $\rho$ [95\% CI] & Kendall $\tau_b$ [95\% CI] & Spearman $\rho$ [95\% CI] \\\hline
+FCDTM-HardPL & \shortstack{$0.431$\\$[0.292,0.619]$} & \shortstack{$0.602$\\$[0.410,0.786]$} & \shortstack{$0.203$\\$[-0.053,0.424]$} & \shortstack{$0.294$\\$[-0.064,0.590]$} \\
+FCDTM-SoftPL & \shortstack{$0.424$\\$[0.229,0.533]$} & \shortstack{$0.609$\\$[0.348,0.734]$} & \shortstack{$0.205$\\$[-0.048,0.447]$} & \shortstack{$0.318$\\$[-0.064,0.635]$} \\
+FD & \shortstack{$0.168$\\$[0.013,0.333]$} & \shortstack{$0.211$\\$[0.024,0.441]$} & \shortstack{$0.174$\\$[-0.006,0.361]$} & \shortstack{$0.214$\\$[-0.008,0.466]$} \\
+DS & \shortstack{$0.243$\\$[0.066,0.366]$} & \shortstack{$0.355$\\$[0.073,0.526]$} & \shortstack{$0.231$\\$[0.050,0.373]$} & \shortstack{$0.332$\\$[0.032,0.526]$} \\
+GBC-PL & \shortstack{$-0.006$\\$[-0.294,0.329]$} & \shortstack{$-0.020$\\$[-0.404,0.432]$} & \shortstack{$-0.010$\\$[-0.307,0.340]$} & \shortstack{$-0.019$\\$[-0.399,0.450]$} \\
+AC / MSP & \shortstack{$0.099$\\$[-0.204,0.454]$} & \shortstack{$0.129$\\$[-0.268,0.585]$} & \shortstack{$0.110$\\$[-0.228,0.487]$} & \shortstack{$0.125$\\$[-0.333,0.617]$} \\
+Entropy & \shortstack{$0.071$\\$[-0.225,0.435]$} & \shortstack{$0.076$\\$[-0.323,0.557]$} & \shortstack{$0.090$\\$[-0.244,0.471]$} & \shortstack{$0.098$\\$[-0.375,0.614]$} \\
+ATC-MC & \shortstack{$0.099$\\$[-0.155,0.364]$} & \shortstack{$0.149$\\$[-0.214,0.493]$} & \shortstack{$0.116$\\$[-0.172,0.431]$} & \shortstack{$0.158$\\$[-0.250,0.571]$} \\
+ATC-NE & \shortstack{$0.099$\\$[-0.155,0.364]$} & \shortstack{$0.149$\\$[-0.214,0.493]$} & \shortstack{$0.116$\\$[-0.172,0.431]$} & \shortstack{$0.158$\\$[-0.250,0.571]$} \\
+DoC-gap & \shortstack{$0.257$\\$[-0.052,0.502]$} & \shortstack{$0.336$\\$[-0.109,0.663]$} & \shortstack{$0.272$\\$[-0.041,0.590]$} & \shortstack{$0.383$\\$[-0.036,0.749]$} \\
+DoC-Acc-SrcCal & \shortstack{$-0.001$\\$[-0.311,0.349]$} & \shortstack{$-0.023$\\$[-0.434,0.429]$} & \shortstack{$0.046$\\$[-0.309,0.413]$} & \shortstack{$0.050$\\$[-0.417,0.505]$} \\
+LogME-ICML-PL & \shortstack{$0.057$\\$[-0.276,0.330]$} & \shortstack{$0.085$\\$[-0.345,0.467]$} & \shortstack{$0.082$\\$[-0.257,0.390]$} & \shortstack{$0.120$\\$[-0.331,0.515]$} \\
+H-score-PL & \shortstack{$0.189$\\$[0.003,0.376]$} & \shortstack{$0.293$\\$[0.021,0.539]$} & \shortstack{$0.115$\\$[-0.152,0.397]$} & \shortstack{$0.139$\\$[-0.210,0.504]$} \\
+LEEP-PL & \shortstack{$0.069$\\$[-0.230,0.426]$} & \shortstack{$0.091$\\$[-0.316,0.537]$} & \shortstack{$0.118$\\$[-0.234,0.494]$} & \shortstack{$0.140$\\$[-0.328,0.620]$} \\
+NCE-Pred-PL & N/A & N/A & N/A & N/A \\
+NLEEP-PL & \shortstack{$0.034$\\$[-0.271,0.354]$} & \shortstack{$0.059$\\$[-0.334,0.477]$} & \shortstack{$0.077$\\$[-0.295,0.391]$} & \shortstack{$0.111$\\$[-0.382,0.535]$} \\
+OTCE-PL-SrcCal & -- & -- & \shortstack{$-0.054$\\$[-0.407,0.262]$} & \shortstack{$-0.069$\\$[-0.548,0.367]$} \\
+MMD-RBF-global & -- & -- & \shortstack{$0.287$\\$[0.130,0.485]$} & \shortstack{$0.356$\\$[0.168,0.639]$} \\
+\hline\end{tabular}
+\par\smallskip{\footnotesize Each point is one class--source-model--target-domain task using all 40 target images, not a four-image batch or partition seed. Common support: 42/42 (Full2048), 40/42 (Shared256). Native directions are fixed toward larger AD. Intervals use 5000 class-block resamples (7 represented classes), retaining all within-class tasks. They are descriptive conditional intervals, not independent-region confidence statements. Source-model-block and own-support results accompany the data. NCE's constant score yields N/A, not zero correlation. -- denotes a method outside that panel.}
+\end{table*}

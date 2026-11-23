@@ -1,0 +1,10 @@
+{
+  "artifacts/task_scores_sealed.csv": "46662c6567d5409ff6000af55e9285d528a953649380c0576e9c89f95c44c220",
+  "artifacts/score_audit.json": "7510975a23d16ce51e8a7342db2c96ae99df147d8674bb027708499adf2fb057",
+  "artifacts/task_manifest.json": "8cd8824bf3c67468da89a5ee37e596229a53d743f65c7881ebdfd1dda4bf4267",
+  "\u534f\u8bae.md": "10149c188600ff68afd31d4755e54f9572bfe295db263f49c48252d8434fcd7d",
+  "code/common.py": "9b64cb990279c13d86cf36a925793517a50adcd619ec001143d99c4e975d37a6",
+  "code/score_tasks.py": "b4bf53e7b1fbedd01f16c3900f1b8ae6d7f3ea571a3e00336d036840d8849553",
+  "code/ranking_stats.py": "4b9f67ef340610aaadd7263aea9e72c029cfd7d25c1a82b7e8ef0ecfc4d5126c",
+  "code/evaluate_tasks.py": "1ebbeaefd6d848095b6ece8ea16517130e536591d9709dd8abaabac16e048483"
+}

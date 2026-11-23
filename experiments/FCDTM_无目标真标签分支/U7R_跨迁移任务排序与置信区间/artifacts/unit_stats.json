@@ -1,0 +1,9 @@
+{
+  "literal_repeat_cases": 400,
+  "max_pair_reference_error": 0,
+  "scipy_oracle": true,
+  "max_scipy_error": 2.220446049250313e-16,
+  "cluster_members_stay_together": true,
+  "seed_reproducible": true,
+  "constant_remains_NA": true
+}

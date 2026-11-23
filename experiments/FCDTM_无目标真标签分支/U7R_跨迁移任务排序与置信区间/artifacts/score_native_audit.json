@@ -1,0 +1,8 @@
+{
+  "native_trace_passed": true,
+  "target_annotation_reads": 0,
+  "evaluation_cache_reads": 0,
+  "score_projection_replay_matches": true,
+  "trace_sha256": "a518b02e293ba845565dc6ed24ebd76286098d62a1cbec69687ec7a0c3d53213",
+  "replay_score_sha256": "46662c6567d5409ff6000af55e9285d528a953649380c0576e9c89f95c44c220"
+}

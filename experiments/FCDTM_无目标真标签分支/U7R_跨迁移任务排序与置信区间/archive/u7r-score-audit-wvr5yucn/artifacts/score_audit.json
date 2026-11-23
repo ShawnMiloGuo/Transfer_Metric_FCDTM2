@@ -1,0 +1,12 @@
+{
+  "target_annotation_reads": 0,
+  "evaluation_cache_reads": 0,
+  "guard_probe_blocked": true,
+  "denied": [
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_\u65e0\u76ee\u6807\u771f\u6807\u7b7e\u5206\u652f/U7B_\u5ba1\u7a3f\u65b0\u589e\u5ea6\u91cf\u4e0e\u4f2a\u6807\u7b7e\u9002\u914d/artifacts/\u9010\u9879\u8bc4\u4ef7_full.csv"
+  ],
+  "input_score_sha256": "6c225537a9a6cf7ea46509426d446bf0e57f104ec94428dccb324ce19dc478c3",
+  "source_score_seal_sha256": "dc701e583c006ff7cc413e2300585cfd7393b7838ef52d47de2da7058888e85d",
+  "task_rows": 100,
+  "task_score_rule": "existing whole 40-image native score; no outcome fitting"
+}

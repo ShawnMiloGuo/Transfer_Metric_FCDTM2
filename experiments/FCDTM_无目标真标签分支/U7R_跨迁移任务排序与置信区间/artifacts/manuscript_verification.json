@@ -1,0 +1,29 @@
+{
+  "original_main_unchanged": true,
+  "experiment": "U7R",
+  "historical_U7B_methods_unchanged": true,
+  "task_score_rows": 100,
+  "statistics_rows": 2040,
+  "ranking_methods": {
+    "full2048": 16,
+    "shared256": 18
+  },
+  "main_table_VII": "task-level AD ordering",
+  "former_selection_table": "Supplementary S1",
+  "selection_table_values_unchanged": true,
+  "ranking_figure_pairs": 32,
+  "all_methods_present": true,
+  "score_native_access_audit_passed": true,
+  "scipy_point_and_bootstrap_checks_passed": true,
+  "task_interval_unit": "class-block conditional descriptive 95% interval; source-model-block sensitivity",
+  "manuscript_pages": 25,
+  "supplement_pages": 58,
+  "undefined_references": false,
+  "overfull_boxes": false,
+  "equation_map_matches_diagrams": true,
+  "all_pages_rendered_and_visually_reviewed": true,
+  "new_text_marked": "revisioncolor=red",
+  "pdf_sha256": "731427065dcb39b72927ce1f3533d312c754ba086eca24d45036e4ded9cc3368",
+  "supplement_sha256": "324ec60ed9470dc801a09b7d9aaa943192ac233215e4d1ba08af67ab68df8c87",
+  "manuscript_sha256": "869295431611e31d7f1ca1995bcd0c0aff31970d40a4e0b126da8e886d79bc57"
+}

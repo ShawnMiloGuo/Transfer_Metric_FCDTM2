@@ -1,0 +1,4 @@
+numpy==2.5.5
+matplotlib==3.11.2
+# Independent verification also needs SciPy; server oracle version 1.17.0.
+scipy>=1.17

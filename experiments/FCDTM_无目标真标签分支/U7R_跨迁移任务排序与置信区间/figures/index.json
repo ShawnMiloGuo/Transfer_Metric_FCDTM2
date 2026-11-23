@@ -1,0 +1,610 @@
+[
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/D42_full2048_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "region_S2",
+    "file": "figures/D42_full2048_region_S2_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "region_L8",
+    "file": "figures/D42_full2048_region_L8_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "sensor_GBA",
+    "file": "figures/D42_full2048_sensor_GBA_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "sensor_XJ",
+    "file": "figures/D42_full2048_sensor_XJ_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "P37",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/P37_full2048_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "E50",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/E50_full2048_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "region_S2",
+    "file": "figures/D42_shared256_region_S2_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "region_L8",
+    "file": "figures/D42_shared256_region_L8_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "sensor_GBA",
+    "file": "figures/D42_shared256_sensor_GBA_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "sensor_XJ",
+    "file": "figures/D42_shared256_sensor_XJ_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "P37",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/P37_shared256_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "intervals",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_all_intervals.pdf",
+    "methods": [
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL",
+      "FD_global",
+      "DS_pixel",
+      "GBC_spherical_PL",
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "NLEEP_PL",
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/D42_full2048_original_task_scatter.pdf",
+    "methods": [
+      "DS_pixel",
+      "FD_global",
+      "GBC_spherical_PL",
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/D42_full2048_output_task_scatter.pdf",
+    "methods": [
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/D42_full2048_label_evidence_task_scatter.pdf",
+    "methods": [
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/D42_full2048_confidence_clustering_task_scatter.pdf",
+    "methods": [
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "NLEEP_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/E50_full2048_original_task_scatter.pdf",
+    "methods": [
+      "DS_pixel",
+      "FD_global",
+      "GBC_spherical_PL",
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/E50_full2048_output_task_scatter.pdf",
+    "methods": [
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/E50_full2048_label_evidence_task_scatter.pdf",
+    "methods": [
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "full2048",
+    "scenario": "all",
+    "file": "figures/E50_full2048_confidence_clustering_task_scatter.pdf",
+    "methods": [
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "NLEEP_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_original_task_scatter.pdf",
+    "methods": [
+      "DS_pixel",
+      "FD_global",
+      "GBC_spherical_PL",
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_output_task_scatter.pdf",
+    "methods": [
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_label_evidence_task_scatter.pdf",
+    "methods": [
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_confidence_clustering_task_scatter.pdf",
+    "methods": [
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "NLEEP_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "D42",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/D42_shared256_transport_task_scatter.pdf",
+    "methods": [
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_original_task_scatter.pdf",
+    "methods": [
+      "DS_pixel",
+      "FD_global",
+      "GBC_spherical_PL",
+      "FCDTM_HardPL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_output_task_scatter.pdf",
+    "methods": [
+      "AC",
+      "Entropy",
+      "ATC_MC",
+      "ATC_NE",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_label_evidence_task_scatter.pdf",
+    "methods": [
+      "LogME_PL",
+      "Hscore_PL",
+      "LEEP_PL",
+      "NCE_Pred_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_confidence_clustering_task_scatter.pdf",
+    "methods": [
+      "DoC",
+      "DoC_Acc_SrcCal",
+      "NLEEP_PL",
+      "FCDTM_SoftPL"
+    ]
+  },
+  {
+    "kind": "task_scatter",
+    "cohort": "E50",
+    "panel": "shared256",
+    "scenario": "all",
+    "file": "figures/E50_shared256_transport_task_scatter.pdf",
+    "methods": [
+      "OTCE_PL_SrcCal",
+      "MMD_RBF_global",
+      "FCDTM_SoftPL"
+    ]
+  }
+]

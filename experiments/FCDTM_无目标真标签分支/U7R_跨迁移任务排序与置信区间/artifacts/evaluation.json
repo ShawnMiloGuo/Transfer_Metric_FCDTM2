@@ -1,0 +1,12 @@
+{
+  "task_score_seal_verified": true,
+  "task_rows": 100,
+  "statistic_rows": 2040,
+  "target_annotation_reads": 0,
+  "target_reference_cache_only_postseal": true,
+  "evaluation_cache_sha256": "56339f4addfa52559c7873d6d901f157fd99c0189815d438f04317649e027551",
+  "evaluating_code_sha256": "1ebbeaefd6d848095b6ece8ea16517130e536591d9709dd8abaabac16e048483",
+  "primary_interval": "class-block percentile, 5000, descriptive conditional on historical domains",
+  "sensitivity_interval": "source-model-block percentile, 5000",
+  "no_target_based_formula_or_direction_tuning": true
+}

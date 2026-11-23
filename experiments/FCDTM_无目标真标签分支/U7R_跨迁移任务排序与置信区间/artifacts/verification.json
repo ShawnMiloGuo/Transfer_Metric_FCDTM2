@@ -1,0 +1,12 @@
+{
+  "score_seal_verified": true,
+  "score_values_preserved": true,
+  "statistic_rows_scipy_checked": 2040,
+  "max_point_error": 2.220446049250313e-16,
+  "real_bootstrap_coefficients_checked": 1280,
+  "max_real_bootstrap_error": 2.220446049250313e-16,
+  "figures_cover_all_applicable_methods": true,
+  "annotation_numbers_match_tables": true,
+  "target_annotation_images_reopened": false,
+  "verifier_sha256": "3f855c0b3b84aef1d12a37704141b5d5ae0b6c8dae8d23a6b4e8fe03b621df8a"
+}
