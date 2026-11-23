@@ -1,0 +1,30 @@
+[
+  {
+    "src": "dwq_landsat8",
+    "source_images": 64,
+    "class_id": 8,
+    "sampled_label_match": true,
+    "first_fresh_full_counts_match": true
+  },
+  {
+    "src": "dwq_sentinel2",
+    "source_images": 64,
+    "class_id": 8,
+    "sampled_label_match": true,
+    "first_fresh_full_counts_match": true
+  },
+  {
+    "src": "xj_landsat8",
+    "source_images": 64,
+    "class_id": 8,
+    "sampled_label_match": true,
+    "first_fresh_full_counts_match": true
+  },
+  {
+    "src": "xj_sentinel2",
+    "source_images": 64,
+    "class_id": 8,
+    "sampled_label_match": true,
+    "first_fresh_full_counts_match": true
+  }
+]

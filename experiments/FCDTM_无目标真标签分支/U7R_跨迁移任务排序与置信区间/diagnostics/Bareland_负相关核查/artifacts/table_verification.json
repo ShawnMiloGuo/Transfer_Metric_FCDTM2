@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "Bareland_rows": 8,
+  "table_cells_checked": 80,
+  "rows": [
+    {
+      "table": "tasks_region.tex",
+      "src": "dwq_landsat8",
+      "tgt": "xj_landsat8",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_region.tex",
+      "src": "dwq_sentinel2",
+      "tgt": "xj_sentinel2",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_region.tex",
+      "src": "xj_landsat8",
+      "tgt": "dwq_landsat8",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_region.tex",
+      "src": "xj_sentinel2",
+      "tgt": "dwq_sentinel2",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_sensor.tex",
+      "src": "dwq_landsat8",
+      "tgt": "dwq_sentinel2",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_sensor.tex",
+      "src": "dwq_sentinel2",
+      "tgt": "dwq_landsat8",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_sensor.tex",
+      "src": "xj_landsat8",
+      "tgt": "xj_sentinel2",
+      "all_ten_cells_match": true
+    },
+    {
+      "table": "tasks_sensor.tex",
+      "src": "xj_sentinel2",
+      "tgt": "xj_landsat8",
+      "all_ten_cells_match": true
+    }
+  ]
+}

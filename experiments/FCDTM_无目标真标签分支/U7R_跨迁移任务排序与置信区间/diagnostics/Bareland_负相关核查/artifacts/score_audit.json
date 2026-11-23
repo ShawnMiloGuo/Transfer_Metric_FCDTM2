@@ -1,0 +1,14 @@
+{
+  "phase": "score_only",
+  "records": 528,
+  "checkpoint_hashes_verified": true,
+  "target_annotation_reads": 0,
+  "reference_probe_blocked": true,
+  "max_absolute_score_difference": {
+    "FCDTM_HardPL": 0.0,
+    "FCDTM_SoftPL": 5.684341886080801e-13,
+    "FD_global": 3.7656207041436573e-08,
+    "DS_pixel": 1.7763568394002505e-15,
+    "GBC_spherical_PL": 4.579669976578771e-14
+  }
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "src": "dwq_landsat8",
+    "tgt": "dwq_landsat8",
+    "name": "dwql8_i18j27.tif",
+    "image_sha": "52bfc271a78f0000d13f357aed78c0bfab88c39d017301b25f86ff2156b7c701",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true
+  },
+  {
+    "src": "dwq_landsat8",
+    "tgt": "dwq_sentinel2",
+    "name": "dwqs2_i20j111.tif",
+    "image_sha": "ee59947f060f078902a244ab9baf430c7a8646fd3d060f9ac76292c63519b5fb",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "dwq_landsat8",
+    "tgt": "xj_landsat8",
+    "name": "xjl8_i23j22.tif",
+    "image_sha": "6c5c42acbb9f91ad76cadc7be94b5e0ee5219912f07d5d0519a7cd11bf7bf4d8",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "dwq_sentinel2",
+    "tgt": "dwq_sentinel2",
+    "name": "dwqs2_i27j101.tif",
+    "image_sha": "a6feb414299b5b87e19ccc2055f21836d3eabdd717060482eb84d541d7142020",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true
+  },
+  {
+    "src": "dwq_sentinel2",
+    "tgt": "dwq_landsat8",
+    "name": "dwql8_i17j34.tif",
+    "image_sha": "03332871e3b48ffd8dac50b5708572806d0abe0ca28a663ba569e80dc45ff576",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "dwq_sentinel2",
+    "tgt": "xj_sentinel2",
+    "name": "xjs2_i79j54.tif",
+    "image_sha": "86599cbc3857080c305d66bd78ba64d329cf8745f7cc88a65a4e09636aa09c43",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "xj_landsat8",
+    "tgt": "xj_landsat8",
+    "name": "xjl8_i13j13.tif",
+    "image_sha": "b1552a7888bc39fa1fcb33758a096a522bf1d3c323ed2770e85b13f6427037b3",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true
+  },
+  {
+    "src": "xj_landsat8",
+    "tgt": "xj_sentinel2",
+    "name": "xjs2_i79j54.tif",
+    "image_sha": "86599cbc3857080c305d66bd78ba64d329cf8745f7cc88a65a4e09636aa09c43",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "xj_landsat8",
+    "tgt": "dwq_landsat8",
+    "name": "dwql8_i17j34.tif",
+    "image_sha": "03332871e3b48ffd8dac50b5708572806d0abe0ca28a663ba569e80dc45ff576",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "xj_sentinel2",
+    "tgt": "xj_sentinel2",
+    "name": "xjs2_i66j23.tif",
+    "image_sha": "caf1bdfd49f05997c4995e9c5b586f91ec3cd9dc079c3d5ba7de351ef42dc50d",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true
+  },
+  {
+    "src": "xj_sentinel2",
+    "tgt": "xj_landsat8",
+    "name": "xjl8_i23j22.tif",
+    "image_sha": "6c5c42acbb9f91ad76cadc7be94b5e0ee5219912f07d5d0519a7cd11bf7bf4d8",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  },
+  {
+    "src": "xj_sentinel2",
+    "tgt": "dwq_sentinel2",
+    "name": "dwqs2_i20j111.tif",
+    "image_sha": "ee59947f060f078902a244ab9baf430c7a8646fd3d060f9ac76292c63519b5fb",
+    "max_feature_difference": 0.0,
+    "max_probability_difference": 0.0,
+    "sampled_predictions_identical": true,
+    "full_prediction_bits_identical": true,
+    "valid_bits_identical": true
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "models": 4,
+  "tasks": 8,
+  "source_images_label_checked": 256,
+  "fresh_images_checked": 12,
+  "score_rows": 528,
+  "correlations_checked": 200,
+  "max_score_absolute_difference": {
+    "FCDTM_HardPL": 0.0,
+    "FCDTM_SoftPL": 5.684341886080801e-13,
+    "FD_global": 3.7656207041436573e-08,
+    "DS_pixel": 1.7763568394002505e-15,
+    "GBC_spherical_PL": 4.579669976578771e-14
+  },
+  "max_F1_AD_difference": 0.0,
+  "score_seal_unchanged": true,
+  "source_and_target_separated": true,
+  "target_reference_only_postseal": true,
+  "seconds": 32.92688322067261,
+  "limitations": "One fresh image per cache; no retraining or independent georegistration audit. Oracle is evaluation-only."
+}

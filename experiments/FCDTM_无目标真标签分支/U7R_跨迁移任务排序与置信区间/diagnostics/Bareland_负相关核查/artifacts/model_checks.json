@@ -1,0 +1,54 @@
+[
+  {
+    "src": "dwq_landsat8",
+    "checkpoint": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_landsat8_cls_8/unet_epoch303_best_val.pth",
+    "checkpoint_sha": "b63fde6a111319816557c4ebfc7bb72840a08a109c944ce695f5883701cabb46",
+    "source_F1": 0.3945363924083644,
+    "source_sampled_foreground_fraction": 0.08196258544921875,
+    "source_pred_foreground_fraction": 0.14728546142578125,
+    "mu_min": 0.15186637776242323,
+    "mu_max": 0.5253195315697673,
+    "near_zero_dimensions": 0,
+    "feature_dimensions": 64,
+    "source_sampled_logit_sign_agreement": 1.0
+  },
+  {
+    "src": "dwq_sentinel2",
+    "checkpoint": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_dwq_sentinel2_cls_8/unet_epoch62_best_val.pth",
+    "checkpoint_sha": "07731296ecc9166a07599ef27df54b791b87e66d6bcda96df71eb7529b80c9df",
+    "source_F1": 0.49829057126414245,
+    "source_sampled_foreground_fraction": 0.0724639892578125,
+    "source_pred_foreground_fraction": 0.1151123046875,
+    "mu_min": 0.09847932234503086,
+    "mu_max": 0.6530466033617351,
+    "near_zero_dimensions": 0,
+    "feature_dimensions": 64,
+    "source_sampled_logit_sign_agreement": 1.0
+  },
+  {
+    "src": "xj_landsat8",
+    "checkpoint": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_landsat8_cls_8/unet_epoch173_best_val.pth",
+    "checkpoint_sha": "66930f6a7e95fda67bb61407303f33e86d727a9714a2ed2f3eda71ee3c5b5306",
+    "source_F1": 0.9562116255874568,
+    "source_sampled_foreground_fraction": 0.7090377807617188,
+    "source_pred_foreground_fraction": 0.7152328491210938,
+    "mu_min": 0.059534929992683124,
+    "mu_max": 0.6862712450799455,
+    "near_zero_dimensions": 0,
+    "feature_dimensions": 64,
+    "source_sampled_logit_sign_agreement": 1.0
+  },
+  {
+    "src": "xj_sentinel2",
+    "checkpoint": "/home/Shanxin.Guo/ZhangtuosCode/2_model_pth/train_xj_sentinel2_cls_8/unet_epoch148_best_val.pth",
+    "checkpoint_sha": "c7802c2a558d0e3a4e31023ef9a6f9dd5d6309f6654acb00c3f4f605880d690e",
+    "source_F1": 0.9596441515181373,
+    "source_sampled_foreground_fraction": 0.6941146850585938,
+    "source_pred_foreground_fraction": 0.7123031616210938,
+    "mu_min": 0.04381653782196643,
+    "mu_max": 0.6460902175951138,
+    "near_zero_dimensions": 0,
+    "feature_dimensions": 64,
+    "source_sampled_logit_sign_agreement": 1.0
+  }
+]

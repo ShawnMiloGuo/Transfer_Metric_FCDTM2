@@ -1,0 +1,20 @@
+{
+  "artifacts/batch_diagnostics.csv": "f99237945ccdaf0151664c88c7584313e994a65f34fc617f9a42dd12152ebc26",
+  "artifacts/fresh_inference_checks.json": "5c1fe46dbed811b1dfeff0c24376e1311e90b2bcae8d6751724131ad808a52c5",
+  "artifacts/mean_correlations.csv": "24dcfe26179b6b0ade46cc6e57cd34039cc1b1d1312ed89d26b82408f1db1eba",
+  "artifacts/model_checks.json": "77ceb9167e28493cbafbbeaed7975d2fbef049fa7a562f8ce3b326c90b53cc50",
+  "artifacts/recomputed_scores.csv": "eeeb4f80bfd118aa493b1b62728e6062d9e361fff7d82c27710b4cabcc6b5599",
+  "artifacts/score_audit.json": "c676753f8ce787df3094cb79547e0eaedbfbe88027132c44de81e46df3feb186",
+  "artifacts/score_seal.json": "26ba5383175b31bafeb01b56620e30053a5ba593a60bfab8c4bf1fdf5d6e3940",
+  "artifacts/seed_correlations.csv": "8fa489f948e4ddb6f879b4c97bceb55558c7ecddfe48b84dd3a2a6f0eb3c3f8c",
+  "artifacts/source_label_checks.json": "c9e006e1629580827303ab040507b2dd4bea5b18ee22ee5ee092d67294bb7d09",
+  "artifacts/table_verification.json": "9522c3f1cbe5d362150932ba741c460a68e234830fd2a24e6379d66e8e6459e4",
+  "artifacts/task_diagnostics.csv": "63744f6c6f84ede8fa83f5dcbef1a3c7695f42e30c0daf9e1afd5d4693c78902",
+  "artifacts/verification.json": "1e9067e8a252cc2bc8e0ee7ff326c93d216e52242dd83b0b6cb6733663b7c74f",
+  "code/audit_bareland.py": "a50a4036412ea3d5abb749159732e2b36e1ac1537655da2bea37b8e82def8d0c",
+  "code/summarize_bareland.py": "341aa6a8d05a3742a5a98ddc9ad03d24463bd3fc603b80afcc3472ab7135c0d4",
+  "figures/Bareland_soft_scatter.pdf": "941d72eb096f06ce76a327405af38591f625a55ef24d525455aa57a1b92de547",
+  "figures/Bareland_soft_scatter.png": "055e3b052d9b7f7777779786fe461f5c0a02c6635af1ca4f8203242dfa0ef0cc",
+  "实验结果分析.md": "1673db0dd85c6960a423dcf345c2967bbf324c8b765976f6bd7670ebbb6f9234",
+  "核查协议.md": "3e6f9c7fa4e7c374c9c79e83428b31d255290e0a17f8aca00bcb36b8ec4c0cfa"
+}
