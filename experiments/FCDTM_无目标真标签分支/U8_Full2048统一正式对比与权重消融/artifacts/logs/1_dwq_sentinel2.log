@@ -1,0 +1,37 @@
+SOURCE 1 dwq_sentinel2 8 64 128
+SOURCE 1 dwq_sentinel2 16 64 223
+SOURCE 1 dwq_sentinel2 24 64 306
+SOURCE 1 dwq_sentinel2 32 64 373
+SOURCE 1 dwq_sentinel2 40 64 424
+SOURCE 1 dwq_sentinel2 48 64 462
+SOURCE 1 dwq_sentinel2 56 64 484
+SOURCE 1 dwq_sentinel2 64 64 492
+TARGET 1 dwq_sentinel2 dwq_landsat8 8 40 556
+TARGET 1 dwq_sentinel2 dwq_landsat8 16 40 607
+TARGET 1 dwq_sentinel2 dwq_landsat8 24 40 645
+TARGET 1 dwq_sentinel2 dwq_landsat8 32 40 668
+TARGET 1 dwq_sentinel2 dwq_landsat8 40 40 677
+CROSS 1 dwq_sentinel2 dwq_landsat8 8 64 753
+CROSS 1 dwq_sentinel2 dwq_landsat8 16 64 827
+CROSS 1 dwq_sentinel2 dwq_landsat8 24 64 902
+CROSS 1 dwq_sentinel2 dwq_landsat8 32 64 975
+CROSS 1 dwq_sentinel2 dwq_landsat8 40 64 1046
+CROSS 1 dwq_sentinel2 dwq_landsat8 48 64 1124
+CROSS 1 dwq_sentinel2 dwq_landsat8 56 64 1204
+CROSS 1 dwq_sentinel2 dwq_landsat8 64 64 1300
+TASK_DONE 1 dwq_sentinel2 dwq_landsat8 66 1300
+TARGET 1 dwq_sentinel2 xj_sentinel2 8 40 1394
+TARGET 1 dwq_sentinel2 xj_sentinel2 16 40 1491
+TARGET 1 dwq_sentinel2 xj_sentinel2 24 40 1561
+TARGET 1 dwq_sentinel2 xj_sentinel2 32 40 1605
+TARGET 1 dwq_sentinel2 xj_sentinel2 40 40 1621
+CROSS 1 dwq_sentinel2 xj_sentinel2 8 64 1744
+CROSS 1 dwq_sentinel2 xj_sentinel2 16 64 1875
+CROSS 1 dwq_sentinel2 xj_sentinel2 24 64 2015
+CROSS 1 dwq_sentinel2 xj_sentinel2 32 64 2150
+CROSS 1 dwq_sentinel2 xj_sentinel2 40 64 2254
+CROSS 1 dwq_sentinel2 xj_sentinel2 48 64 2364
+CROSS 1 dwq_sentinel2 xj_sentinel2 56 64 2476
+CROSS 1 dwq_sentinel2 xj_sentinel2 64 64 2581
+TASK_DONE 1 dwq_sentinel2 xj_sentinel2 132 2581
+WORKER_DONE 1 dwq_sentinel2 132 2581

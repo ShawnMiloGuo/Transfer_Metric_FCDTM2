@@ -1,0 +1,20 @@
+{
+  "records": 132,
+  "approximation": "source-fitted Q1024 cells; exact weighted transport of centroids; feasible product lift, including within-cell variance cost and class proportions",
+  "full_input_points_used": true,
+  "target_reference_reads": 0,
+  "guard_probe_blocked": true,
+  "unexpected_denials": [],
+  "inputs": {
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_sentinel2_source.npz": "de318789169882db33026077a32e7c21c4f6badd6d730d87f99f159d9998e3ed",
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_sentinel2__dwq_sentinel2.npz": "71471d45ab4508ae5dd45825c0efedf8b9195ed257b9eb927509533f0b681a66",
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_sentinel2__xj_landsat8.npz": "56d6486a3e5f7b8c709b5bc0f588c26ef75ea6b9111632f06f128a79f505310c"
+  },
+  "max_marginal_error": 3.1307692983234547e-16,
+  "seconds": 40.32284617424011,
+  "code_sha": {
+    "common.py": "9692f3a4604c2ae362159c71a1b4826120ad3f47886f8bea75e986fe9e0ca292",
+    "ot_quantized.py": "4d601ae6fd71515748005bdfc2d1e1eee30cfd4aa926822754c33267763499a9",
+    "ot_worker.py": "c1542e98e5f8e5f4d8472e4922341f0ea250d0ffa6520653f8c584626ea33c9e"
+  }
+}

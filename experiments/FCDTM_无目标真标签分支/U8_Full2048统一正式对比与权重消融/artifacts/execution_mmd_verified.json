@@ -1,0 +1,7 @@
+{
+  "status": "completed_verified_from_outputs",
+  "models": 25,
+  "records": 3300,
+  "source": "25 worker result/audit pairs, input and code hashes checked by finalize",
+  "supervisor_final_summary_absent": true
+}

@@ -1,0 +1,41 @@
+2026-11-23 20:33:02.518913: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+SOURCE_CAL 8 xj_sentinel2 1 8
+SOURCE_CAL 8 xj_sentinel2 2 8
+SOURCE_CAL 8 xj_sentinel2 3 8
+SOURCE_CAL 8 xj_sentinel2 4 8
+SOURCE_CAL 8 xj_sentinel2 5 8
+SOURCE_CAL 8 xj_sentinel2 6 9
+SOURCE_CAL 8 xj_sentinel2 7 9
+SOURCE_CAL 8 xj_sentinel2 8 9
+SOURCE_CAL 8 xj_sentinel2 9 9
+SOURCE_CAL 8 xj_sentinel2 10 9
+SOURCE_CAL 8 xj_sentinel2 11 10
+SOURCE_CAL 8 xj_sentinel2 12 10
+SOURCE_CAL 8 xj_sentinel2 13 10
+SOURCE_CAL 8 xj_sentinel2 14 10
+SOURCE_CAL 8 xj_sentinel2 15 11
+SOURCE_CAL 8 xj_sentinel2 16 11
+SOURCE_CAL 8 xj_sentinel2 17 11
+SOURCE_CAL 8 xj_sentinel2 18 11
+SOURCE_CAL 8 xj_sentinel2 19 11
+SOURCE_CAL 8 xj_sentinel2 20 12
+SOURCE_CAL 8 xj_sentinel2 21 12
+SOURCE_CAL 8 xj_sentinel2 22 12
+SOURCE_CAL 8 xj_sentinel2 23 12
+SOURCE_CAL 8 xj_sentinel2 24 12
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 10 15
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 20 17
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 30 18
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 40 20
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 50 21
+OT_SCORES 8 xj_sentinel2 dwq_sentinel2 60 24
+OT_TASK_DONE 8 xj_sentinel2 dwq_sentinel2 26
+OT_SCORES 8 xj_sentinel2 xj_landsat8 10 28
+OT_SCORES 8 xj_sentinel2 xj_landsat8 20 30
+OT_SCORES 8 xj_sentinel2 xj_landsat8 30 31
+OT_SCORES 8 xj_sentinel2 xj_landsat8 40 33
+OT_SCORES 8 xj_sentinel2 xj_landsat8 50 34
+OT_SCORES 8 xj_sentinel2 xj_landsat8 60 37
+OT_TASK_DONE 8 xj_sentinel2 xj_landsat8 38
+OT_WORKER_DONE 8 xj_sentinel2 38

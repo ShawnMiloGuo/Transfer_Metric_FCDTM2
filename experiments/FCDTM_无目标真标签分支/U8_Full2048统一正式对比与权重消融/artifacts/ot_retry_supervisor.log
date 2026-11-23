@@ -1,0 +1,30 @@
+{'model': '1_dwq_landsat8', 'exit': 1}
+{'model': '1_dwq_sentinel2', 'exit': 1}
+{'model': '1_xj_landsat8', 'exit': 1}
+{'model': '1_xj_sentinel2', 'exit': 1}
+{'model': '2_dwq_landsat8', 'exit': 1}
+{'model': '2_dwq_sentinel2', 'exit': 1}
+{'model': '2_xj_sentinel2', 'exit': 1}
+{'model': '3_dwq_sentinel2', 'exit': 1}
+{'model': '3_xj_landsat8', 'exit': 1}
+{'model': '3_xj_sentinel2', 'exit': 1}
+{'model': '4_xj_sentinel2', 'exit': 1}
+{'model': '5_xj_landsat8', 'exit': 1}
+{'model': '5_xj_sentinel2', 'exit': 1}
+{'model': '6_dwq_landsat8', 'exit': 1}
+{'model': '6_dwq_sentinel2', 'exit': 1}
+{'model': '6_xj_landsat8', 'exit': 0}
+{'model': '6_xj_sentinel2', 'exit': 0}
+{'model': '7_dwq_landsat8', 'exit': 0}
+{'model': '7_dwq_sentinel2', 'exit': 0}
+{'model': '7_xj_landsat8', 'exit': 0}
+{'model': '7_xj_sentinel2', 'exit': 0}
+{'model': '8_dwq_landsat8', 'exit': 0}
+{'model': '8_dwq_sentinel2', 'exit': 0}
+{'model': '8_xj_landsat8', 'exit': 0}
+{'model': '8_xj_sentinel2', 'exit': 0}
+Traceback (most recent call last):
+  File "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U8_Full2048统一正式对比与权重消融/code/launch_ot.py", line 15, in <module>
+    dump(O/'execution_ot.json',dict(seconds=time.time()-start,workers=workers,models=rows));assert all(r['exit']==0 for r in rows),rows
+                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [{'model': '1_dwq_landsat8', 'exit': 1}, {'model': '1_dwq_sentinel2', 'exit': 1}, {'model': '1_xj_landsat8', 'exit': 1}, {'model': '1_xj_sentinel2', 'exit': 1}, {'model': '2_dwq_landsat8', 'exit': 1}, {'model': '2_dwq_sentinel2', 'exit': 1}, {'model': '2_xj_sentinel2', 'exit': 1}, {'model': '3_dwq_sentinel2', 'exit': 1}, {'model': '3_xj_landsat8', 'exit': 1}, {'model': '3_xj_sentinel2', 'exit': 1}, {'model': '4_xj_sentinel2', 'exit': 1}, {'model': '5_xj_landsat8', 'exit': 1}, {'model': '5_xj_sentinel2', 'exit': 1}, {'model': '6_dwq_landsat8', 'exit': 1}, {'model': '6_dwq_sentinel2', 'exit': 1}, {'model': '6_xj_landsat8', 'exit': 0}, {'model': '6_xj_sentinel2', 'exit': 0}, {'model': '7_dwq_landsat8', 'exit': 0}, {'model': '7_dwq_sentinel2', 'exit': 0}, {'model': '7_xj_landsat8', 'exit': 0}, {'model': '7_xj_sentinel2', 'exit': 0}, {'model': '8_dwq_landsat8', 'exit': 0}, {'model': '8_dwq_sentinel2', 'exit': 0}, {'model': '8_xj_landsat8', 'exit': 0}, {'model': '8_xj_sentinel2', 'exit': 0}]

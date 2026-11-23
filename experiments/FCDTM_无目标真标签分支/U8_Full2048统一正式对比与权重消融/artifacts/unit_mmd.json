@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "subset_errors": [
+    0.0,
+    0.0,
+    0.0,
+    5.551115123125783e-17
+  ],
+  "double_loop_error": 5.551115123125783e-17,
+  "block_2048_seconds": 0.21632981300354004,
+  "formula": "exact unbiased RBF MMD^2",
+  "no_target_reference_reads": true
+}

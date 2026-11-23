@@ -1,0 +1,116 @@
+{
+  "seconds": 107.83464574813843,
+  "workers": 8,
+  "models": [
+    {
+      "model": "1_dwq_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "1_dwq_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "1_xj_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "1_xj_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "2_dwq_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "2_dwq_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "2_xj_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "3_dwq_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "3_xj_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "3_xj_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "4_xj_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "5_xj_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "5_xj_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "6_dwq_landsat8",
+      "exit": 0
+    },
+    {
+      "model": "6_dwq_sentinel2",
+      "exit": 0
+    },
+    {
+      "model": "6_xj_landsat8",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "6_xj_sentinel2",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "7_dwq_landsat8",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "7_dwq_sentinel2",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "7_xj_landsat8",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "7_xj_sentinel2",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "8_dwq_landsat8",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "8_dwq_sentinel2",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "8_xj_landsat8",
+      "reused": true,
+      "exit": 0
+    },
+    {
+      "model": "8_xj_sentinel2",
+      "reused": true,
+      "exit": 0
+    }
+  ]
+}

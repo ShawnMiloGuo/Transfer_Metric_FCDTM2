@@ -1,0 +1,37 @@
+SOURCE 5 xj_sentinel2 8 64 173
+SOURCE 5 xj_sentinel2 16 64 348
+SOURCE 5 xj_sentinel2 24 64 488
+SOURCE 5 xj_sentinel2 32 64 611
+SOURCE 5 xj_sentinel2 40 64 705
+SOURCE 5 xj_sentinel2 48 64 783
+SOURCE 5 xj_sentinel2 56 64 825
+SOURCE 5 xj_sentinel2 64 64 840
+TARGET 5 xj_sentinel2 dwq_sentinel2 8 40 950
+TARGET 5 xj_sentinel2 dwq_sentinel2 16 40 1034
+TARGET 5 xj_sentinel2 dwq_sentinel2 24 40 1092
+TARGET 5 xj_sentinel2 dwq_sentinel2 32 40 1128
+TARGET 5 xj_sentinel2 dwq_sentinel2 40 40 1139
+CROSS 5 xj_sentinel2 dwq_sentinel2 8 64 1258
+CROSS 5 xj_sentinel2 dwq_sentinel2 16 64 1368
+CROSS 5 xj_sentinel2 dwq_sentinel2 24 64 1499
+CROSS 5 xj_sentinel2 dwq_sentinel2 32 64 1608
+CROSS 5 xj_sentinel2 dwq_sentinel2 40 64 1725
+CROSS 5 xj_sentinel2 dwq_sentinel2 48 64 1849
+CROSS 5 xj_sentinel2 dwq_sentinel2 56 64 1973
+CROSS 5 xj_sentinel2 dwq_sentinel2 64 64 2095
+TASK_DONE 5 xj_sentinel2 dwq_sentinel2 66 2095
+TARGET 5 xj_sentinel2 xj_landsat8 8 40 2214
+TARGET 5 xj_sentinel2 xj_landsat8 16 40 2296
+TARGET 5 xj_sentinel2 xj_landsat8 24 40 2357
+TARGET 5 xj_sentinel2 xj_landsat8 32 40 2387
+TARGET 5 xj_sentinel2 xj_landsat8 40 40 2399
+CROSS 5 xj_sentinel2 xj_landsat8 8 64 2518
+CROSS 5 xj_sentinel2 xj_landsat8 16 64 2638
+CROSS 5 xj_sentinel2 xj_landsat8 24 64 2747
+CROSS 5 xj_sentinel2 xj_landsat8 32 64 2835
+CROSS 5 xj_sentinel2 xj_landsat8 40 64 2914
+CROSS 5 xj_sentinel2 xj_landsat8 48 64 2997
+CROSS 5 xj_sentinel2 xj_landsat8 56 64 3074
+CROSS 5 xj_sentinel2 xj_landsat8 64 64 3142
+TASK_DONE 5 xj_sentinel2 xj_landsat8 132 3142
+WORKER_DONE 5 xj_sentinel2 132 3142

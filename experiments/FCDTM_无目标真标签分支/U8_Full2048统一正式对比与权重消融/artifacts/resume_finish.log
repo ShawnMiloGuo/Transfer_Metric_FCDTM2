@@ -1,0 +1,41 @@
+{'model': '1_dwq_landsat8', 'exit': 0}
+{'model': '1_dwq_sentinel2', 'exit': 0}
+{'model': '1_xj_landsat8', 'exit': 0}
+{'model': '1_xj_sentinel2', 'exit': 0}
+{'model': '2_dwq_landsat8', 'exit': 0}
+{'model': '2_dwq_sentinel2', 'exit': 0}
+{'model': '2_xj_sentinel2', 'exit': 0}
+{'model': '3_dwq_sentinel2', 'exit': 0}
+{'model': '3_xj_landsat8', 'exit': 0}
+{'model': '3_xj_sentinel2', 'exit': 0}
+{'model': '4_xj_sentinel2', 'exit': 0}
+{'model': '5_xj_landsat8', 'exit': 0}
+{'model': '5_xj_sentinel2', 'exit': 0}
+{'model': '6_dwq_landsat8', 'exit': 0}
+{'model': '6_dwq_sentinel2', 'exit': 0}
+{'model': '6_xj_landsat8', 'reused': True, 'exit': 0}
+{'model': '6_xj_sentinel2', 'reused': True, 'exit': 0}
+{'model': '7_dwq_landsat8', 'reused': True, 'exit': 0}
+{'model': '7_dwq_sentinel2', 'reused': True, 'exit': 0}
+{'model': '7_xj_landsat8', 'reused': True, 'exit': 0}
+{'model': '7_xj_sentinel2', 'reused': True, 'exit': 0}
+{'model': '8_dwq_landsat8', 'reused': True, 'exit': 0}
+{'model': '8_dwq_sentinel2', 'reused': True, 'exit': 0}
+{'model': '8_xj_landsat8', 'reused': True, 'exit': 0}
+{'model': '8_xj_sentinel2', 'reused': True, 'exit': 0}
+OT_APPROX_COMPLETE
+RANKED D42 all
+RANKED D42 region_S2
+RANKED D42 region_L8
+RANKED D42 sensor_GBA
+RANKED D42 sensor_XJ
+RANKED P37 all
+RANKED P37 region_S2
+RANKED P37 region_L8
+RANKED P37 sensor_GBA
+RANKED P37 sensor_XJ
+RANKED E50 all
+RANKED E50 region_S2
+RANKED E50 region_L8
+RANKED E50 sensor_GBA
+RANKED E50 sensor_XJ

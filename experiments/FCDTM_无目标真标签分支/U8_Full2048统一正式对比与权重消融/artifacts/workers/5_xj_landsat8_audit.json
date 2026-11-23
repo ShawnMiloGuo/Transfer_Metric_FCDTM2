@@ -1,0 +1,21 @@
+{
+  "target_reference_reads": 0,
+  "guard_probe_blocked": true,
+  "unexpected_denials": [],
+  "records": 132,
+  "source_points": 131072,
+  "source_bandwidth": 28.059600830078125,
+  "inputs": {
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_landsat8_source.npz": "315ce3cbca5197eddb3b541c5fb16ef5c78e599474fedb3263791105a1b39181",
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_landsat8__dwq_landsat8.npz": "f6fba299eebcb0234d8b8f811e468e81fe5e7669e17391902842a2d6cb4c8aa9",
+    "/home/Shanxin.Guo/ZhangtuosCode/Transfer_Metric_FCDTM2/experiments/FCDTM_无目标真标签分支/U7B_审稿新增度量与伪标签适配/artifacts/features/5_xj_landsat8__xj_sentinel2.npz": "0abfa5684d77121394a0148681bdf657c600fe50106939a377a8f4e1f8c51ecd"
+  },
+  "checkpoint_sha": "c47cb292a622f8fded25c20a4fd1888b8b232bc502803cca72277fbcc50b44b0",
+  "weighted_score_max_error": 5.684341886080802e-14,
+  "seconds": 3017.5093920230865,
+  "code_sha": {
+    "common.py": "9692f3a4604c2ae362159c71a1b4826120ad3f47886f8bea75e986fe9e0ca292",
+    "kernel.py": "1f251f46e00f80a54c2b3ce468eabf169dcd720be17a4c9c5d4d01cb167cd3c9",
+    "worker.py": "56975988bceab93718949ee4b84b03c371e7b2dab87c5d0784c0a4f16e787b10"
+  }
+}

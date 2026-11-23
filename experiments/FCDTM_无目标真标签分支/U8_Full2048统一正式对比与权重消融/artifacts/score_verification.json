@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "models": 25,
+  "tasks": 50,
+  "score_rows": 3300,
+  "audits": 50,
+  "target_reference_reads": 0,
+  "original_weighted_max_error": 4.547473508864641e-13,
+  "OTCE_numerical_scheme": "Q1024 source-only quantized feasible product lift, approximate",
+  "mmd": "exact unbiased block RBF",
+  "source_validation_cases": 200,
+  "median_relative_OT_cost_error": 0.05329519468723,
+  "max_relative_OT_cost_error": 0.08278450071322949,
+  "median_absolute_CE_error": 0.0
+}

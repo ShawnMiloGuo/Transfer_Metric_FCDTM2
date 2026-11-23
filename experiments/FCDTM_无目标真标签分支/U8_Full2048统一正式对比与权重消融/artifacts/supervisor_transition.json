@@ -1,0 +1,18 @@
+{
+  "old_supervisors_stopped": [
+    28837
+  ],
+  "active_workers_retained": {
+    "1_dwq_sentinel2": 28958,
+    "1_dwq_landsat8": 28960,
+    "1_xj_landsat8": 28962,
+    "1_xj_sentinel2": 28963,
+    "2_dwq_landsat8": 28965,
+    "2_xj_sentinel2": 28967,
+    "2_dwq_sentinel2": 28968,
+    "3_dwq_sentinel2": 28969
+  },
+  "max_mmd_workers": 20,
+  "ot_workers": 4,
+  "no_worker_killed": true
+}

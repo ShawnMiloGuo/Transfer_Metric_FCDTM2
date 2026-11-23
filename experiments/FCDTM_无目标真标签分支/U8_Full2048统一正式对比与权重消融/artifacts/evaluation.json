@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "records": 3300,
+  "batch_correlations": 10000,
+  "ranking_records": 1200,
+  "target_reference_cache_only_postseal": true,
+  "reference_cache_sha": "56339f4addfa52559c7873d6d901f157fd99c0189815d438f04317649e027551",
+  "common_batch_records": 2354
+}

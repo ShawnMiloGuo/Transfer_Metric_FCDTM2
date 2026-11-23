@@ -1,0 +1,37 @@
+SOURCE 2 dwq_landsat8 8 64 141
+SOURCE 2 dwq_landsat8 16 64 239
+SOURCE 2 dwq_landsat8 24 64 322
+SOURCE 2 dwq_landsat8 32 64 389
+SOURCE 2 dwq_landsat8 40 64 443
+SOURCE 2 dwq_landsat8 48 64 479
+SOURCE 2 dwq_landsat8 56 64 504
+SOURCE 2 dwq_landsat8 64 64 512
+TARGET 2 dwq_landsat8 dwq_sentinel2 8 40 577
+TARGET 2 dwq_landsat8 dwq_sentinel2 16 40 628
+TARGET 2 dwq_landsat8 dwq_sentinel2 24 40 666
+TARGET 2 dwq_landsat8 dwq_sentinel2 32 40 688
+TARGET 2 dwq_landsat8 dwq_sentinel2 40 40 696
+CROSS 2 dwq_landsat8 dwq_sentinel2 8 64 772
+CROSS 2 dwq_landsat8 dwq_sentinel2 16 64 845
+CROSS 2 dwq_landsat8 dwq_sentinel2 24 64 917
+CROSS 2 dwq_landsat8 dwq_sentinel2 32 64 989
+CROSS 2 dwq_landsat8 dwq_sentinel2 40 64 1065
+CROSS 2 dwq_landsat8 dwq_sentinel2 48 64 1138
+CROSS 2 dwq_landsat8 dwq_sentinel2 56 64 1217
+CROSS 2 dwq_landsat8 dwq_sentinel2 64 64 1321
+TASK_DONE 2 dwq_landsat8 dwq_sentinel2 66 1321
+TARGET 2 dwq_landsat8 xj_landsat8 8 40 1433
+TARGET 2 dwq_landsat8 xj_landsat8 16 40 1528
+TARGET 2 dwq_landsat8 xj_landsat8 24 40 1598
+TARGET 2 dwq_landsat8 xj_landsat8 32 40 1633
+TARGET 2 dwq_landsat8 xj_landsat8 40 40 1645
+CROSS 2 dwq_landsat8 xj_landsat8 8 64 1773
+CROSS 2 dwq_landsat8 xj_landsat8 16 64 1910
+CROSS 2 dwq_landsat8 xj_landsat8 24 64 2053
+CROSS 2 dwq_landsat8 xj_landsat8 32 64 2186
+CROSS 2 dwq_landsat8 xj_landsat8 40 64 2303
+CROSS 2 dwq_landsat8 xj_landsat8 48 64 2406
+CROSS 2 dwq_landsat8 xj_landsat8 56 64 2524
+CROSS 2 dwq_landsat8 xj_landsat8 64 64 2627
+TASK_DONE 2 dwq_landsat8 xj_landsat8 132 2627
+WORKER_DONE 2 dwq_landsat8 132 2627

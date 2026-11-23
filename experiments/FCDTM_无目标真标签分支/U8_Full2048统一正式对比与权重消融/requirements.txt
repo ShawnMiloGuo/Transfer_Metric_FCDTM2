@@ -1,0 +1,8 @@
+numpy
+scipy
+scikit-learn
+threadpoolctl
+POT==0.9.6.post1
+matplotlib
+pypdf
+# PyTorch and GDAL: existing FCDTM server environment; score stages reuse frozen features.

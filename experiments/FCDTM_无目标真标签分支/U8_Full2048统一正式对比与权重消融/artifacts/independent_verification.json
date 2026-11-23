@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "preserved_baseline_values": 46200,
+  "ranking_points": 1200,
+  "batch_correlations": 10000,
+  "literal_bootstrap_checks": 25,
+  "max_ranking_error": 1.1102230246251565e-16,
+  "score_seal_verified": true
+}

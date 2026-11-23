@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "point_identity_matches_assignment": true,
+  "unequal_points_matches_linprog": true,
+  "product_lift_cost_and_class_joint_checked": true,
+  "product_lift_feasible": true,
+  "approximate_cost_not_below_exact": true,
+  "POT_version": "0.9.6.post1",
+  "target_reference_reads": 0
+}
